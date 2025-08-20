@@ -55,10 +55,12 @@ html[data-cosmo-theme="glass"] {
 /* Monochrome variant */
 html[data-cosmo-theme="mono"] {
 	--cosmo-bg: #0e0f11;
-	--cosmo-card: #15171a;
+	/* semi-transparent so backdrop-filter is visible */
+	--cosmo-card: rgba(21, 23, 26, 0.72);
 	--cosmo-border: #262a2f;
 	--cosmo-glow: 0 0 0 1px #262a2f;
-	--cosmo-blur: none;
+	/* enable frosted look on mono */
+	--cosmo-blur: blur(8px);
 	--cosmo-text: #e6e7e9;
 	--cosmo-subtle: #a3a7ad;
 }
@@ -92,10 +94,12 @@ html[data-cosmo-theme="vapor"] {
 /* High contrast */
 html[data-cosmo-theme="contrast"] {
 	--cosmo-bg: #0a0b0e;
-	--cosmo-card: #12141a;
+	/* semi-transparent so backdrop-filter is visible */
+	--cosmo-card: rgba(18, 20, 26, 0.75);
 	--cosmo-border: #2b3240;
 	--cosmo-glow: 0 0 0 1px #2b3240;
-	--cosmo-blur: none;
+	/* enable frosted look on contrast */
+	--cosmo-blur: blur(8px);
 	--cosmo-text: #f3f6ff;
 	--cosmo-subtle: #c2c9d6;
 }
