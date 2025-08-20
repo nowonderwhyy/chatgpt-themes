@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Cosmo (Purely Cosmetic)",
+  "version": "1.0.0",
+  "description": "Visual polish for chatgpt.com: gradients, glass, glow — no data, no tracking.",
+  "action": { "default_title": "ChatGPT Cosmo" },
+  "options_page": "options.html",
+  "permissions": ["storage"],
+  "host_permissions": ["https://chatgpt.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "run_at": "document_start",
+      "css": ["styles.css"],
+      "js": ["content.js"]
+    }
+  ]
+}
+
+
