@@ -133,6 +133,49 @@ button[data-testid="model-switcher-dropdown-button"]:hover { transform: translat
 	backdrop-filter: var(--cosmo-blur);
 }
 
+/* Main sidebar panel (full width) */
+.bg-token-sidebar-surface-primary {
+	background: var(--cosmo-card) !important;
+	border-right: 1px solid var(--cosmo-border);
+	backdrop-filter: var(--cosmo-blur);
+	box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+	color: var(--cosmo-text);
+}
+
+/* Cover any additional sidebar surface tokens (secondary/tertiary) */
+[class*="bg-token-sidebar-surface-"] {
+	background: var(--cosmo-card) !important;
+	border-right: 1px solid var(--cosmo-border);
+	backdrop-filter: var(--cosmo-blur);
+	box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+	color: var(--cosmo-text);
+}
+
+/* Sidebar menu item polish */
+[class*="bg-token-sidebar-surface-"] [__menu-item] {
+	border-radius: 10px;
+	transition: background-color .12s ease;
+}
+[class*="bg-token-sidebar-surface-"] [__menu-item]:hover {
+	background-color: rgba(255, 255, 255, .06);
+}
+
+/* Ensure links rendered as items inherit readable color and hover */
+a[data-testid^="sidebar-item-"] {
+	color: var(--cosmo-text) !important;
+	border-radius: 10px;
+	transition: background-color .12s ease;
+}
+a[data-testid^="sidebar-item-"]:hover { background-color: rgba(255,255,255,.06); }
+
+/* Slideover/popover variants for sidebar */
+#stage-slideover-sidebar,
+#stage-popover-sidebar {
+	background: var(--cosmo-card) !important;
+	border-right: 1px solid var(--cosmo-border);
+	backdrop-filter: var(--cosmo-blur);
+}
+
 /* -------------- New Chat button -------------- */
 /* The “New chat” launch anchor has data-testid we can glow. */
 a[data-testid="create-new-chat-button"] {
@@ -180,6 +223,13 @@ a[data-skip-to-content] {
 	border-right: 1px solid var(--cosmo-border);
 	backdrop-filter: var(--cosmo-blur);
 	box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+}
+
+/* Ensure sidebar and header meet seamlessly */
+html.dark .bg-token-sidebar-surface-primary,
+html.dark #page-header {
+	/* matching subtle border to avoid visual gap */
+	border-color: var(--cosmo-border);
 }
 
 /* Buttons & core controls */
@@ -245,7 +295,9 @@ div[popover], .popover, .dropdown, .menu {
 
 /* Contrast variant tweaks */
 html[data-cosmo-theme="contrast"] #page-header,
-html[data-cosmo-theme="contrast"] #stage-sidebar-tiny-bar {
+html[data-cosmo-theme="contrast"] #stage-sidebar-tiny-bar,
+html[data-cosmo-theme="contrast"] .bg-token-sidebar-surface-primary,
+html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
 	background: var(--cosmo-card) !important;
 }
 
