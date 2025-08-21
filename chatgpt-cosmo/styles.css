@@ -561,3 +561,22 @@ form:has(#prompt-textarea) button[type="submit"]:hover { filter: brightness(1.1)
 }
 
 /* === Cosmo: Unified Glass Composer — end === */
+
+/* === Cosmo: Option to remove chatbar highlight on focus === */
+html[data-cosmo-no-chatbar-highlight] form:has(#prompt-textarea:focus-within) {
+	/* keep subtle depth but remove focus ring and lift */
+	transform: none !important;
+	box-shadow: var(--cosmo-glow) !important;
+}
+html[data-cosmo-no-chatbar-highlight] form:has(#prompt-textarea:focus-within)::after {
+	display: none !important;
+}
+html[data-cosmo-no-chatbar-highlight] :where(#prompt-textarea, textarea[name="prompt-textarea"]):focus-visible {
+	box-shadow: none !important;
+}
+
+/* === Cosmo: Option to remove chatbar hover lift === */
+html[data-cosmo-no-chatbar-hover] form:has(#prompt-textarea):hover {
+	transform: none !important;
+	box-shadow: var(--cosmo-glow) !important;
+}

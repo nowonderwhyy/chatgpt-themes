@@ -1,26 +1,49 @@
 (function () {
 	const html = document.documentElement;
 
-	// Read saved theme (default 'nebula')
-	chrome.storage.sync.get({ cosmoTheme: "nebula" }, ({ cosmoTheme }) => {
+	// Read saved settings (theme + chatbar highlight + hover lift toggles)
+	chrome.storage.sync.get({ cosmoTheme: "nebula", cosmoNoChatbarHighlight: false, cosmoNoChatbarHover: false }, ({ cosmoTheme, cosmoNoChatbarHighlight, cosmoNoChatbarHover }) => {
 		html.setAttribute("data-cosmo-theme", cosmoTheme);
+		if (cosmoNoChatbarHighlight) html.setAttribute("data-cosmo-no-chatbar-highlight", "");
+		else html.removeAttribute("data-cosmo-no-chatbar-highlight");
+		if (cosmoNoChatbarHover) html.setAttribute("data-cosmo-no-chatbar-hover", "");
+		else html.removeAttribute("data-cosmo-no-chatbar-hover");
 	});
 
-	// Keep attribute present across SPA navs/attribute changes
+	// Keep attributes present across SPA navs/attribute changes
 	const observer = new MutationObserver(() => {
-		if (!html.hasAttribute("data-cosmo-theme")) {
-			chrome.storage.sync.get({ cosmoTheme: "nebula" }, ({ cosmoTheme }) => {
-				html.setAttribute("data-cosmo-theme", cosmoTheme);
+		const needsTheme = !html.hasAttribute("data-cosmo-theme");
+		const missingHighlight = !html.hasAttribute("data-cosmo-no-chatbar-highlight");
+		const missingHover = !html.hasAttribute("data-cosmo-no-chatbar-hover");
+		if (needsTheme || missingHighlight || missingHover) {
+			chrome.storage.sync.get({ cosmoTheme: "nebula", cosmoNoChatbarHighlight: false, cosmoNoChatbarHover: false }, ({ cosmoTheme, cosmoNoChatbarHighlight, cosmoNoChatbarHover }) => {
+				if (needsTheme) html.setAttribute("data-cosmo-theme", cosmoTheme);
+				if (cosmoNoChatbarHighlight) html.setAttribute("data-cosmo-no-chatbar-highlight", "");
+				else html.removeAttribute("data-cosmo-no-chatbar-highlight");
+				if (cosmoNoChatbarHover) html.setAttribute("data-cosmo-no-chatbar-hover", "");
+				else html.removeAttribute("data-cosmo-no-chatbar-hover");
 			});
 		}
 	});
 
 	observer.observe(html, { attributes: true, attributeFilter: ["class", "data-chat-theme"] });
  
-	// Live update when options change theme
+	// Live update when settings change
 	chrome.storage.onChanged.addListener((changes, area) => {
-		if (area === "sync" && changes.cosmoTheme) {
-			document.documentElement.setAttribute("data-cosmo-theme", changes.cosmoTheme.newValue);
+		if (area === "sync") {
+			if (changes.cosmoTheme) {
+				document.documentElement.setAttribute("data-cosmo-theme", changes.cosmoTheme.newValue);
+			}
+			if (changes.cosmoNoChatbarHighlight) {
+				const enabled = !!changes.cosmoNoChatbarHighlight.newValue;
+				if (enabled) document.documentElement.setAttribute("data-cosmo-no-chatbar-highlight", "");
+				else document.documentElement.removeAttribute("data-cosmo-no-chatbar-highlight");
+			}
+			if (changes.cosmoNoChatbarHover) {
+				const enabled = !!changes.cosmoNoChatbarHover.newValue;
+				if (enabled) document.documentElement.setAttribute("data-cosmo-no-chatbar-hover", "");
+				else document.documentElement.removeAttribute("data-cosmo-no-chatbar-hover");
+			}
 		}
 	});
 })();
