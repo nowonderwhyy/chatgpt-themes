@@ -104,6 +104,19 @@ html[data-cosmo-theme="contrast"] {
 	--cosmo-subtle: #c2c9d6;
 }
 
+/* Mocha (earthy, cozy) */
+html[data-cosmo-theme="mocha"] {
+	--cosmo-bg: radial-gradient(1200px 800px at 14% -16%, #5a3e2b 0%, transparent 58%),
+	            radial-gradient(1200px 800px at 106% 118%, rgba(200,160,122,.38) 0%, transparent 52%),
+	            #201813;
+	--cosmo-card: rgba(245, 236, 224, .06);
+	--cosmo-border: rgba(245, 236, 224, .18);
+	--cosmo-glow: 0 0 0 1px rgba(201, 178, 150, .18), 0 12px 36px rgba(80, 54, 34, .22);
+	--cosmo-blur: saturate(1.06) blur(8px);
+	--cosmo-text: #f4efe7;
+	--cosmo-subtle: #d6c7b6;
+}
+
 /* -------------- Page canvas -------------- */
 /* Top-level HTML is marked with class 'dark' and data-chat-theme — we stay compatible. */
 html.dark { background: var(--cosmo-bg) !important; color: var(--cosmo-text); }
@@ -178,6 +191,16 @@ a[data-testid^="sidebar-item-"]:hover { background-color: rgba(255,255,255,.06);
 	/* Gentle polish to the scroll surface */
 	scrollbar-width: thin;
 	scrollbar-color: #3a4a64 transparent;
+}
+
+/* Smooth color transitions for major surfaces */
+html, body, #main, #thread,
+.bg-token-sidebar-surface-primary,
+[class*="bg-token-sidebar-surface-"],
+[role="menu"], [role="listbox"], [data-radix-popper-content-wrapper] > div,
+div[popover], .popover, .dropdown, .menu,
+#thread pre, #prompt-textarea {
+	transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
 }
 
 /* -------------- Generic utility overrides -------------- */
@@ -289,6 +312,11 @@ div[popover], .popover, .dropdown, .menu {
 	border-radius: 6px;
 }
 
+/* Mocha adjustments */
+html[data-cosmo-theme="mocha"] * { scrollbar-color: #7a6a5a transparent; }
+html[data-cosmo-theme="mocha"] ::selection { background: rgba(240, 225, 207, .35); color: #2a1e17; }
+html[data-cosmo-theme="mocha"] #thread { line-height: 1.65; }
+
 /* Motion respect */
 @media (prefers-reduced-motion: reduce) {
 	* { transition: none !important; animation: none !important; }
@@ -309,6 +337,46 @@ html[data-cosmo-theme="mono"]    { --cosmo-accent-1:#4a86ff; --cosmo-accent-2:#7
 html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#ffd38a; }
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
+html[data-cosmo-theme="mocha"]   { --cosmo-accent-1:#c28b6a; --cosmo-accent-2:#f0e1cf; }
+
+/* --- Mocha fine-tuning for long reads --- */
+html.dark[data-cosmo-theme="mocha"]::after{
+	background:
+		radial-gradient(60% 45% at 115% 115%, rgba(0,0,0,.30), transparent 62%),
+		radial-gradient(90% 70% at 50% 120%, rgba(32,24,19,.24), transparent 60%),
+		radial-gradient(50% 40% at 50% -10%, rgba(245,236,224,.05), transparent 60%);
+	opacity: .9;
+}
+
+/* Sepia-tinted code surfaces */
+html[data-cosmo-theme="mocha"] #thread pre {
+	background: rgba(32,24,19,.72);
+	border-color: color-mix(in oklab, var(--cosmo-border) 65%, transparent);
+}
+html[data-cosmo-theme="mocha"] #thread code:not(pre code) {
+	background: rgba(245,236,224,.10);
+	border-color: color-mix(in oklab, var(--cosmo-border) 55%, transparent);
+}
+
+/* Link and quote polish */
+html[data-cosmo-theme="mocha"] #thread a {
+	color: color-mix(in oklab, var(--cosmo-accent-1) 78%, #ffffff 22%);
+	text-decoration-color: color-mix(in oklab, var(--cosmo-accent-1) 55%, transparent);
+}
+html[data-cosmo-theme="mocha"] #thread a:hover {
+	text-decoration-color: color-mix(in oklab, var(--cosmo-accent-1) 85%, transparent);
+}
+html[data-cosmo-theme="mocha"] #thread blockquote {
+	background: rgba(245,236,224,.05);
+	border-left: 3px solid color-mix(in oklab, var(--cosmo-accent-1) 35%, transparent);
+}
+
+/* Gentle typography for body text */
+html[data-cosmo-theme="mocha"] #thread p,
+html[data-cosmo-theme="mocha"] #thread li {
+	letter-spacing: .003em;
+	hyphens: auto;
+}
 
 /* New Chat uses native site styling */
 
