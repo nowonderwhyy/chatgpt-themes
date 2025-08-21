@@ -109,21 +109,8 @@ html[data-cosmo-theme="contrast"] {
 html.dark { background: var(--cosmo-bg) !important; color: var(--cosmo-text); }
 
 /* -------------- Header polish -------------- */
-/* Header has id='page-header' and carries bg-token-main-surface-primary we can override. */
-#page-header {
-	background: linear-gradient(90deg, rgba(12,12,22,0.7), rgba(12,12,22,0.45)) !important;
-	backdrop-filter: var(--cosmo-blur);
-	border-bottom: 1px solid var(--cosmo-border);
-	box-shadow: var(--cosmo-glow);
-}
 
-/* Model switcher button is identified by data-testid */
-button[data-testid="model-switcher-dropdown-button"] {
-	border: 1px solid var(--cosmo-border) !important;
-	box-shadow: var(--cosmo-glow);
-	transition: transform .12s ease;
-}
-button[data-testid="model-switcher-dropdown-button"]:hover { transform: translateY(-1px); }
+
 
 /* -------------- Sidebar glass -------------- */
 /* Sidebar slim rail id='stage-sidebar-tiny-bar' */
@@ -176,14 +163,6 @@ a[data-testid^="sidebar-item-"]:hover { background-color: rgba(255,255,255,.06);
 	backdrop-filter: var(--cosmo-blur);
 }
 
-/* -------------- New Chat button -------------- */
-/* The “New chat” launch anchor has data-testid we can glow. */
-a[data-testid="create-new-chat-button"] {
-	background: linear-gradient(135deg, #6a5cff, #00c2ff) !important;
-	color: white !important;
-	border: none !important;
-	box-shadow: 0 8px 24px rgba(0, 194, 255, 0.25), 0 2px 8px rgba(106, 92, 255, 0.3);
-}
 
 /* -------------- Main & thread zones -------------- */
 #main, #thread {
@@ -233,12 +212,10 @@ html.dark #page-header {
 }
 
 /* Buttons & core controls */
-a[data-testid="create-new-chat-button"],
 button[data-testid="model-switcher-dropdown-button"] {
 	transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
 	border-radius: 12px !important;
 }
-a[data-testid="create-new-chat-button"]:hover { transform: translateY(-1px); filter: brightness(1.05); }
 button[data-testid="model-switcher-dropdown-button"]:active { transform: translateY(0); filter: brightness(.98); }
 
 /* Main/thread readability */
@@ -287,6 +264,10 @@ div[popover], .popover, .dropdown, .menu {
 
 /* Unified slim scrollbars across panels */
 * { scrollbar-width: thin; scrollbar-color: #3a4a64 transparent; }
+/* Chromium/Edge scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: #3a4a64; border-radius: 4px; }
 
 /* Motion respect */
 @media (prefers-reduced-motion: reduce) {
@@ -309,14 +290,7 @@ html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#f
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
 
-/* New Chat uses the current theme's accent */
-a[data-testid="create-new-chat-button"]{
-	background: linear-gradient(135deg,var(--cosmo-accent-1),var(--cosmo-accent-2)) !important;
-	color:#fff !important; border:none !important;
-	box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 2px 10px rgba(0,0,0,.2);
-	transition: transform .12s ease, filter .12s ease;
-}
-a[data-testid="create-new-chat-button"]:hover{ transform:translateY(-1px); filter:brightness(1.05); }
+/* New Chat uses native site styling */
 
  
 
@@ -334,132 +308,123 @@ main[role="main"],
 .bg-token-main-surface-tertiary {
 	background: transparent !important;
 }
+/* Thread scroller itself should be transparent */
+#thread > .composer-parent > div > div[class*="overflow-y-auto"],
+#thread [class*="overflow-y-auto"] {
+	background: transparent !important;
+}
+/* Additional thread coverage: neutralize token backgrounds in message view */
+#main [class*="bg-token-bg-"],
+#main [class*="bg-token-main-surface-"],
+#main [class*="bg-token-surface-"],
+#thread [class*="bg-token-bg-"],
+#thread [class*="bg-token-main-surface-"],
+#thread [class*="bg-token-surface-"] {
+	background: transparent !important;
+}
+#main .shadow-short, #thread .shadow-short { box-shadow: none !important; }
+
+/* Bottom container beneath composer should not paint a surface */
+#thread-bottom-container,
+#thread-bottom-container::before,
+#thread-bottom-container::after {
+	background: transparent !important;
+	box-shadow: none !important;
+	border: none !important;
+}
 
 /* Keep a smooth, fixed gradient feel */
 html, body { background-attachment: fixed; }
 
 /* ===== consolidated into Unified Glass Composer ===== */
 
-/* === Cosmo: remove custom theming for New Chat button === */
-a[data-testid="create-new-chat-button"] {
-	background: revert !important;
-	color: revert !important;
-	border: revert !important;
-	box-shadow: revert !important;
-	border-radius: revert !important;
-	transition: revert !important;
-	transform: none !important;
-	filter: none !important;
-}
-a[data-testid="create-new-chat-button"]:hover,
-a[data-testid="create-new-chat-button"]:active {
-	transform: none !important;
-	filter: none !important;
-}
-
- 
-/* ===== COSMO: composer should sit on OUR theme, not site gray ===== */
-
-/* 0) Make the page itself keep your gradient everywhere */
-html, body { background: var(--cosmo-bg) !important; background-attachment: fixed; }
-#__next, main[role="main"], #main, #thread,
-[data-testid="stretched-body"],
-[class*="bg-token-main-surface-"] { background: transparent !important; }
-
-/* 1) Scoped reset: only composer ancestors (exclude html/body/#__next) */
-:where(main,section,div,footer,header,nav,article,aside,form):has(#prompt-textarea):not(#__next) {
+/* 1. Neutralize the native opaque wrapper inside the composer form */
+form:has(#prompt-textarea) .bg-token-bg-primary {
 	background: transparent !important;
 	box-shadow: none !important;
 	border: none !important;
 }
-:where(main,section,div,footer,header,nav,article,aside,form):has(#prompt-textarea):not(#__next)::before,
-:where(main,section,div,footer,header,nav,article,aside,form):has(#prompt-textarea):not(#__next)::after {
-	background: none !important;
-	box-shadow: none !important;
-	mask: none !important;
-	-webkit-mask: none !important;
-	opacity: 0 !important;
-}
+form:has(#prompt-textarea) .shadow-short { box-shadow: none !important; }
 
 /* removed: legacy composer dock styling */
 
 /* removed: legacy full-bleed underlay */
 
 /* removed: duplicate textarea styles */
-button[data-testid="composer-plus-btn"]{
+
+/* === Cosmo: Unified Glass Composer === */
+form:has(#prompt-textarea) {
 	background: var(--cosmo-card) !important;
 	border: 1px solid var(--cosmo-border) !important;
-	box-shadow: var(--cosmo-glow); border-radius: 12px !important;
-}
-form:has(#prompt-textarea) button[type="submit"]{
-	background: linear-gradient(135deg,var(--cosmo-accent-1),var(--cosmo-accent-2)) !important;
-	color:#fff !important; border:none !important;
-	box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 2px 10px rgba(0,0,0,.2);
+	backdrop-filter: var(--cosmo-blur) !important;
+	border-radius: 24px !important;
+	box-shadow: var(--cosmo-glow) !important;
+	padding: 8px !important;
+	transition: transform .12s ease, box-shadow .12s ease;
+	display: flex;
+	gap: 8px;
 }
 
+/* Textarea: transparent over glass with subtle inner definition */
+#prompt-textarea {
+	background: transparent !important;
+	border: 1px solid color-mix(in oklab, var(--cosmo-border) 50%, transparent) !important;
+	border-radius: 16px !important;
+	padding: 14px !important;
+	min-height: 56px !important;
+	color: var(--cosmo-text) !important;
+	box-shadow: inset 0 2px 4px rgba(0,0,0,0.25) !important;
+}
+@supports not (border-color: color-mix(in oklab, white, black)) {
+	#prompt-textarea { border-color: var(--cosmo-border) !important; }
+}
+
+/* Focus state for the whole composer */
+form:has(#prompt-textarea:focus-within) {
+	transform: translateY(-2px);
+	box-shadow: var(--cosmo-glow), 0 0 0 3px color-mix(in oklab, var(--cosmo-accent-2) 30%, transparent) !important;
+}
+
+/* Unify all buttons within the composer */
+form:has(#prompt-textarea) button {
+	border-radius: 14px !important;
+	transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, background-color .12s ease;
+	border: 1px solid transparent !important;
+}
+form:has(#prompt-textarea) button:hover { transform: translateY(-1px); }
+form:has(#prompt-textarea) button:active { transform: translateY(0); filter: brightness(.95); }
+
+/* Secondary buttons (+, mic, etc.) */
+button[data-testid="composer-plus-btn"],
+button[data-testid="composer-speech-button"] {
+	background: var(--cosmo-card) !important;
+	border: 1px solid var(--cosmo-border) !important;
+	box-shadow: var(--cosmo-glow);
+}
+
+/* Primary submit button */
+form:has(#prompt-textarea) button[type="submit"] {
+	background: linear-gradient(135deg, var(--cosmo-accent-1), var(--cosmo-accent-2)) !important;
+	color: #fff !important;
+	border: none !important;
+	box-shadow: 0 8px 20px -6px color-mix(in oklab, var(--cosmo-accent-1) 50%, black);
+}
+form:has(#prompt-textarea) button[type="submit"]:hover { filter: brightness(1.1); }
+
 /* === Cosmo — sticky footer wrapper reset (kills the gray pad) === */
-:where(div,section,footer)[class*="sticky"]:has(#prompt-textarea),
-:where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea) {
+::where(div,section,footer)[class*="sticky"]:has(#prompt-textarea),
+::where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea) {
 	background: transparent !important;
 	box-shadow: none !important;
 	border: none !important;
 }
-:where(div,section,footer)[class*="sticky"]:has(#prompt-textarea)::before,
-:where(div,section,footer)[class*="sticky"]:has(#prompt-textarea)::after,
-:where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea)::before,
-:where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea)::after {
+::where(div,section,footer)[class*="sticky"]:has(#prompt-textarea)::before,
+::where(div,section,footer)[class*="sticky"]:has(#prompt-textarea)::after,
+::where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea)::before,
+::where(div,section,footer)[style*="position: sticky"]:has(#prompt-textarea)::after {
 	background: none !important;
 	box-shadow: none !important;
 	opacity: 0 !important;
 }
 
-/* === Cosmo: Unified Glass Composer === */
-form:has(#prompt-textarea){
-	background: var(--cosmo-card) !important;
-	border: 1px solid var(--cosmo-border) !important;
-	backdrop-filter: var(--cosmo-blur) !important;
-	border-radius: 18px !important;
-	box-shadow: var(--cosmo-glow) !important;
-	padding: 10px 12px !important;
-	transition: transform .12s ease, box-shadow .12s ease;
-}
-
-/* Textarea: transparent over glass with subtle inner definition */
-#prompt-textarea{
-	background: transparent !important;
-	border: 1px solid color-mix(in oklab, var(--cosmo-border) 60%, transparent) !important;
-	border-radius: 14px !important;
-	padding: 12px 14px !important;
-	min-height: 56px !important;
-	color: var(--cosmo-text) !important;
-	box-shadow: inset 0 2px 4px rgba(0,0,0,0.2) !important;
-}
-
-/* Focus state for the whole composer */
-form:has(#prompt-textarea:focus-within){
-	transform: translateY(-1px);
-	box-shadow: var(--cosmo-glow), 0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 35%, transparent);
-}
-
-/* Keep existing button styles */
-form:has(#prompt-textarea) button{
-	border-radius: 12px !important;
-	transition: transform .12s ease, filter .12s ease, box-shadow .12s ease, background .12s ease;
-}
-form:has(#prompt-textarea) button[type="submit"]{
-	background: linear-gradient(135deg,var(--cosmo-accent-1),var(--cosmo-accent-2)) !important;
-	color:#fff !important; border:none !important;
-	box-shadow: 0 10px 24px rgba(0,0,0,.25), 0 2px 10px rgba(0,0,0,.2);
-}
-form:has(#prompt-textarea) button[type="submit"]:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-form:has(#prompt-textarea) button[type="submit"]:active{ transform: translateY(0); filter: brightness(.98); }
-
-button[data-testid="composer-plus-btn"]{
-	background: var(--cosmo-card) !important;
-	border: 1px solid var(--cosmo-border) !important;
-	box-shadow: var(--cosmo-glow);
-}
-button[data-testid="composer-plus-btn"]:hover{ transform: translateY(-1px); }
-button[data-testid="composer-plus-btn"]:active{ transform: translateY(0); }
-
-/* removed: ambient underlay to prevent gray banding behind composer */
+/* === Cosmo: Unified Glass Composer — end === */
