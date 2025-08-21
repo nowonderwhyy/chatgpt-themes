@@ -173,4 +173,4 @@
 		if (e.target.closest(PLUS)) setTimeout(inject, 0);
 	});
 })();
-
+// No runtime DOM tweaks needed anymore; CSS handles initial composer layout.

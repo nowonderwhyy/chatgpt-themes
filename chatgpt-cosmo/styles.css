@@ -431,6 +431,8 @@ form:has(#prompt-textarea) .bg-token-bg-primary {
 	background: transparent !important;
 	box-shadow: none !important;
 	border: none !important;
+	/* remove internal padding that inflates initial height */
+	padding: 0 !important;
 }
 form:has(#prompt-textarea) .shadow-short { box-shadow: none !important; }
 
@@ -447,15 +449,22 @@ form:has(#prompt-textarea) {
 	backdrop-filter: var(--cosmo-blur) !important;
 	border-radius: 22px !important;
 	box-shadow: var(--cosmo-glow), 0 1px 0 rgba(255,255,255,.04) !important;
-	padding: 8px !important;
+	padding: 6px !important;
 	transition: transform .12s ease, box-shadow .12s ease;
-	display: flex;
-	gap: 8px;
 	position: relative;
 }
 
+/* Collapse spacer sibling that adds fixed height under the editor on first paint */
+form:has(#prompt-textarea) div:has(#prompt-textarea) ~ div[style*="height"] { height: 0 !important; }
+
+/* Reserve space for trailing actions and offset the field from the + button
+   so the visual matches the post-input state immediately. */
+form:has(#prompt-textarea) .relative.mx-5.flex { transform: translateX(32px) !important; }
+form:has(#prompt-textarea) .relative.mx-5.flex { margin-inline-end: calc(5*var(--spacing) + 110px) !important; }
+
 /* Textarea: transparent over glass with subtle inner definition */
-#prompt-textarea {
+#prompt-textarea,
+textarea[name="prompt-textarea"] {
 	background: transparent !important;
 	border: 1px solid color-mix(in oklab, var(--cosmo-border) 45%, transparent) !important;
 	border-radius: 16px !important;
@@ -463,7 +472,16 @@ form:has(#prompt-textarea) {
 	min-height: 56px !important;
 	color: var(--cosmo-text) !important;
 	box-shadow: inset 0 2px 6px rgba(0,0,0,0.20) !important;
+	box-sizing: border-box !important;
+	line-height: 1.4 !important;
 }
+/* Prevent placeholder paragraph margins from inflating initial height */
+#prompt-textarea .placeholder { margin: 0 !important; }
+/* Trim top/bottom edge gaps without affecting inner paragraph spacing */
+#prompt-textarea > p:first-child { margin-top: 0 !important; }
+#prompt-textarea > p:last-child { margin-bottom: 0 !important; }
+/* Keep initial placeholder height aligned with the slim state */
+#prompt-textarea:has(.placeholder) { min-height: 56px !important; }
 @supports not (border-color: color-mix(in oklab, white, black)) {
 	#prompt-textarea { border-color: var(--cosmo-border) !important; }
 }
