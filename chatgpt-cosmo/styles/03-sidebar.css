@@ -4,10 +4,10 @@
 #stage-slideover-sidebar,
 #stage-popover-sidebar,
 #stage-sidebar-tiny-bar {
-    background: var(--cosmo-card) !important;
-    border-right: 1px solid var(--cosmo-border);
+    background: var(--sb-rail-bg, var(--cosmo-card)) !important;
+    border-right: 1px solid var(--sb-divider, var(--cosmo-border));
     backdrop-filter: var(--cosmo-blur);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    box-shadow: var(--sb-rail-shadow, inset -1px 0 0 rgba(255,255,255,.03));
 }
 
 /* 2. Neutralize default opaque backgrounds inside the sidebar to reveal the glass effect */
@@ -27,10 +27,10 @@
 /* 4. Add subtle borders to delineate the sticky areas */
 #stage-slideover-sidebar nav > .sticky.top-0,
 #stage-slideover-sidebar nav > aside[class*="sticky"] {
-    border-bottom: 1px solid var(--cosmo-border);
+    border-bottom: 1px solid var(--sb-divider, var(--cosmo-border));
 }
 #stage-slideover-sidebar nav > .sticky.bottom-0 {
-    border-top: 1px solid var(--cosmo-border);
+    border-top: 1px solid var(--sb-divider, var(--cosmo-border));
 }
 
 
@@ -41,15 +41,36 @@
 #stage-popover-sidebar [__menu-item]:hover,
 a[data-testid^="sidebar-item-"]:hover {
     background-color: rgba(255, 255, 255, .06) !important;
+    box-shadow: inset 0 0 0 1px var(--sb-hover-rim, transparent);
 }
 
 /* Consistent text color and rounded corners */
 #stage-slideover-sidebar [__menu-item],
 #stage-popover-sidebar [__menu-item],
 a[data-testid^="sidebar-item-"] {
-    color: var(--cosmo-text) !important;
+    color: var(--sb-icon-color, var(--cosmo-text)) !important;
     border-radius: 10px;
-    transition: background-color .12s ease;
+    transition: background-color .12s ease, box-shadow .12s ease, color .12s ease;
+    position: relative;
+}
+
+/* Active row background + left accent bar via tokens */
+#stage-slideover-sidebar [__menu-item][aria-current="page"],
+#stage-slideover-sidebar [__menu-item][data-selected="true"],
+#stage-popover-sidebar [__menu-item][aria-current="page"],
+#stage-popover-sidebar [__menu-item][data-selected="true"],
+a[data-testid^="sidebar-item-"][aria-current="page"],
+a[data-testid^="sidebar-item-"][data-selected="true"] {
+    background: var(--sb-active-bg, transparent) !important;
+}
+#stage-slideover-sidebar [__menu-item][aria-current="page"]::before,
+#stage-slideover-sidebar [__menu-item][data-selected="true"]::before,
+#stage-popover-sidebar [__menu-item][aria-current="page"]::before,
+#stage-popover-sidebar [__menu-item][data-selected="true"]::before,
+a[data-testid^="sidebar-item-"][aria-current="page"]::before,
+a[data-testid^="sidebar-item-"][data-selected="true"]::before {
+    content: ""; position: absolute; left: 4px; top: 8px; bottom: 8px; width: 3px;
+    border-radius: 2px; background: var(--sb-accent-bar, transparent);
 }
 
 /* Hover polish for icons on the collapsed rail */
@@ -63,4 +84,34 @@ a[data-testid^="sidebar-item-"] {
 /* Ensure sidebar and header borders match */
 html.dark #page-header {
     border-color: var(--cosmo-border);
+}
+
+/* === Collapsed rail behaviors (always on) === */
+/* Peek expand on hover */
+#stage-sidebar-tiny-bar { transition: width .16s ease; overflow: visible; }
+#stage-sidebar-tiny-bar:hover { width: 224px !important; }
+/* Always show active marker */
+#stage-sidebar-tiny-bar [__menu-item] { position: relative; }
+#stage-sidebar-tiny-bar [__menu-item][aria-current="page"]::before,
+#stage-sidebar-tiny-bar [__menu-item][data-selected="true"]::before,
+#stage-sidebar-tiny-bar a[data-testid^="sidebar-item-"][aria-current="page"]::before,
+#stage-sidebar-tiny-bar a[data-testid^="sidebar-item-"][data-selected="true"]::before {
+    content: ""; position: absolute; left: 2px; top: 8px; bottom: 8px; width: 3px; border-radius: 2px;
+    background: color-mix(in oklab, var(--cosmo-accent-1) 70%, var(--cosmo-accent-2) 30%);
+}
+/* Tooltips with delay + hint */
+#stage-sidebar-tiny-bar [__menu-item] { position: relative; }
+#stage-sidebar-tiny-bar [__menu-item]::after {
+    content: attr(aria-label) "  •  Right-click to pin";
+    position: absolute; left: 100%; top: 50%; transform: translate(8px, -50%);
+    background: var(--cosmo-card); color: var(--cosmo-text); border: 1px solid var(--cosmo-border);
+    border-radius: 8px; padding: 4px 8px; white-space: nowrap; pointer-events: none;
+    opacity: 0; transition: opacity .12s ease .25s; box-shadow: var(--cosmo-glow-soft);
+}
+#stage-sidebar-tiny-bar [__menu-item]:hover::after { opacity: 1; }
+/* Unread dots */
+#stage-sidebar-tiny-bar [__menu-item][data-unread="true"]::before,
+#stage-sidebar-tiny-bar [__menu-item].has-unread::before {
+    content: ""; position: absolute; right: 6px; top: 10px; width: 6px; height: 6px; border-radius: 9999px;
+    background: color-mix(in oklab, var(--cosmo-accent-2) 85%, #ffffff 15%);
 }

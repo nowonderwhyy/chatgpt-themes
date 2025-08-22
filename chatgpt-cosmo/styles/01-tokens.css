@@ -10,6 +10,14 @@ html[data-cosmo-theme="nebula"] {
     --cosmo-blur: saturate(1.15) blur(10px); /* Increased blur */
     --cosmo-text: #e8ecff;
     --cosmo-subtle: #9aa6c3;
+    /* Sidebar tokens */
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: #7E6BFF; /* active marker */
+    --sb-active-bg: rgba(126,107,255,.04);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
 /* Glassy variant */
@@ -22,6 +30,13 @@ html[data-cosmo-theme="glass"] {
     --cosmo-blur: blur(10px);
     --cosmo-text: #f2f4f8;
     --cosmo-subtle: #a8b0bd;
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: var(--cosmo-accent-1);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
 /* Monochrome variant */
@@ -34,6 +49,13 @@ html[data-cosmo-theme="mono"] {
     --cosmo-blur: blur(8px);
     --cosmo-text: #e6e7e9;
     --cosmo-subtle: #a3a7ad;
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: var(--cosmo-accent-1);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
 /* Sunset (warm) */
@@ -48,6 +70,13 @@ html[data-cosmo-theme="sunset"] {
     --cosmo-blur: saturate(1.08) blur(9px);
     --cosmo-text: #ffe9df;
     --cosmo-subtle: #ffcfb7;
+    --sb-rail-bg: #1D1411; /* espresso */
+    --sb-divider: color-mix(in oklab, #C88B5E 35%, transparent);
+    --sb-accent-bar: #C88B5E; /* copper */
+    --sb-active-bg: color-mix(in oklab, #C88B5E 3%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: color-mix(in oklab, #ffffff 78%, #000 22%);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.02);
 }
 
 /* Vapor (cool teal/purple) */
@@ -62,6 +91,13 @@ html[data-cosmo-theme="vapor"] {
     --cosmo-blur: saturate(1.1) blur(9px);
     --cosmo-text: #eafcff;
     --cosmo-subtle: #b3e6e9;
+    --sb-rail-bg: #0E1116; /* blue-black rail */
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-2) 85%, #0E1116);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 3%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 22%, transparent);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: 0 0 0 1px rgba(255,255,255,.02), 0 8px 24px rgba(6,22,28,.36);
 }
 
 /* High contrast */
@@ -74,6 +110,13 @@ html[data-cosmo-theme="contrast"] {
     --cosmo-blur: blur(8px);
     --cosmo-text: #f3f6ff;
     --cosmo-subtle: #c2c9d6;
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: var(--cosmo-accent-1);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
 /* Mocha (earthy, cozy) */
@@ -88,6 +131,13 @@ html[data-cosmo-theme="mocha"] {
     --cosmo-blur: saturate(1.06) blur(9px);
     --cosmo-text: #f4efe7;
     --cosmo-subtle: #d6c7b6;
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: #caa078; /* bronze */
+    --sb-active-bg: transparent; /* prefer bar + icon glow */
+    --sb-hover-rim: transparent;
+    --sb-icon-color: #F3E9DD;
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
 /* === Cosmo accents === */
@@ -98,3 +148,14 @@ html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#f
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
 html[data-cosmo-theme="mocha"]   { --cosmo-accent-1:#c28b6a; --cosmo-accent-2:#f0e1cf; }
+
+/* Defaults for non-themed contexts */
+:root {
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: transparent;
+    --sb-active-bg: transparent;
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+}

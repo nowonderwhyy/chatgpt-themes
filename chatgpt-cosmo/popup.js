@@ -54,30 +54,9 @@ function initThemes(){
 	});
 }
 
-function initToggle(){
-	const checkbox = document.getElementById('noHighlight');
-	if (!checkbox) return;
-	chrome.storage.sync.get({ cosmoNoChatbarHighlight: false }, ({ cosmoNoChatbarHighlight }) => {
-		checkbox.checked = !!cosmoNoChatbarHighlight;
-	});
-	checkbox.addEventListener('change', () => {
-		chrome.storage.sync.set({ cosmoNoChatbarHighlight: checkbox.checked });
-	});
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-	initThemes();
-	initToggle();
-	// Hover lift toggle
-	const hoverCb = document.getElementById('noHoverLift');
-	if (hoverCb) {
-		chrome.storage.sync.get({ cosmoNoChatbarHover: false }, ({ cosmoNoChatbarHover }) => {
-			hoverCb.checked = !!cosmoNoChatbarHover;
-		});
-		hoverCb.addEventListener('change', () => {
-			chrome.storage.sync.set({ cosmoNoChatbarHover: hoverCb.checked });
-		});
-	}
+    initThemes();
+    // Chatbar highlight/hover toggles removed from popup by request.
 });
 
 

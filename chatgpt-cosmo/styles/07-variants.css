@@ -50,3 +50,72 @@ html[data-cosmo-theme="mocha"] #thread li {
     hyphens: auto;
 }
 
+/* ================= Sidebar Theme Variants ================ */
+
+/* Sunset — espresso rail, copper polish */
+html[data-cosmo-theme="sunset"] #stage-slideover-sidebar nav > .sticky.top-0,
+html[data-cosmo-theme="sunset"] #stage-slideover-sidebar nav > aside[class*="sticky"],
+html[data-cosmo-theme="sunset"] #stage-slideover-sidebar nav > .sticky.bottom-0 {
+  border-color: var(--sb-divider);
+}
+html[data-cosmo-theme="sunset"] #stage-slideover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="sunset"] #stage-popover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="sunset"] a[data-testid^="sidebar-item-"] svg {
+  color: var(--sb-icon-color);
+  filter: brightness(1.06);
+}
+/* Avatar copper ring on hover */
+html[data-cosmo-theme="sunset"] #stage-slideover-sidebar nav > .sticky.bottom-0 :is(img, .avatar, [class*="avatar"], .rounded-full):hover {
+  box-shadow: 0 0 0 1px var(--sb-accent-bar);
+  border-radius: 9999px;
+}
+
+/* Vapor — rim-light hover, teal marker */
+html[data-cosmo-theme="vapor"] #stage-slideover-sidebar [__menu-item]:hover,
+html[data-cosmo-theme="vapor"] #stage-popover-sidebar [__menu-item]:hover,
+html[data-cosmo-theme="vapor"] a[data-testid^="sidebar-item-"]:hover {
+  background: transparent !important;
+}
+html[data-cosmo-theme="vapor"] [__menu-item][aria-current="page"],
+html[data-cosmo-theme="vapor"] [__menu-item][data-selected="true"],
+html[data-cosmo-theme="vapor"] a[data-testid^="sidebar-item-"][aria-current="page"],
+html[data-cosmo-theme="vapor"] a[data-testid^="sidebar-item-"][data-selected="true"] {
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
+}
+
+/* Mocha — ivory glyphs, bronze structure */
+html[data-cosmo-theme="mocha"] #stage-slideover-sidebar [__menu-item],
+html[data-cosmo-theme="mocha"] #stage-popover-sidebar [__menu-item],
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"] {
+  font-weight: 450;
+}
+html[data-cosmo-theme="mocha"] #stage-slideover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="mocha"] #stage-popover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"] svg { color: #F5EFE6; }
+html[data-cosmo-theme="mocha"] [__menu-item][aria-current="page"] svg,
+html[data-cosmo-theme="mocha"] [__menu-item][data-selected="true"] svg,
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][aria-current="page"] svg,
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][data-selected="true"] svg {
+  filter: drop-shadow(0 0 6px rgba(185, 138, 90, .25));
+}
+/* Section headers */
+html[data-cosmo-theme="mocha"] #stage-slideover-sidebar :is(h2,h3,[role="heading"]) {
+  text-transform: uppercase; font-size: 10.5px; letter-spacing: .06em;
+  color: color-mix(in oklab, #caa078 80%, #F3E9DD 20%);
+}
+
+/* Nebula — faint rail wash + micro-motion */
+html[data-cosmo-theme="nebula"] #stage-slideover-sidebar { position: relative; }
+html[data-cosmo-theme="nebula"] #stage-slideover-sidebar::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 12px 0 0 12px;
+  background: linear-gradient(135deg, rgba(126,107,255,.06), rgba(0,0,0,0));
+}
+html[data-cosmo-theme="nebula"] #stage-slideover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="nebula"] #stage-popover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="nebula"] a[data-testid^="sidebar-item-"] svg { transition: transform .12s ease, filter .12s ease; }
+html[data-cosmo-theme="nebula"] #stage-slideover-sidebar [__menu-item]:hover svg,
+html[data-cosmo-theme="nebula"] #stage-popover-sidebar [__menu-item]:hover svg,
+html[data-cosmo-theme="nebula"] a[data-testid^="sidebar-item-"]:hover svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 2px 6px rgba(126,107,255,.18));
+}
