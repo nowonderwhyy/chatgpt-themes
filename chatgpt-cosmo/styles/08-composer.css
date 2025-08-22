@@ -6,7 +6,38 @@ form[data-type="unified-composer"] .bg-token-bg-primary {
   backdrop-filter: var(--cosmo-blur) !important;
   border-radius: 24px !important;
   box-shadow: var(--cosmo-glow);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
 }
+
+/* Layered gloss + liquid highlight */
+form[data-type="unified-composer"] .bg-token-bg-primary::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,0) 40%),
+    radial-gradient(120% 60% at 0% -20%, rgba(255,255,255,.10), transparent 40%),
+    radial-gradient(120% 60% at 100% 120%, rgba(255,255,255,.06), transparent 50%);
+  mix-blend-mode: soft-light;
+  opacity: .85;
+}
+
+/* Inner strokes for glass edge definition */
+form[data-type="unified-composer"] .bg-token-bg-primary::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(255,255,255,.05);
+  opacity: .7;
+}
+
+/* Subtle interactive lift on hover (respects hover toggle) */
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover {
+  border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
+  box-shadow: var(--cosmo-glow), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+}
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover::before { opacity: .95; }
 
 /* 4) Secondary buttons (+, mic, etc.) inside the composer */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"],
@@ -16,13 +47,33 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
   border-radius: 9999px !important;
   box-shadow: var(--cosmo-glow);
   position: relative;
+  overflow: hidden;
+  backdrop-filter: var(--cosmo-blur);
+  transition: background-color .18s ease, box-shadow .18s ease, transform .12s ease;
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::before,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {
   content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
-  opacity: .6;
+  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
+  opacity: .65;
 }
+
+/* Inner ring for buttons */
+form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::after,
+form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(255,255,255,.05);
+}
+
+/* Button hover affordance (respects hover toggle) */
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:hover,
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:hover {
+  border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
+  box-shadow: var(--cosmo-glow), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+  transform: translateY(-1px);
+}
+form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:active,
+form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:active { transform: translateY(0); }
 
 /* 5) Hover / focus treatment (using :focus-within; respects toggles) */
 
