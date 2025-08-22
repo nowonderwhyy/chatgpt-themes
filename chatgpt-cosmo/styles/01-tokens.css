@@ -3,10 +3,10 @@ html[data-cosmo-theme="nebula"] {
     --cosmo-bg: radial-gradient(1200px 800px at 12% -18%, #4a3aa3 0%, transparent 60%),
                 radial-gradient(1200px 800px at 108% 118%, #0e7ac4 0%, transparent 60%),
                 #0b0b12;
-    --cosmo-card: rgba(255,255,255,0.05);
-    --cosmo-border: rgba(255,255,255,0.14);
+    --cosmo-card: rgba(21, 23, 28, 0.7); /* Darker, more opaque for readability */
+    --cosmo-border: rgba(255,255,255,0.16);
     --cosmo-glow: 0 0 0 1px rgba(150, 170, 255, 0.22), 0 12px 36px rgba(60, 120, 255, 0.16);
-    --cosmo-blur: saturate(1.15) blur(8px);
+    --cosmo-blur: saturate(1.15) blur(10px); /* Increased blur */
     --cosmo-text: #e8ecff;
     --cosmo-subtle: #9aa6c3;
 }
@@ -14,7 +14,7 @@ html[data-cosmo-theme="nebula"] {
 /* Glassy variant */
 html[data-cosmo-theme="glass"] {
     --cosmo-bg: linear-gradient(120deg, #0e0f14, #0b1116 40%, #0e0f14 100%);
-    --cosmo-card: rgba(255,255,255,0.04);
+    --cosmo-card: rgba(18, 20, 26, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255,255,255,0.12);
     --cosmo-glow: 0 0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.35);
     --cosmo-blur: blur(10px);
@@ -25,11 +25,9 @@ html[data-cosmo-theme="glass"] {
 /* Monochrome variant */
 html[data-cosmo-theme="mono"] {
     --cosmo-bg: #0e0f11;
-    /* semi-transparent so backdrop-filter is visible */
     --cosmo-card: rgba(21, 23, 26, 0.72);
     --cosmo-border: #262a2f;
     --cosmo-glow: 0 0 0 1px #262a2f;
-    /* enable frosted look on mono */
     --cosmo-blur: blur(8px);
     --cosmo-text: #e6e7e9;
     --cosmo-subtle: #a3a7ad;
@@ -40,10 +38,10 @@ html[data-cosmo-theme="sunset"] {
     --cosmo-bg: radial-gradient(1200px 800px at 12% -14%, #6a2747 0%, transparent 58%),
                 radial-gradient(1200px 800px at 106% 118%, #ff9a2e 0%, transparent 58%),
                 #0b0b12;
-    --cosmo-card: rgba(255, 230, 215, .05);
+    --cosmo-card: rgba(32, 24, 19, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255, 230, 215, .16);
     --cosmo-glow: 0 0 0 1px rgba(255,175,140,.18), 0 12px 36px rgba(255,140,0,.16);
-    --cosmo-blur: saturate(1.08) blur(8px);
+    --cosmo-blur: saturate(1.08) blur(9px);
     --cosmo-text: #ffe9df;
     --cosmo-subtle: #ffcfb7;
 }
@@ -53,7 +51,7 @@ html[data-cosmo-theme="vapor"] {
     --cosmo-bg: radial-gradient(1200px 800px at 8% -12%, #442066 0%, transparent 58%),
                 radial-gradient(1200px 800px at 104% 116%, #0a8a8a 0%, transparent 58%),
                 #0b0b12;
-    --cosmo-card: rgba(255,255,255,0.05);
+    --cosmo-card: rgba(20, 21, 28, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255,255,255,0.15);
     --cosmo-glow: 0 0 0 1px rgba(154,119,222,.20), 0 12px 36px rgba(42,171,171,.16);
     --cosmo-blur: saturate(1.1) blur(9px);
@@ -64,11 +62,9 @@ html[data-cosmo-theme="vapor"] {
 /* High contrast */
 html[data-cosmo-theme="contrast"] {
     --cosmo-bg: #0a0b0e;
-    /* semi-transparent so backdrop-filter is visible */
     --cosmo-card: rgba(18, 20, 26, 0.75);
     --cosmo-border: #2b3240;
     --cosmo-glow: 0 0 0 1px #2b3240;
-    /* enable frosted look on contrast */
     --cosmo-blur: blur(8px);
     --cosmo-text: #f3f6ff;
     --cosmo-subtle: #c2c9d6;
@@ -79,10 +75,10 @@ html[data-cosmo-theme="mocha"] {
     --cosmo-bg: radial-gradient(1200px 800px at 14% -16%, #5a3e2b 0%, transparent 58%),
                 radial-gradient(1200px 800px at 106% 118%, rgba(200,160,122,.38) 0%, transparent 52%),
                 #201813;
-    --cosmo-card: rgba(245, 236, 224, .06);
+    --cosmo-card: rgba(32, 24, 19, 0.8); /* Darker, more opaque */
     --cosmo-border: rgba(245, 236, 224, .18);
     --cosmo-glow: 0 0 0 1px rgba(201, 178, 150, .18), 0 12px 36px rgba(80, 54, 34, .22);
-    --cosmo-blur: saturate(1.06) blur(8px);
+    --cosmo-blur: saturate(1.06) blur(9px);
     --cosmo-text: #f4efe7;
     --cosmo-subtle: #d6c7b6;
 }
@@ -95,4 +91,3 @@ html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#f
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
 html[data-cosmo-theme="mocha"]   { --cosmo-accent-1:#c28b6a; --cosmo-accent-2:#f0e1cf; }
-

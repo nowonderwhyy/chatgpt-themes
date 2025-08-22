@@ -1,5 +1,8 @@
 /* -------------- Sidebar glass -------------- */
-/* Sidebar slim rail id='stage-sidebar-tiny-bar' */
+
+/* 1. Main sidebar containers (expanded, collapsed rail, popover) */
+#stage-slideover-sidebar,
+#stage-popover-sidebar,
 #stage-sidebar-tiny-bar {
     background: var(--cosmo-card) !important;
     border-right: 1px solid var(--cosmo-border);
@@ -7,50 +10,57 @@
     box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
 }
 
+/* 2. Neutralize default opaque backgrounds inside the sidebar to reveal the glass effect */
+#stage-slideover-sidebar .bg-token-bg-elevated-secondary,
+#stage-popover-sidebar .bg-token-bg-elevated-secondary {
+    background: transparent !important;
+}
 
-
-/* Cover any additional sidebar surface tokens (secondary/tertiary) */
-[class*="bg-token-sidebar-surface-"] {
+/* 3. Apply a distinct glass effect to the sticky header/footer for layering */
+/* When content scrolls, it will blur behind these elements */
+#stage-slideover-sidebar nav > .sticky,
+#stage-slideover-sidebar nav > aside[class*="sticky"] { /* `aside` is used for "New Project" etc. sections */
     background: var(--cosmo-card) !important;
-    border-right: 1px solid var(--cosmo-border);
     backdrop-filter: var(--cosmo-blur);
-    box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
-    color: var(--cosmo-text);
 }
 
-/* Sidebar menu item polish */
-[class*="bg-token-sidebar-surface-"] [__menu-item] {
-    border-radius: 10px;
-    transition: background-color .12s ease;
+/* 4. Add subtle borders to delineate the sticky areas */
+#stage-slideover-sidebar nav > .sticky.top-0,
+#stage-slideover-sidebar nav > aside[class*="sticky"] {
+    border-bottom: 1px solid var(--cosmo-border);
 }
-[class*="bg-token-sidebar-surface-"] [__menu-item]:hover {
-    background-color: rgba(255, 255, 255, .06);
+#stage-slideover-sidebar nav > .sticky.bottom-0 {
+    border-top: 1px solid var(--cosmo-border);
 }
 
-/* Ensure links rendered as items inherit readable color and hover */
+
+/* --- General sidebar item polish --- */
+
+/* Item hover states */
+#stage-slideover-sidebar [__menu-item]:hover,
+#stage-popover-sidebar [__menu-item]:hover,
+a[data-testid^="sidebar-item-"]:hover {
+    background-color: rgba(255, 255, 255, .06) !important;
+}
+
+/* Consistent text color and rounded corners */
+#stage-slideover-sidebar [__menu-item],
+#stage-popover-sidebar [__menu-item],
 a[data-testid^="sidebar-item-"] {
     color: var(--cosmo-text) !important;
     border-radius: 10px;
     transition: background-color .12s ease;
 }
-a[data-testid^="sidebar-item-"]:hover { background-color: rgba(255,255,255,.06); }
 
-/* Slideover/popover variants for sidebar */
-#stage-slideover-sidebar,
-#stage-popover-sidebar {
-    background: var(--cosmo-card) !important;
-    border-right: 1px solid var(--cosmo-border);
-    backdrop-filter: var(--cosmo-blur);
+/* Hover polish for icons on the collapsed rail */
+#stage-sidebar-tiny-bar [__menu-item] {
+    transition: background-color .12s ease;
+}
+#stage-sidebar-tiny-bar [__menu-item]:hover {
+    background-color: rgba(255, 255, 255, .05);
 }
 
-/* Hover polish for slim sidebar icons */
-#stage-sidebar-tiny-bar [__menu-item] { transition: background-color .12s ease; }
-#stage-sidebar-tiny-bar [__menu-item]:hover { background-color: rgba(255, 255, 255, .05); }
-
-/* Ensure sidebar and header meet seamlessly */
-html.dark .bg-token-sidebar-surface-primary,
+/* Ensure sidebar and header borders match */
 html.dark #page-header {
-    /* matching subtle border to avoid visual gap */
     border-color: var(--cosmo-border);
 }
-
