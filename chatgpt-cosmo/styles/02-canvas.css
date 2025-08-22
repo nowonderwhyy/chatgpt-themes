@@ -1,0 +1,55 @@
+/* -------------- Page canvas -------------- */
+/* Top-level HTML is marked with class 'dark' and data-chat-theme — we stay compatible. */
+html.dark { background: var(--cosmo-bg) !important; color: var(--cosmo-text); }
+
+/* Subtle canvas vignette for depth */
+html.dark::after{
+    content: ""; position: fixed; inset: 0; pointer-events: none;
+    background:
+        radial-gradient(90% 70% at 50% 120%, rgba(0,0,0,.28), transparent 60%),
+        radial-gradient(50% 40% at 50% -10%, rgba(255,255,255,.03), transparent 60%);
+    mix-blend-mode: soft-light; opacity: .9;
+}
+
+/* ----- Force the site canvas to use our theme background ----- */
+html, body { background: var(--cosmo-bg) !important; }
+
+/* Neutralize site wrappers so our BG shows through */
+#__next,
+main[role="main"],
+#main,
+#thread,
+[data-testid="stretched-body"],
+.bg-token-main-surface-primary,
+.bg-token-main-surface-secondary,
+.bg-token-main-surface-tertiary {
+    background: transparent !important;
+}
+/* Thread scroller itself should be transparent */
+#thread > .composer-parent > div > div[class*="overflow-y-auto"],
+#thread [class*="overflow-y-auto"] {
+    background: transparent !important;
+}
+/* Additional thread coverage: neutralize token backgrounds in message view */
+#main [class*="bg-token-bg-"],
+#main [class*="bg-token-main-surface-"],
+#main [class*="bg-token-surface-"],
+#thread [class*="bg-token-bg-"],
+#thread [class*="bg-token-main-surface-"],
+#thread [class*="bg-token-surface-"] {
+    background: transparent !important;
+}
+#main .shadow-short, #thread .shadow-short { box-shadow: none !important; }
+
+/* Bottom container beneath composer should not paint a surface */
+#thread-bottom-container,
+#thread-bottom-container::before,
+#thread-bottom-container::after {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Keep a smooth, fixed gradient feel */
+html, body { background-attachment: fixed; }
+

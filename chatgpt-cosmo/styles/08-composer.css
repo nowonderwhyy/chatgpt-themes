@@ -1,0 +1,37 @@
+/* ===== Cosmo — Composer (scoped, simplified, robust) ===== */
+/* 2) Primary composer container (stable wrapper inside the form) */
+form[data-type="unified-composer"] .bg-token-bg-primary {
+  background: var(--cosmo-card) !important;
+  border: 1px solid var(--cosmo-border) !important;
+  backdrop-filter: var(--cosmo-blur) !important;
+  border-radius: 24px !important;
+  box-shadow: var(--cosmo-glow);
+}
+
+/* 4) Secondary buttons (+, mic, etc.) inside the composer */
+form[data-type="unified-composer"] button[data-testid="composer-plus-btn"],
+form[data-type="unified-composer"] button[data-testid="composer-speech-button"] {
+  background: var(--cosmo-card) !important;
+  border: 1px solid var(--cosmo-border) !important;
+  border-radius: 9999px !important;
+  box-shadow: var(--cosmo-glow);
+  position: relative;
+}
+form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::before,
+form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {
+  content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+  opacity: .6;
+}
+
+/* 5) Hover / focus treatment (using :focus-within; respects toggles) */
+
+/* Focus highlight (unless disabled) */
+html:not([data-cosmo-no-chatbar-highlight]) form[data-type="unified-composer"] .bg-token-bg-primary:focus-within {
+  box-shadow: var(--cosmo-glow), 0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 40%, transparent);
+}
+
+/* When highlight is disabled, keep a consistent base glow */
+html[data-cosmo-no-chatbar-highlight] form[data-type="unified-composer"] .bg-token-bg-primary:focus-within {
+  box-shadow: var(--cosmo-glow);
+}

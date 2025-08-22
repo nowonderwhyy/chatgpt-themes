@@ -1,0 +1,14 @@
+/* Focus visibility */
+::where(button, a, input, select, textarea):focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 28%, transparent),
+        0 0 0 4px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
+    border-radius: 10px;
+}
+
+/* Motion respect */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+

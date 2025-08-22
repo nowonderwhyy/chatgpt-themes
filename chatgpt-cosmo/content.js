@@ -193,7 +193,16 @@
 	}
 
 	document.addEventListener('click', (e) => {
-		if (e.target.closest(PLUS)) setTimeout(inject, 0);
+		if (!e.target.closest(PLUS)) return;
+		const obs = new MutationObserver(() => {
+			const menu = Array.from(document.querySelectorAll('[role="menu"]')).at(-1);
+			if (menu && !menu.querySelector('#cosmo-menu-theme')) {
+				inject();
+				obs.disconnect();
+			}
+		});
+		obs.observe(document.body, { childList: true, subtree: true });
+		setTimeout(() => { inject(); obs.disconnect(); }, 150);
 	});
 })();
 // No runtime DOM tweaks needed anymore; CSS handles initial composer layout.

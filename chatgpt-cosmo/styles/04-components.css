@@ -1,0 +1,74 @@
+/* === Header, buttons, menus, content components === */
+
+/* Header depth and glow */
+#page-header {
+    background: linear-gradient(90deg,
+        color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent),
+        color-mix(in oklab, var(--cosmo-accent-2) 10%, transparent)
+    ) !important;
+    backdrop-filter: var(--cosmo-blur);
+    border-bottom: 1px solid var(--cosmo-border);
+    box-shadow: var(--cosmo-glow), inset 0 -1px 0 rgba(255,255,255,.03);
+    border-radius: 0 0 14px 14px;
+}
+
+/* Unify header action buttons */
+button[data-testid="model-switcher-dropdown-button"],
+button[data-testid="share-chat-button"],
+button[data-testid="conversation-options-button"] {
+    border: 1px solid var(--cosmo-border) !important;
+    box-shadow: var(--cosmo-glow);
+    border-radius: 12px !important;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+button[data-testid="share-chat-button"]:hover,
+button[data-testid="conversation-options-button"]:hover {
+    transform: translateY(-1px);
+}
+
+/* Buttons & core controls */
+button[data-testid="model-switcher-dropdown-button"] {
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+    border-radius: 12px !important;
+}
+button[data-testid="model-switcher-dropdown-button"]:active { transform: translateY(0); filter: brightness(.98); }
+
+/* In-chat action icon hover */
+button[data-testid*="-turn-action-button"] { transition: background-color .12s ease; }
+button[data-testid*="-turn-action-button"]:hover { background-color: rgba(255, 255, 255, .06); }
+
+/* Main/thread readability */
+#main, #thread { color: var(--cosmo-text); line-height: 1.5; }
+#thread p, #thread li, #thread blockquote { color: var(--cosmo-text); }
+#thread small, #thread time, #thread figcaption { color: var(--cosmo-subtle); }
+
+/* Code blocks */
+#thread pre, #thread code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+#thread pre {
+    background: rgba(0,0,0,.35);
+    border: 1px solid var(--cosmo-border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.25);
+}
+#thread code:not(pre code) {
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--cosmo-border);
+    border-radius: 6px;
+    padding: .1em .35em;
+}
+
+/* Menus & popovers */
+[role="menu"], [role="listbox"], [data-radix-popper-content-wrapper] > div,
+div[popover], .popover, .dropdown, .menu {
+    background: var(--cosmo-card) !important;
+    border: 1px solid var(--cosmo-border) !important;
+    backdrop-filter: var(--cosmo-blur);
+    box-shadow: var(--cosmo-glow);
+    border-radius: 12px !important;
+}
+[role="menu"] [role="menuitem"],
+[role="listbox"] [role="option"] { border-radius: 8px; }
+[role="menu"] [role="menuitem"]:hover,
+[role="listbox"] [role="option"][aria-selected="true"] { background: rgba(255,255,255,.06); }
+

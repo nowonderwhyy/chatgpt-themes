@@ -1,0 +1,56 @@
+/* -------------- Sidebar glass -------------- */
+/* Sidebar slim rail id='stage-sidebar-tiny-bar' */
+#stage-sidebar-tiny-bar {
+    background: var(--cosmo-card) !important;
+    border-right: 1px solid var(--cosmo-border);
+    backdrop-filter: var(--cosmo-blur);
+    box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+}
+
+
+
+/* Cover any additional sidebar surface tokens (secondary/tertiary) */
+[class*="bg-token-sidebar-surface-"] {
+    background: var(--cosmo-card) !important;
+    border-right: 1px solid var(--cosmo-border);
+    backdrop-filter: var(--cosmo-blur);
+    box-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    color: var(--cosmo-text);
+}
+
+/* Sidebar menu item polish */
+[class*="bg-token-sidebar-surface-"] [__menu-item] {
+    border-radius: 10px;
+    transition: background-color .12s ease;
+}
+[class*="bg-token-sidebar-surface-"] [__menu-item]:hover {
+    background-color: rgba(255, 255, 255, .06);
+}
+
+/* Ensure links rendered as items inherit readable color and hover */
+a[data-testid^="sidebar-item-"] {
+    color: var(--cosmo-text) !important;
+    border-radius: 10px;
+    transition: background-color .12s ease;
+}
+a[data-testid^="sidebar-item-"]:hover { background-color: rgba(255,255,255,.06); }
+
+/* Slideover/popover variants for sidebar */
+#stage-slideover-sidebar,
+#stage-popover-sidebar {
+    background: var(--cosmo-card) !important;
+    border-right: 1px solid var(--cosmo-border);
+    backdrop-filter: var(--cosmo-blur);
+}
+
+/* Hover polish for slim sidebar icons */
+#stage-sidebar-tiny-bar [__menu-item] { transition: background-color .12s ease; }
+#stage-sidebar-tiny-bar [__menu-item]:hover { background-color: rgba(255, 255, 255, .05); }
+
+/* Ensure sidebar and header meet seamlessly */
+html.dark .bg-token-sidebar-surface-primary,
+html.dark #page-header {
+    /* matching subtle border to avoid visual gap */
+    border-color: var(--cosmo-border);
+}
+

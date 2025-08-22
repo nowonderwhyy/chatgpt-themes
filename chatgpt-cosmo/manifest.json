@@ -10,7 +10,17 @@
     {
       "matches": ["https://chatgpt.com/*"],
       "run_at": "document_start",
-      "css": ["styles.css"],
+      "css": [
+        "styles/01-tokens.css",
+        "styles/02-canvas.css",
+        "styles/03-sidebar.css",
+        "styles/04-components.css",
+        "styles/05-accessibility.css",
+        "styles/06-scrollbars.css",
+        "styles/07-variants.css",
+        "styles/08-composer.css",
+        "styles/09-utilities.css"
+      ],
       "js": ["content.js"]
     }
   ]

@@ -1,0 +1,13 @@
+/* Unified slim scrollbars across panels */
+* { scrollbar-width: thin; scrollbar-color: #3a4a64 transparent; }
+/* Chromium/Edge scrollbars */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(135deg,
+        color-mix(in oklab, var(--cosmo-accent-1) 55%, #3a4a64),
+        color-mix(in oklab, var(--cosmo-accent-2) 55%, #3a4a64)
+    );
+    border-radius: 6px;
+}
+

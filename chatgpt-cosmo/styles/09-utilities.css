@@ -1,0 +1,18 @@
+/* Smooth color transitions for major surfaces */
+[role="menu"], [role="listbox"], [data-radix-popper-content-wrapper] > div,
+div[popover], .popover, .dropdown, .menu,
+#thread pre, #prompt-textarea {
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+/* Utility class seen on header/skip link: bg-token-main-surface-primary */
+.bg-token-main-surface-primary { background: transparent !important; }
+
+/* “Skip to content” chip can float nicely over our background */
+a[data-skip-to-content] {
+    background: var(--cosmo-card) !important;
+    border: 1px solid var(--cosmo-border) !important;
+    backdrop-filter: var(--cosmo-blur);
+    color: var(--cosmo-text) !important;
+}
+
