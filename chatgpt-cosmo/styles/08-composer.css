@@ -6,7 +6,7 @@ form[data-type="unified-composer"] .bg-token-bg-primary {
   backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important; /* Safari */
   border-radius: 24px !important;
-  box-shadow: var(--cosmo-glow);
+  box-shadow: var(--cosmo-glow-soft);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -18,11 +18,11 @@ form[data-type="unified-composer"] .bg-token-bg-primary::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
   background:
     /* soft specular at top-left */
-    radial-gradient(120% 70% at 8% -20%, rgba(255,255,255,.06), transparent 45%),
+    radial-gradient(120% 70% at 8% -20%, rgba(255,255,255,.05), transparent 45%),
     /* faint caustic at bottom-right */
-    radial-gradient(120% 70% at 100% 120%, rgba(255,255,255,.035), transparent 55%);
+    radial-gradient(120% 70% at 100% 120%, rgba(255,255,255,.03), transparent 55%);
   mix-blend-mode: soft-light;
-  opacity: .6; /* was .85 */
+  opacity: .5; /* further softened */
 }
 
 /* Inner strokes for glass edge definition */
@@ -31,7 +31,7 @@ form[data-type="unified-composer"] .bg-token-bg-primary::after {
   box-shadow:
     /* (removed) inset 0 1px 0 rgba(255,255,255,.12), */
     inset 0 -1px 0 rgba(255,255,255,.05);
-  opacity: .6; /* was .7 */
+  opacity: .5; /* was .6 */
 }
 
 /* OPTIONAL: Ultra-refined Liquid Glass micro-rim (uncomment to enable)
@@ -46,9 +46,9 @@ form[data-type="unified-composer"] .bg-token-bg-primary::after {
 /* Subtle interactive lift on hover (respects hover toggle) */
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover {
   border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
-  box-shadow: var(--cosmo-glow), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+  box-shadow: var(--cosmo-glow-soft), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
 }
-html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover::before { opacity: .95; }
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover::before { opacity: .8; }
 
 /* 4) Secondary buttons (+, mic, etc.) inside the composer */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"],
@@ -56,7 +56,7 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
   background: var(--cosmo-card) !important;
   border: 1px solid var(--cosmo-border) !important;
   border-radius: 9999px !important;
-  box-shadow: var(--cosmo-glow);
+  box-shadow: var(--cosmo-glow-soft);
   position: relative;
   overflow: hidden;
   backdrop-filter: var(--cosmo-blur);
@@ -66,7 +66,7 @@ form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::befo
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {
   content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none;
   background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
-  opacity: .65;
+  opacity: .5;
 }
 
 /* Inner ring for buttons */
@@ -80,7 +80,7 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:hover,
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:hover {
   border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
-  box-shadow: var(--cosmo-glow), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+  box-shadow: var(--cosmo-glow-soft), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
   transform: translateY(-1px);
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:active,
@@ -90,10 +90,10 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:
 
 /* Focus highlight (unless disabled) */
 html:not([data-cosmo-no-chatbar-highlight]) form[data-type="unified-composer"] .bg-token-bg-primary:focus-within {
-  box-shadow: var(--cosmo-glow), 0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 40%, transparent);
+  box-shadow: var(--cosmo-glow-soft), 0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 30%, transparent);
 }
 
 /* When highlight is disabled, keep a consistent base glow */
 html[data-cosmo-no-chatbar-highlight] form[data-type="unified-composer"] .bg-token-bg-primary:focus-within {
-  box-shadow: var(--cosmo-glow);
+  box-shadow: var(--cosmo-glow-soft);
 }

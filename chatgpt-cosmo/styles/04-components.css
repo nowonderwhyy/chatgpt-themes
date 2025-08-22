@@ -8,8 +8,8 @@
     ) !important;
     backdrop-filter: var(--cosmo-blur);
     border-bottom: 1px solid var(--cosmo-border);
-    box-shadow: var(--cosmo-glow), inset 0 -1px 0 rgba(255,255,255,.03);
-    border-radius: 0 0 14px 14px;
+    box-shadow: var(--cosmo-glow-soft), inset 0 -1px 0 rgba(255,255,255,.02);
+    border-radius: 0 0 12px 12px;
 }
 
 /* Unify header action buttons */
@@ -17,7 +17,7 @@ button[data-testid="model-switcher-dropdown-button"],
 button[data-testid="share-chat-button"],
 button[data-testid="conversation-options-button"] {
     border: 1px solid var(--cosmo-border) !important;
-    box-shadow: var(--cosmo-glow);
+    box-shadow: var(--cosmo-glow-soft);
     border-radius: 12px !important;
     transition: transform .12s ease, box-shadow .12s ease;
 }
@@ -64,7 +64,7 @@ div[popover], .popover, .dropdown, .menu {
     background: var(--cosmo-card) !important;
     border: 1px solid var(--cosmo-border) !important;
     backdrop-filter: var(--cosmo-blur);
-    box-shadow: var(--cosmo-glow);
+    box-shadow: var(--cosmo-glow-soft);
     border-radius: 12px !important;
 }
 [role="menu"] [role="menuitem"],

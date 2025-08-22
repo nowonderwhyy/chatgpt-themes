@@ -6,6 +6,7 @@ html[data-cosmo-theme="nebula"] {
     --cosmo-card: rgba(21, 23, 28, 0.7); /* Darker, more opaque for readability */
     --cosmo-border: rgba(255,255,255,0.16);
     --cosmo-glow: 0 0 0 1px rgba(150, 170, 255, 0.22), 0 12px 36px rgba(60, 120, 255, 0.16);
+    --cosmo-glow-soft: 0 0 0 1px rgba(150, 170, 255, 0.16), 0 8px 24px rgba(60, 120, 255, 0.12);
     --cosmo-blur: saturate(1.15) blur(10px); /* Increased blur */
     --cosmo-text: #e8ecff;
     --cosmo-subtle: #9aa6c3;
@@ -17,6 +18,7 @@ html[data-cosmo-theme="glass"] {
     --cosmo-card: rgba(18, 20, 26, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255,255,255,0.12);
     --cosmo-glow: 0 0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.35);
+    --cosmo-glow-soft: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.28);
     --cosmo-blur: blur(10px);
     --cosmo-text: #f2f4f8;
     --cosmo-subtle: #a8b0bd;
@@ -28,6 +30,7 @@ html[data-cosmo-theme="mono"] {
     --cosmo-card: rgba(21, 23, 26, 0.72);
     --cosmo-border: #262a2f;
     --cosmo-glow: 0 0 0 1px #262a2f;
+    --cosmo-glow-soft: 0 0 0 1px #2b3240, 0 8px 24px rgba(0,0,0,0.28);
     --cosmo-blur: blur(8px);
     --cosmo-text: #e6e7e9;
     --cosmo-subtle: #a3a7ad;
@@ -41,6 +44,7 @@ html[data-cosmo-theme="sunset"] {
     --cosmo-card: rgba(32, 24, 19, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255, 230, 215, .16);
     --cosmo-glow: 0 0 0 1px rgba(255,175,140,.18), 0 12px 36px rgba(255,140,0,.16);
+    --cosmo-glow-soft: 0 0 0 1px rgba(255,175,140,.14), 0 8px 24px rgba(255,140,0,.12);
     --cosmo-blur: saturate(1.08) blur(9px);
     --cosmo-text: #ffe9df;
     --cosmo-subtle: #ffcfb7;
@@ -54,6 +58,7 @@ html[data-cosmo-theme="vapor"] {
     --cosmo-card: rgba(20, 21, 28, 0.75); /* Darker, more opaque */
     --cosmo-border: rgba(255,255,255,0.15);
     --cosmo-glow: 0 0 0 1px rgba(154,119,222,.20), 0 12px 36px rgba(42,171,171,.16);
+    --cosmo-glow-soft: 0 0 0 1px rgba(154,119,222,.14), 0 8px 24px rgba(42,171,171,.12);
     --cosmo-blur: saturate(1.1) blur(9px);
     --cosmo-text: #eafcff;
     --cosmo-subtle: #b3e6e9;
@@ -65,6 +70,7 @@ html[data-cosmo-theme="contrast"] {
     --cosmo-card: rgba(18, 20, 26, 0.75);
     --cosmo-border: #2b3240;
     --cosmo-glow: 0 0 0 1px #2b3240;
+    --cosmo-glow-soft: 0 0 0 1px #2b3240, 0 8px 24px rgba(0,0,0,0.28);
     --cosmo-blur: blur(8px);
     --cosmo-text: #f3f6ff;
     --cosmo-subtle: #c2c9d6;
@@ -78,6 +84,7 @@ html[data-cosmo-theme="mocha"] {
     --cosmo-card: rgba(32, 24, 19, 0.8); /* Darker, more opaque */
     --cosmo-border: rgba(245, 236, 224, .18);
     --cosmo-glow: 0 0 0 1px rgba(201, 178, 150, .18), 0 12px 36px rgba(80, 54, 34, .22);
+    --cosmo-glow-soft: 0 0 0 1px rgba(201, 178, 150, .14), 0 8px 24px rgba(80, 54, 34, .16);
     --cosmo-blur: saturate(1.06) blur(9px);
     --cosmo-text: #f4efe7;
     --cosmo-subtle: #d6c7b6;

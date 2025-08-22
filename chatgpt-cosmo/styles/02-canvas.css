@@ -6,9 +6,9 @@ html.dark { background: var(--cosmo-bg) !important; color: var(--cosmo-text); }
 html.dark::after{
     content: ""; position: fixed; inset: 0; pointer-events: none;
     background:
-        radial-gradient(90% 70% at 50% 120%, rgba(0,0,0,.28), transparent 60%),
-        radial-gradient(50% 40% at 50% -10%, rgba(255,255,255,.03), transparent 60%);
-    mix-blend-mode: soft-light; opacity: .9;
+        radial-gradient(90% 70% at 50% 120%, rgba(0,0,0,.24), transparent 60%),
+        radial-gradient(50% 40% at 50% -10%, rgba(255,255,255,.025), transparent 60%);
+    mix-blend-mode: soft-light; opacity: .82;
 }
 
 /* ----- Force the site canvas to use our theme background ----- */
