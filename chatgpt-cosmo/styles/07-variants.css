@@ -26,7 +26,7 @@ html[data-cosmo-theme="mocha"] #thread pre {
     border-color: color-mix(in oklab, var(--cosmo-border) 65%, transparent);
 }
 html[data-cosmo-theme="mocha"] #thread code:not(pre code) {
-    background: rgba(245,236,224,.10);
+    background: rgba(245,236,224,.12);
     border-color: color-mix(in oklab, var(--cosmo-border) 55%, transparent);
 }
 

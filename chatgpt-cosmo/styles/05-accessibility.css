@@ -12,3 +12,11 @@
     * { transition: none !important; animation: none !important; }
 }
 
+/* Tighter halo for icon buttons only */
+button[data-testid*="-button"]:focus-visible{
+    box-shadow:
+        0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 22%, transparent),
+        0 0 0 3px color-mix(in oklab, var(--cosmo-accent-2) 10%, transparent);
+    border-radius: 12px;
+}
+

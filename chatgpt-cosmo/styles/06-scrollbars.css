@@ -11,3 +11,9 @@
     border-radius: 6px;
 }
 
+/* High-contrast solid thumb fallback */
+html[data-cosmo-theme="contrast"] ::-webkit-scrollbar-thumb{
+    background-image: none;
+    background: #4a5a7a;
+}
+

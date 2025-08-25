@@ -1,7 +1,10 @@
 /* ===== Cosmo — Composer (scoped, simplified, robust) ===== */
 /* 2) Primary composer container (stable wrapper inside the form) */
 form[data-type="unified-composer"] .bg-token-bg-primary {
-  background: color-mix(in oklab, var(--cosmo-card) 78%, transparent) !important;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--cosmo-accent-1) 6%, transparent),
+                           color-mix(in oklab, var(--cosmo-accent-2) 2%, transparent)),
+    color-mix(in oklab, var(--cosmo-card) 78%, transparent) !important;
   border: 1px solid var(--cosmo-border) !important;
   backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important;
   -webkit-backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important; /* Safari */
@@ -61,6 +64,7 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
   overflow: hidden;
   backdrop-filter: var(--cosmo-blur);
   transition: background-color .18s ease, box-shadow .18s ease, transform .12s ease;
+  width: 40px; height: 40px;
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::before,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {

@@ -8,8 +8,14 @@
     ) !important;
     backdrop-filter: var(--cosmo-blur);
     border-bottom: 1px solid var(--cosmo-border);
-    box-shadow: var(--cosmo-glow-soft), inset 0 -1px 0 rgba(255,255,255,.02);
-    border-radius: 0 0 12px 12px;
+    box-shadow: var(--cosmo-glow-soft), inset 0 -1px 0 rgba(255,255,255,.02), inset 0 1px 0 rgba(255,255,255,.04);
+    border-radius: 0 0 16px 16px;
+}
+
+#page-header::after{
+    content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
+    box-shadow: inset 0 0 0 var(--cosmo-ring-thickness) color-mix(in oklab, var(--cosmo-border) 70%, transparent);
+    mix-blend-mode: normal; opacity:.7;
 }
 
 /* Unify header action buttons */
@@ -36,6 +42,13 @@ button[data-testid="model-switcher-dropdown-button"]:active { transform: transla
 /* In-chat action icon hover */
 button[data-testid*="-turn-action-button"] { transition: background-color .12s ease; }
 button[data-testid*="-turn-action-button"]:hover { background-color: rgba(255, 255, 255, .06); }
+
+/* Vapor rim-light on header buttons */
+html[data-cosmo-theme="vapor"] button[data-testid="model-switcher-dropdown-button"],
+html[data-cosmo-theme="vapor"] button[data-testid="share-chat-button"],
+html[data-cosmo-theme="vapor"] button[data-testid="conversation-options-button"]{
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), var(--cosmo-glow-soft);
+}
 
 /* Main/thread readability */
 #main, #thread { color: var(--cosmo-text); line-height: 1.5; }
@@ -72,3 +85,25 @@ div[popover], .popover, .dropdown, .menu {
 [role="menu"] [role="menuitem"]:hover,
 [role="listbox"] [role="option"][aria-selected="true"] { background: rgba(255,255,255,.06); }
 
+/* Message edit mode container (re-apply themed surface) */
+#thread article:has(textarea) .bg-token-main-surface-tertiary,
+#main article:has(textarea) .bg-token-main-surface-tertiary {
+    background: var(--cosmo-card) !important;
+    border: 1px solid var(--cosmo-border) !important;
+    backdrop-filter: var(--cosmo-blur);
+    box-shadow: var(--cosmo-glow-soft);
+}
+
+/* Focus treatment for edit container */
+#thread article:has(textarea) .bg-token-main-surface-tertiary:focus-within,
+#main article:has(textarea) .bg-token-main-surface-tertiary:focus-within {
+    box-shadow: var(--cosmo-glow-soft), 0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 24%, transparent);
+}
+
+/* Ensure textarea inherits theme text and stays transparent */
+#thread article:has(textarea) textarea,
+#main article:has(textarea) textarea {
+    color: var(--cosmo-text) !important;
+    caret-color: var(--cosmo-text);
+    background: transparent !important;
+}

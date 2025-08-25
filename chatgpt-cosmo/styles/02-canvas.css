@@ -11,6 +11,21 @@ html.dark::after{
     mix-blend-mode: soft-light; opacity: .82;
 }
 
+/* Background glass plane for readability (subtle, behind entire chat area) */
+#main::before{
+    content:"";
+    position: absolute; /* fill the chat container */
+    inset: 0;
+    border-radius: var(--cosmo-radius-lg);
+    background: color-mix(in oklab, var(--cosmo-card) 65%, transparent);
+    backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 4px)) saturate(130%) contrast(1.04);
+    -webkit-backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 4px)) saturate(130%) contrast(1.04);
+    box-shadow: 0 8px var(--cosmo-glow-spread) rgba(0,0,0,.25);
+    pointer-events: none;
+    z-index: 0;
+}
+#thread, #main { position: relative; z-index: 1; }
+
 /* ----- Force the site canvas to use our theme background ----- */
 html, body { background: var(--cosmo-bg) !important; }
 
@@ -52,4 +67,14 @@ main[role="main"],
 
 /* Keep a smooth, fixed gradient feel */
 html, body { background-attachment: fixed; }
+
+/* Dim top/bottom zones so gradients don't compete with header/composer */
+html.dark::before{
+    content:"";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+        linear-gradient(to bottom, rgba(0,0,0,.24), transparent 160px),
+        linear-gradient(to top, rgba(0,0,0,.18), transparent 160px);
+    mix-blend-mode: soft-light;
+}
 
