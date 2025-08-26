@@ -58,7 +58,14 @@ function initThemes(){
 
 document.addEventListener('DOMContentLoaded', () => {
     initThemes();
-    // Chatbar highlight/hover toggles removed from popup by request.
+    // Reduce Transparency toggle
+    const rt = document.getElementById('reduce-transparency');
+    chrome.storage.sync.get({ cosmoReduceTransparency: false }, ({ cosmoReduceTransparency }) => {
+        rt.checked = !!cosmoReduceTransparency;
+    });
+    rt.addEventListener('change', () => {
+        chrome.storage.sync.set({ cosmoReduceTransparency: rt.checked });
+    });
 });
 
 

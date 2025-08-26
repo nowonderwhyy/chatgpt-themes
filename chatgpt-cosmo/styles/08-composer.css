@@ -6,8 +6,8 @@ form[data-type="unified-composer"] .bg-token-bg-primary {
                            color-mix(in oklab, var(--cosmo-accent-2) 2%, transparent)),
     color-mix(in oklab, var(--cosmo-card) 78%, transparent) !important;
   border: 1px solid var(--cosmo-border) !important;
-  backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important;
-  -webkit-backdrop-filter: blur(18px) saturate(160%) contrast(108%) !important; /* Safari */
+  backdrop-filter: blur(var(--cosmo-blur-strength)) saturate(160%) contrast(var(--cosmo-contrast-boost)) brightness(1.12) !important;
+  -webkit-backdrop-filter: blur(var(--cosmo-blur-strength)) saturate(160%) contrast(var(--cosmo-contrast-boost)) brightness(1.12) !important; /* Safari */
   border-radius: 24px !important;
   box-shadow: var(--cosmo-glow-soft);
   position: relative;
@@ -35,6 +35,21 @@ form[data-type="unified-composer"] .bg-token-bg-primary::after {
     /* (removed) inset 0 1px 0 rgba(255,255,255,.12), */
     inset 0 -1px 0 rgba(255,255,255,.05);
   opacity: .5; /* was .6 */
+}
+
+/* Reduce Transparency accessibility: darken/tighten surface, lower blur, boost contrast */
+html[data-cosmo-reduce-transparency] form[data-type="unified-composer"] .bg-token-bg-primary {
+  background: color-mix(in oklab, var(--cosmo-card) 92%, black 8%) !important;
+  backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 6px)) saturate(140%) contrast(calc(var(--cosmo-contrast-boost) + .06)) brightness(1.06) !important;
+  -webkit-backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 6px)) saturate(140%) contrast(calc(var(--cosmo-contrast-boost) + .06)) brightness(1.06) !important;
+  border-color: color-mix(in oklab, var(--cosmo-border) 85%, transparent) !important;
+}
+
+/* Fallback for browsers without backdrop-filter: keep readable solid tint */
+@supports not ((backdrop-filter: blur(1px))) {
+  form[data-type="unified-composer"] .bg-token-bg-primary {
+    background: color-mix(in oklab, var(--cosmo-card) 88%, transparent) !important;
+  }
 }
 
 /* OPTIONAL: Ultra-refined Liquid Glass micro-rim (uncomment to enable)

@@ -10,7 +10,8 @@
     cosmoTheme: 'nebula',
     cosmoNoChatbarHighlight: false,
     cosmoNoChatbarHover: false,
-    cosmoIntensity: 'regular'
+    cosmoIntensity: 'regular',
+    cosmoReduceTransparency: false
   };
   
 	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier'];
@@ -39,6 +40,9 @@
     if (state.cosmoNoChatbarHover) html.setAttribute('data-cosmo-no-chatbar-hover', '');
     else html.removeAttribute('data-cosmo-no-chatbar-hover');
 
+    if (state.cosmoReduceTransparency) html.setAttribute('data-cosmo-reduce-transparency', '');
+    else html.removeAttribute('data-cosmo-reduce-transparency');
+
     // Collapsed-rail behaviors are now always on via CSS; no flags.
   }
   
@@ -59,7 +63,7 @@
 	chrome.storage.onChanged.addListener((changes, area) => {
 	  if (area !== 'sync') return;
 	  let needsApply = false;
-  for (const k of ['cosmoTheme','cosmoNoChatbarHighlight','cosmoNoChatbarHover','cosmoIntensity']) {
+  for (const k of ['cosmoTheme','cosmoNoChatbarHighlight','cosmoNoChatbarHover','cosmoIntensity','cosmoReduceTransparency']) {
       if (changes[k]) {
         state[k] = changes[k].newValue;
         needsApply = true;
@@ -75,7 +79,10 @@
     // If ChatGPT toggles its root attrs/classes, ensure ours persist
     if (!html.hasAttribute('data-cosmo-theme') ||
         (!state.cosmoNoChatbarHighlight && html.hasAttribute('data-cosmo-no-chatbar-highlight')) ||
-        (!state.cosmoNoChatbarHover && html.hasAttribute('data-cosmo-no-chatbar-hover'))) {
+        (!state.cosmoNoChatbarHover && html.hasAttribute('data-cosmo-no-chatbar-hover')) ||
+        (!state.cosmoReduceTransparency && html.hasAttribute('data-cosmo-reduce-transparency')) ||
+        (state.cosmoReduceTransparency && !html.hasAttribute('data-cosmo-reduce-transparency'))
+      ) {
       applyStateToDOM();
     }
   });
