@@ -1,4 +1,4 @@
-const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha"];
+const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier"];
 const THEME_COLORS = {
 	nebula:   ["#6a5cff", "#00c2ff"],
 	glass:    ["#6f7cff", "#9be7ff"],
@@ -6,7 +6,9 @@ const THEME_COLORS = {
 	sunset:   ["#ff7a59", "#ffd38a"],
 	vapor:    ["#8a63d2", "#34d5d5"],
 	contrast: ["#9ab6ff", "#78e2ff"],
-	mocha:    ["#8b5e3c", "#f3e9dc"]
+	mocha:    ["#8b5e3c", "#f3e9dc"],
+	sakura:   ["#ff7ab6", "#ffd3a3"],
+	glacier:  ["#7de3ff", "#b7ffd8"]
 };
 
 function buildThemeButton(theme){

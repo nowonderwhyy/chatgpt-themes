@@ -119,3 +119,41 @@ html[data-cosmo-theme="nebula"] a[data-testid^="sidebar-item-"]:hover svg {
   transform: scale(1.03);
   filter: drop-shadow(0 2px 6px rgba(126,107,255,.18));
 }
+
+/* Sakura — petal-tinted selection, gentle code panels, link/quote tones */
+html[data-cosmo-theme="sakura"] ::selection { background: rgba(255,218,236,.35); color: #2a1320; }
+html[data-cosmo-theme="sakura"] #thread pre {
+  background: rgba(26,18,23,.72);
+  border-color: color-mix(in oklab, var(--cosmo-border) 65%, transparent);
+}
+html[data-cosmo-theme="sakura"] #thread code:not(pre code) {
+  background: rgba(255,234,244,.10);
+  border-color: color-mix(in oklab, var(--cosmo-border) 55%, transparent);
+}
+html[data-cosmo-theme="sakura"] #thread a {
+  color: color-mix(in oklab, var(--cosmo-accent-1) 80%, #fff 20%);
+  text-decoration-color: color-mix(in oklab, var(--cosmo-accent-1) 55%, transparent);
+}
+html[data-cosmo-theme="sakura"] #thread blockquote {
+  background: rgba(255,234,244,.05);
+  border-left: 3px solid color-mix(in oklab, var(--cosmo-accent-1) 35%, transparent);
+}
+
+/* Glacier tweaks: selection, code blocks, links, quotes */
+html[data-cosmo-theme="glacier"] ::selection { background: rgba(125,227,255,.28); color:#0b1a22; }
+html[data-cosmo-theme="glacier"] #thread pre {
+  background: rgba(14,22,30,.72);
+  border-color: color-mix(in oklab, var(--cosmo-border) 65%, transparent);
+}
+html[data-cosmo-theme="glacier"] #thread code:not(pre code) {
+  background: rgba(125,227,255,.10);
+  border-color: color-mix(in oklab, var(--cosmo-border) 55%, transparent);
+}
+html[data-cosmo-theme="glacier"] #thread a {
+  color: color-mix(in oklab, var(--cosmo-accent-1) 80%, #fff 20%);
+  text-decoration-color: color-mix(in oklab, var(--cosmo-accent-1) 55%, transparent);
+}
+html[data-cosmo-theme="glacier"] #thread blockquote {
+  background: rgba(125,227,255,.06);
+  border-left: 3px solid color-mix(in oklab, var(--cosmo-accent-1) 35%, transparent);
+}

@@ -13,7 +13,7 @@
     cosmoIntensity: 'regular'
   };
   
-	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha'];
+	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.80, blur:12, contrast:1.06 },
