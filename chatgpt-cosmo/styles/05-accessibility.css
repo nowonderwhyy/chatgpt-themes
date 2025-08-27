@@ -20,3 +20,11 @@ button[data-testid*="-button"]:focus-visible{
     border-radius: 12px;
 }
 
+/* Slightly brighter halos on warm palettes */
+html[data-cosmo-theme="sakura"] ::where(button, a, input, select, textarea):focus-visible,
+html[data-cosmo-theme="sunset"] ::where(button, a, input, select, textarea):focus-visible {
+    box-shadow:
+        0 0 0 2px color-mix(in oklab, var(--cosmo-accent-2) 32%, transparent),
+        0 0 0 4px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+}
+

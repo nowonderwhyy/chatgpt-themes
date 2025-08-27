@@ -1,9 +1,9 @@
 :root{
     /* Global control knobs */
-    --cosmo-surface-alpha: .78;       /* card/base translucency */
+    --cosmo-surface-alpha: .84;       /* card/base translucency (slightly sturdier) */
     --cosmo-surface-alpha-strong: .86; /* used for header/menus */
     --cosmo-blur-strength: 12px;       /* background blur base */
-    --cosmo-contrast-boost: 1.06;      /* subtle contrast bump */
+    --cosmo-contrast-boost: 1.07;      /* subtle contrast bump (crisper text/edges) */
     --cosmo-glow-spread: 24px;         /* shadow softness */
     --cosmo-ring-thickness: 1px;       /* inner rim */
     --cosmo-radius-lg: 16px;
@@ -18,7 +18,8 @@ html[data-cosmo-theme="nebula"] {
     --cosmo-blur-strength: 12px;
     --cosmo-surface-alpha: .80; /* slightly sturdier */
     --cosmo-card: rgba(21, 23, 28, var(--cosmo-surface-alpha)); /* normalized by knob */
-    --cosmo-border: rgba(255,255,255,0.16);
+    /* crisper border for purple canvas */
+    --cosmo-border: color-mix(in oklab, #fff 20%, rgba(255,255,255,.16));
     --cosmo-glow: 0 0 0 1px rgba(150, 170, 255, 0.22), 0 12px 36px rgba(60, 120, 255, 0.16);
     --cosmo-glow-soft: 0 0 0 1px rgba(150, 170, 255, 0.16), 0 8px 24px rgba(60, 120, 255, 0.12);
     --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
@@ -43,13 +44,15 @@ html[data-cosmo-theme="glass"] {
     --cosmo-border: rgba(255,255,255,0.12);
     --cosmo-glow: 0 0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.35);
     --cosmo-glow-soft: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.28);
+    --cosmo-blur-strength: 10px; /* glass can get milky; keep crisp */
+    --cosmo-contrast-boost: 1.08;
     --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
     --cosmo-text: #f2f4f8;
     --cosmo-subtle: #a8b0bd;
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: var(--cosmo-text);
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
@@ -70,7 +73,8 @@ html[data-cosmo-theme="mono"] {
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    /* subtle cool highlight to lift affordances */
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: var(--cosmo-text);
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
@@ -82,8 +86,8 @@ html[data-cosmo-theme="sunset"] {
                 radial-gradient(1200px 900px at 106% 132%, #ff9627 0%, transparent 60%),
                 #0b0b12;
     --sb-rail-bg: #19100e;
-    --cosmo-card: rgba(32, 24, 19, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(255, 230, 215, .16);
+    --cosmo-card: rgba(34, 25, 19, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #fff 20%, rgba(255, 230, 215, .16));
     --cosmo-glow: 0 0 0 1px rgba(255,175,140,.18), 0 12px 36px rgba(255,140,0,.16);
     --cosmo-glow-soft: 0 0 0 1px rgba(255,175,140,.14), 0 8px 24px rgba(255,140,0,.12);
     --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
@@ -92,7 +96,7 @@ html[data-cosmo-theme="sunset"] {
     --sb-rail-bg: #1D1411; /* espresso */
     --sb-divider: color-mix(in oklab, #C88B5E 35%, transparent);
     --sb-accent-bar: #C88B5E; /* copper */
-    --sb-active-bg: color-mix(in oklab, #C88B5E 3%, transparent);
+    --sb-active-bg: color-mix(in oklab, #C88B5E 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: color-mix(in oklab, #ffffff 78%, #000 22%);
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.02);
@@ -104,7 +108,8 @@ html[data-cosmo-theme="vapor"] {
                 radial-gradient(1200px 820px at 108% 126%, #088282 0%, transparent 60%),
                 #0b0b12;
     --cosmo-card: rgba(20, 21, 28, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(255,255,255,0.15);
+    /* slightly tighter to avoid neon fringing */
+    --cosmo-border: rgba(255,255,255,0.16);
     --cosmo-glow: 0 0 0 1px rgba(154,119,222,.20), 0 12px 36px rgba(42,171,171,.16);
     --cosmo-glow-soft: 0 0 0 1px rgba(154,119,222,.14), 0 8px 24px rgba(42,171,171,.12);
     --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
@@ -113,7 +118,7 @@ html[data-cosmo-theme="vapor"] {
     --sb-rail-bg: #0E1116; /* blue-black rail */
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-2) 85%, #0E1116);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 3%, transparent);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent);
     --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 22%, transparent);
     --sb-icon-color: var(--cosmo-text);
     --sb-rail-shadow: 0 0 0 1px rgba(255,255,255,.02), 0 8px 24px rgba(6,22,28,.36);
@@ -132,7 +137,7 @@ html[data-cosmo-theme="contrast"] {
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: var(--cosmo-text);
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
@@ -155,7 +160,8 @@ html[data-cosmo-theme="mocha"] {
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: #caa078; /* bronze */
-    --sb-active-bg: transparent; /* prefer bar + icon glow */
+    /* subtle active fill improves scannability */
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: #F3E9DD;
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
@@ -179,7 +185,7 @@ html[data-cosmo-theme="sakura"] {
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
     --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: var(--cosmo-text);
     --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
@@ -212,7 +218,8 @@ html[data-cosmo-theme="glacier"] {
     /* Sidebar */
     --sb-rail-bg: var(--cosmo-card);
     --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: var(--cosmo-accent-1);
+    /* tone down brightness of accent bar */
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 85%, #0a1117);
     --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
     --sb-hover-rim: transparent;
     --sb-icon-color: var(--cosmo-text);

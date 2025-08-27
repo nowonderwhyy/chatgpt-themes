@@ -17,3 +17,9 @@ html[data-cosmo-theme="contrast"] ::-webkit-scrollbar-thumb{
     background: #4a5a7a;
 }
 
+/* Glass + Reduce Transparency: prefer solid thumb for predictability */
+html[data-cosmo-theme="glass"][data-cosmo-reduce-transparency] ::-webkit-scrollbar-thumb{
+    background-image: none;
+    background: #4a5a7a;
+}
+

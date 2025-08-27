@@ -17,7 +17,7 @@
 	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
-    regular: { alpha:.80, blur:12, contrast:1.06 },
+    regular: { alpha:.84, blur:12, contrast:1.07 },
     bold: { alpha:.86, blur:14, contrast:1.08 }
   };
   
@@ -46,12 +46,22 @@
     // Collapsed-rail behaviors are now always on via CSS; no flags.
   }
   
-	function loadStateOnce() {
-	  chrome.storage.sync.get(DEFAULTS, (s) => {
-		state = { ...state, ...s };
-		applyStateToDOM();
-	  });
-	}
+  function loadStateOnce() {
+    chrome.storage.sync.get({ ...DEFAULTS, cosmoAltTHintShown: false }, (s) => {
+      state = { ...state, ...s };
+      // Accessibility: enable reduce-transparency by default on Contrast (one-time)
+      if (state.cosmoTheme === 'contrast' && !s.cosmoReduceTransparency) {
+        state.cosmoReduceTransparency = true;
+        chrome.storage.sync.set({ cosmoReduceTransparency: true });
+      }
+      applyStateToDOM();
+      // One-time Alt+T toast hint
+      if (!s.cosmoAltTHintShown) {
+        showAltTToast();
+        chrome.storage.sync.set({ cosmoAltTHintShown: true });
+      }
+    });
+  }
   
 	function setThemePersisted(nextTheme) {
 	  state.cosmoTheme = nextTheme;
@@ -88,7 +98,7 @@
   });
 	rootObserver.observe(SELECTORS.html, { attributes: true, attributeFilter: ['class', 'data-chat-theme'] });
   
-	/*** Hotkey: Alt+T (accepts Alt+Shift/Ctrl too, same as before) ************/
+  /*** Hotkey: Alt+T (accepts Alt+Shift/Ctrl too, same as before) ************/
 	window.addEventListener('keydown', (e) => {
 	  const isT = e.code === 'KeyT';
 	  const isCombo = e.altKey && isT; // Allow any Alt+T combo
@@ -98,7 +108,31 @@
 	  const next = THEMES[(i + 1) % THEMES.length];
 	  setThemePersisted(next);
 	}, true);
-	/*** Boot ******************************************************************/
-	loadStateOnce();
+  /*** Boot ******************************************************************/
+  loadStateOnce();
+
+  /*** Small UI: One-time Alt+T hint *****************************************/
+  function showAltTToast() {
+    try {
+      const el = document.createElement('div');
+      el.textContent = 'Tip: Press Alt+T to try other looks';
+      Object.assign(el.style, {
+        position: 'fixed',
+        bottom: '16px',
+        right: '16px',
+        zIndex: '2147483647',
+        background: 'var(--cosmo-card)',
+        color: 'var(--cosmo-text)',
+        border: '1px solid var(--cosmo-border)',
+        borderRadius: '10px',
+        padding: '8px 10px',
+        boxShadow: 'var(--cosmo-glow-soft)',
+        backdropFilter: 'var(--cosmo-blur)'
+      });
+      document.documentElement.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity .3s ease'; }, 2400);
+      setTimeout(() => { el.remove(); }, 2800);
+    } catch (_) {}
+  }
   })();
   

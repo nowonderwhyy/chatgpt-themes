@@ -3,8 +3,8 @@
 /* Header depth and glow */
 #page-header {
     background: linear-gradient(90deg,
-        color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent),
-        color-mix(in oklab, var(--cosmo-accent-2) 10%, transparent)
+        color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent),
+        color-mix(in oklab, var(--cosmo-accent-2) 8%, transparent)
     ) !important;
     backdrop-filter: var(--cosmo-blur);
     border-bottom: 1px solid var(--cosmo-border);
@@ -30,6 +30,13 @@ button[data-testid="conversation-options-button"] {
 button[data-testid="share-chat-button"]:hover,
 button[data-testid="conversation-options-button"]:hover {
     transform: translateY(-1px);
+}
+
+/* Subtle inner stroke on hover for pressable feel */
+button[data-testid="model-switcher-dropdown-button"]:hover,
+button[data-testid="share-chat-button"]:hover,
+button[data-testid="conversation-options-button"]:hover {
+    box-shadow: var(--cosmo-glow-soft), inset 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
 }
 
 /* Buttons & core controls */
@@ -79,6 +86,7 @@ div[popover], .popover, .dropdown, .menu {
     backdrop-filter: var(--cosmo-blur);
     box-shadow: var(--cosmo-glow-soft);
     border-radius: 12px !important;
+    animation: cosmoDrop .12s ease-out;
 }
 [role="menu"] [role="menuitem"],
 [role="listbox"] [role="option"] { border-radius: 8px; }
@@ -106,4 +114,9 @@ div[popover], .popover, .dropdown, .menu {
     color: var(--cosmo-text) !important;
     caret-color: var(--cosmo-text);
     background: transparent !important;
+}
+
+@keyframes cosmoDrop {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
