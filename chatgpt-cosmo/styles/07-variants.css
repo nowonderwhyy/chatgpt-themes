@@ -171,3 +171,22 @@ html[data-cosmo-theme="sunset"] #thread code:not(pre code) {
   background: rgba(255,255,255,.08);
   border-color: color-mix(in oklab, var(--cosmo-border) 62%, transparent);
 }
+
+/* Orchid — companion to native purple bubbles */
+html[data-cosmo-theme="orchid"] ::selection { background: rgba(126,107,255,.28); color:#1a132a; }
+html[data-cosmo-theme="orchid"] #thread pre {
+  background: rgba(18, 16, 28, .72);
+  border-color: color-mix(in oklab, var(--cosmo-border) 65%, transparent);
+}
+html[data-cosmo-theme="orchid"] #thread code:not(pre code) {
+  background: rgba(126,107,255,.10);
+  border-color: color-mix(in oklab, var(--cosmo-border) 55%, transparent);
+}
+html[data-cosmo-theme="orchid"] #thread a {
+  color: color-mix(in oklab, var(--cosmo-accent-1) 82%, #fff 18%);
+  text-decoration-color: color-mix(in oklab, var(--cosmo-accent-1) 58%, transparent);
+}
+html[data-cosmo-theme="orchid"] #thread blockquote {
+  background: rgba(126,107,255,.06);
+  border-left: 3px solid color-mix(in oklab, var(--cosmo-accent-1) 35%, transparent);
+}

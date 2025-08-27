@@ -1,4 +1,4 @@
-:root{
+:root{ 
     /* Global control knobs */
     --cosmo-surface-alpha: .84;       /* card/base translucency (slightly sturdier) */
     --cosmo-surface-alpha-strong: .86; /* used for header/menus */
@@ -198,8 +198,31 @@ html[data-cosmo-theme="mono"]    { --cosmo-accent-1:#4a86ff; --cosmo-accent-2:#7
 html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#ffd38a; }
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
-html[data-cosmo-theme="mocha"]   { --cosmo-accent-1:#c28b6a; --cosmo-accent-2:#f0e1cf; }
-html[data-cosmo-theme="sakura"]  { --cosmo-accent-1:#ff7ab6; --cosmo-accent-2:#ffd3a3; }
+
+/* Orchid (ChatGPT purple companion) */
+html[data-cosmo-theme="orchid"] {
+    --cosmo-bg: radial-gradient(1200px 820px at 8% -22%, #2f1e5a 0%, transparent 60%),
+                radial-gradient(1200px 820px at 110% 128%, #142652 0%, transparent 60%),
+                #0b0b12;
+    --cosmo-card: rgba(20, 20, 28, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffffff 18%, rgba(200, 190, 255, .16));
+    --cosmo-glow: 0 0 0 1px rgba(160, 140, 255, .20), 0 12px 36px rgba(90, 120, 255, .14);
+    --cosmo-glow-soft: 0 0 0 1px rgba(160, 140, 255, .14), 0 8px 24px rgba(90, 120, 255, .10);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(118%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #eceaff;
+    --cosmo-subtle: #b9b2d9;
+
+    /* Sidebar */
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: #7E6BFF; /* native bubble violet marker */
+    --sb-active-bg: color-mix(in oklab, #7E6BFF 5%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+}
+
+html[data-cosmo-theme="orchid"]  { --cosmo-accent-1:#7E6BFF; --cosmo-accent-2:#c3b8ff; }
 
 /* Glacier (icy cyan + steel) */
 html[data-cosmo-theme="glacier"] {
