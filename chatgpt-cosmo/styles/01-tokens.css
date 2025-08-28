@@ -199,6 +199,31 @@ html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#f
 html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
 html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
 
+/* Gamma Doppler (emerald/obsidian) */
+html[data-cosmo-theme="gamma"] {
+    --cosmo-bg:
+        radial-gradient(1200px 820px at 6% -18%, #083227 0%, transparent 58%),
+        radial-gradient(1200px 820px at 108% 128%, #0b4136 0%, transparent 58%),
+        #0a0f0e;
+    --cosmo-card: rgba(12, 18, 16, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #9fffcf 18%, rgba(0,0,0,.6));
+    --cosmo-glow: 0 0 0 1px rgba(60, 255, 170, .20), 0 12px 36px rgba(16, 140, 100, .22);
+    --cosmo-glow-soft: 0 0 0 1px rgba(60, 255, 170, .14), 0 8px 24px rgba(16, 140, 100, .16);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(118%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #e6fff4;
+    --cosmo-subtle: #b6f3d8;
+
+    /* Sidebar */
+    --sb-rail-bg: var(--cosmo-card);
+    --sb-divider: var(--cosmo-border);
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 85%, #0a0f0e);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
+    --sb-hover-rim: transparent;
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+}
+html[data-cosmo-theme="gamma"] { --cosmo-accent-1:#2cff91; --cosmo-accent-2:#9dffd0; }
+
 /* Orchid (ChatGPT purple companion) */
 html[data-cosmo-theme="orchid"] {
     --cosmo-bg: radial-gradient(1200px 820px at 8% -22%, #2f1e5a 0%, transparent 60%),

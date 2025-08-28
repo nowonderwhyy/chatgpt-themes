@@ -1,4 +1,4 @@
-const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier","orchid"];
+const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier","orchid","gamma"];
 const THEME_COLORS = {
 	nebula:   ["#6a5cff", "#00c2ff"],
 	glass:    ["#6f7cff", "#9be7ff"],
@@ -10,7 +10,8 @@ const THEME_COLORS = {
 	sakura:   ["#ff7ab6", "#ffd3a3"],
 	glacier:  ["#7de3ff", "#b7ffd8"]
 ,
-	orchid:   ["#7E6BFF", "#c3b8ff"]
+	orchid:   ["#7E6BFF", "#c3b8ff"],
+	gamma:    ["#2cff91", "#9dffd0"]
 };
 
 function buildThemeButton(theme){
@@ -27,7 +28,11 @@ function buildThemeButton(theme){
 	sw.className = 'swatch';
 	const name = document.createElement('span');
 	name.className = 'name';
-	name.textContent = theme === 'mono' ? 'Mono' : (theme === 'vapor' ? 'Vapor' : (theme === 'contrast' ? 'High Contrast' : theme.charAt(0).toUpperCase()+theme.slice(1)));
+    name.textContent = theme === 'mono' ? 'Mono'
+        : theme === 'vapor' ? 'Vapor'
+        : theme === 'contrast' ? 'High Contrast'
+        : theme === 'gamma' ? 'Gamma Doppler'
+        : theme.charAt(0).toUpperCase()+theme.slice(1);
 
 	btn.appendChild(sw);
 	btn.appendChild(name);
