@@ -1,4 +1,4 @@
-const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier","orchid","gamma"];
+const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier","orchid","amethyst","gamma"];
 const THEME_COLORS = {
 	nebula:   ["#6a5cff", "#00c2ff"],
 	glass:    ["#6f7cff", "#9be7ff"],
@@ -11,6 +11,7 @@ const THEME_COLORS = {
 	glacier:  ["#7de3ff", "#b7ffd8"]
 ,
 	orchid:   ["#7E6BFF", "#c3b8ff"],
+	amethyst: ["#4d35ac", "#b8a6ff"],
 	gamma:    ["#2cff91", "#9dffd0"]
 };
 
