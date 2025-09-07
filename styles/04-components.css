@@ -1,20 +1,26 @@
 /* === Header, buttons, menus, content components === */
 
-/* Header depth and glow */
+/* Header depth and glow (blend more seamlessly on dark themes) */
 #page-header {
-    background: linear-gradient(90deg,
-        color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent),
-        color-mix(in oklab, var(--cosmo-accent-2) 8%, transparent)
-    ) !important;
+    background:
+        /* faint top highlight to separate content subtly */
+        linear-gradient(180deg, rgba(255,255,255,.035), transparent 60%),
+        /* soft accent wash following current palette */
+        linear-gradient(90deg,
+            color-mix(in oklab, var(--cosmo-accent-1) 6%, transparent),
+            color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent)
+        ),
+        /* sturdier glass base for readability */
+        color-mix(in oklab, var(--cosmo-card) 92%, transparent) !important;
     backdrop-filter: var(--cosmo-blur);
     border-bottom: 1px solid var(--cosmo-border);
-    box-shadow: var(--cosmo-glow-soft), inset 0 -1px 0 rgba(255,255,255,.02), inset 0 1px 0 rgba(255,255,255,.04);
+    box-shadow: var(--cosmo-glow-soft);
     border-radius: 0 0 16px 16px;
 }
 
 #page-header::after{
     content:""; position:absolute; inset:0; pointer-events:none; border-radius:inherit;
-    box-shadow: inset 0 0 0 var(--cosmo-ring-thickness) color-mix(in oklab, var(--cosmo-border) 70%, transparent);
+    box-shadow: inset 0 0 0 var(--cosmo-ring-thickness) color-mix(in oklab, var(--cosmo-border) 55%, transparent);
     mix-blend-mode: normal; opacity:.7;
 }
 

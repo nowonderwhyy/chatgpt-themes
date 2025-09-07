@@ -6,6 +6,19 @@ html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
     background: var(--cosmo-card) !important;
 }
 
+/* Midnight — extra subtle header accents for seamless blend */
+html[data-cosmo-theme="midnight"] #page-header {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.03), transparent 55%),
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent),
+      color-mix(in oklab, var(--cosmo-accent-2) 3%, transparent)
+    ),
+    color-mix(in oklab, var(--cosmo-card) 94%, transparent) !important;
+  border-bottom-color: color-mix(in oklab, var(--cosmo-border) 70%, transparent);
+  box-shadow: var(--cosmo-glow-soft);
+}
+
 /* --- Mocha fine-tuning for long reads --- */
 html.dark[data-cosmo-theme="mocha"]::after{
     background:

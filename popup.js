@@ -1,4 +1,11 @@
-const THEMES = ["nebula","glass","mono","sunset","vapor","contrast","mocha","sakura","glacier","orchid","amethyst","gamma"];
+// Theme groups for categorized popup sections
+const THEME_GROUPS = [
+    { id: 'signature', title: 'Signature', items: ["nebula","glass","mono"] },
+    { id: 'vibrant',   title: 'Vibrant',   items: ["vapor","sunset","gamma"] },
+    { id: 'pastel',    title: 'Pastel',    items: ["sakura","orchid","amethyst","glacier"] },
+    { id: 'classics',  title: 'Classics',  items: ["mocha","midnight"] },
+    { id: 'access',    title: 'Accessibility', items: ["contrast"] }
+];
 const THEME_COLORS = {
 	nebula:   ["#6a5cff", "#00c2ff"],
 	glass:    ["#6f7cff", "#9be7ff"],
@@ -12,7 +19,8 @@ const THEME_COLORS = {
 ,
 	orchid:   ["#7E6BFF", "#c3b8ff"],
 	amethyst: ["#4d35ac", "#b8a6ff"],
-	gamma:    ["#2cff91", "#9dffd0"]
+	gamma:    ["#2cff91", "#9dffd0"],
+	midnight: ["#5b9dff", "#b598ff"]
 };
 
 function buildThemeButton(theme){
@@ -43,7 +51,8 @@ function buildThemeButton(theme){
 }
 
 function updateActiveTheme(theme){
-	Array.from(document.getElementById('themes').children).forEach(el => {
+	// Update across all groups
+	document.querySelectorAll('#theme-groups .theme-card').forEach(el => {
 		const active = el.getAttribute('data-theme') === theme;
 		el.setAttribute('aria-checked', active ? 'true' : 'false');
 		el.tabIndex = active ? 0 : -1;
@@ -56,8 +65,28 @@ function setTheme(theme){
 }
 
 function initThemes(){
-	const container = document.getElementById('themes');
-	THEMES.forEach(t => container.appendChild(buildThemeButton(t)));
+	const groupsRoot = document.getElementById('theme-groups');
+	THEME_GROUPS.forEach(group => {
+		const section = document.createElement('section');
+		section.className = 'theme-group';
+		// header
+		const header = document.createElement('div');
+		header.className = 'group-header';
+		const title = document.createElement('div');
+		title.className = 'group-title';
+		title.textContent = group.title;
+		header.appendChild(title);
+		section.appendChild(header);
+		// grid
+		const grid = document.createElement('div');
+		grid.className = 'themes-grid';
+		grid.setAttribute('role','radiogroup');
+		grid.setAttribute('aria-label', `${group.title} themes`);
+		group.items.forEach(t => grid.appendChild(buildThemeButton(t)));
+		section.appendChild(grid);
+		groupsRoot.appendChild(section);
+	});
+
 	chrome.storage.sync.get({ cosmoTheme: 'nebula' }, ({ cosmoTheme }) => updateActiveTheme(cosmoTheme));
 	chrome.storage.onChanged.addListener((changes, area) => {
 		if (area === 'sync' && changes.cosmoTheme) updateActiveTheme(changes.cosmoTheme.newValue);

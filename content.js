@@ -14,7 +14,7 @@
     cosmoReduceTransparency: false
   };
   
-	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier', 'orchid', 'amethyst', 'gamma'];
+	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.84, blur:12, contrast:1.07 },
