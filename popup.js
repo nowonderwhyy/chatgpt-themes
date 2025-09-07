@@ -3,7 +3,7 @@ const THEME_GROUPS = [
     { id: 'signature', title: 'Signature', items: ["nebula","glass","mono"] },
     { id: 'vibrant',   title: 'Vibrant',   items: ["vapor","sunset","gamma"] },
     { id: 'pastel',    title: 'Pastel',    items: ["sakura","orchid","amethyst","glacier"] },
-    { id: 'classics',  title: 'Classics',  items: ["mocha","midnight"] },
+    { id: 'classics',  title: 'Classics',  items: ["mocha","midnight","nocturne"] },
     { id: 'access',    title: 'Accessibility', items: ["contrast"] }
 ];
 const THEME_COLORS = {
@@ -20,7 +20,8 @@ const THEME_COLORS = {
 	orchid:   ["#7E6BFF", "#c3b8ff"],
 	amethyst: ["#4d35ac", "#b8a6ff"],
 	gamma:    ["#2cff91", "#9dffd0"],
-	midnight: ["#5b9dff", "#b598ff"]
+	midnight: ["#5b9dff", "#b598ff"],
+	nocturne: ["#6f56ff", "#a97dff"]
 };
 
 function buildThemeButton(theme){
