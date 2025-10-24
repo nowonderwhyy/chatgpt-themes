@@ -14,192 +14,202 @@
 
 /* Glassy variant */
 html[data-cosmo-theme="glass"] {
-    --cosmo-bg: linear-gradient(120deg, #0e0f14, #0b1116 40%, #0e0f14 100%),
-                radial-gradient(1200px 900px at 120% 0%, rgba(255,255,255,.04), transparent 60%);
+    --cosmo-bg:
+        radial-gradient(1320px 920px at 12% -28%, rgba(120, 184, 255, .22) 0%, transparent 60%),
+        radial-gradient(1240px 880px at 118% 12%, rgba(70, 220, 255, .18) 0%, transparent 62%),
+        linear-gradient(190deg, #0a0d15, #111a25);
     --cosmo-surface-alpha: .82;
-    --cosmo-card: rgba(18, 20, 26, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(255,255,255,0.12);
-    --cosmo-glow: 0 0 0 1px rgba(255,255,255,0.08), 0 12px 36px rgba(0,0,0,0.35);
-    --cosmo-glow-soft: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.28);
-    --cosmo-blur-strength: 10px; /* glass can get milky; keep crisp */
-    --cosmo-contrast-boost: 1.08;
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #f2f4f8;
-    --cosmo-subtle: #a8b0bd;
-    --sb-rail-bg: rgb(18, 20, 26);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --cosmo-card: rgba(18, 22, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffffff 26%, rgba(20, 40, 80, .32));
+    --cosmo-glow: 0 0 0 1px rgba(130, 190, 255, .22), 0 16px 44px rgba(10, 18, 40, .32);
+    --cosmo-glow-soft: 0 0 0 1px rgba(130, 190, 255, .14), 0 10px 28px rgba(10, 18, 40, .26);
+    --cosmo-blur-strength: 11px;
+    --cosmo-contrast-boost: 1.09;
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(122%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #ecf5ff;
+    --cosmo-subtle: #afc4de;
+
+    --sb-rail-bg: color-mix(in oklab, rgb(18, 22, 30) 86%, #1a2d48 14%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 76%, rgba(130, 190, 255, .24));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 62%, var(--cosmo-accent-2) 38%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 8%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(60, 120, 220, .14);
 }
 
 /* Monochrome variant */
 html[data-cosmo-theme="mono"] {
-    --cosmo-bg: linear-gradient(180deg, #0f1114, #0b0d10 60%, #0f1114);
-    --cosmo-accent-1:#5a96ff; /* a hair brighter */
-    --cosmo-glow-soft: 0 0 0 1px #303744, 0 10px 28px rgba(0,0,0,.32);
-    --cosmo-card: rgba(21, 23, 26, var(--cosmo-surface-alpha));
-    --cosmo-border: #262a2f;
-    --cosmo-glow: 0 0 0 1px #262a2f;
-    --cosmo-glow-soft: 0 0 0 1px #2b3240, 0 8px 24px rgba(0,0,0,0.28);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #e6e7e9;
-    --cosmo-subtle: #a3a7ad;
-    --sb-rail-bg: rgb(21, 23, 26);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: var(--cosmo-accent-1);
-    /* subtle cool highlight to lift affordances */
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --cosmo-bg:
+        radial-gradient(1200px 820px at 10% -24%, rgba(80, 90, 110, .24) 0%, transparent 60%),
+        radial-gradient(1180px 820px at 112% 126%, rgba(18, 22, 32, .82) 0%, transparent 58%),
+        linear-gradient(188deg, #090a0d, #14181d);
+    --cosmo-card: rgba(24, 26, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #f4f6ff 12%, rgba(0,0,0,.64));
+    --cosmo-glow: 0 0 0 1px rgba(90, 100, 120, .26), 0 14px 42px rgba(4, 6, 10, .32);
+    --cosmo-glow-soft: 0 0 0 1px rgba(90, 100, 120, .16), 0 10px 28px rgba(4, 6, 10, .26);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(118%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #f0f1f3;
+    --cosmo-subtle: #afb4bc;
+
+    --sb-rail-bg: color-mix(in oklab, rgb(24, 26, 30) 88%, #202630 12%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 72%, rgba(120, 130, 150, .28));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 60%, var(--cosmo-accent-2) 40%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 6%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(90, 100, 120, .12);
 }
 
 /* Sunset (warm) */
 html[data-cosmo-theme="sunset"] {
-    --cosmo-bg: radial-gradient(1300px 860px at 18% -20%, #65243f 0%, transparent 60%),
-                radial-gradient(1200px 900px at 106% 132%, #ff9627 0%, transparent 60%),
-                #0b0b12;
-    --sb-rail-bg: #19100e;
-    --cosmo-card: rgba(34, 25, 19, var(--cosmo-surface-alpha));
-    --cosmo-border: color-mix(in oklab, #fff 20%, rgba(255, 230, 215, .16));
-    --cosmo-glow: 0 0 0 1px rgba(255,175,140,.18), 0 12px 36px rgba(255,140,0,.16);
-    --cosmo-glow-soft: 0 0 0 1px rgba(255,175,140,.14), 0 8px 24px rgba(255,140,0,.12);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #ffe9df;
-    --cosmo-subtle: #ffcfb7;
-    --sb-rail-bg: #1D1411; /* espresso */
-    --sb-divider: color-mix(in oklab, #C88B5E 35%, transparent);
-    --sb-accent-bar: #C88B5E; /* copper */
-    --sb-active-bg: color-mix(in oklab, #C88B5E 4%, transparent);
-    --sb-hover-rim: transparent;
-    --sb-icon-color: color-mix(in oklab, #ffffff 78%, #000 22%);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.02);
+    --cosmo-bg:
+        radial-gradient(1280px 860px at 12% -18%, rgba(255, 120, 150, .72) 0%, transparent 60%),
+        radial-gradient(1240px 880px at 110% 132%, rgba(255, 168, 60, .74) 0%, transparent 58%),
+        linear-gradient(188deg, #140a12, #2a1008);
+    --cosmo-card: rgba(42, 22, 18, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffe5ce 28%, rgba(0,0,0,.58));
+    --cosmo-glow: 0 0 0 1px rgba(255, 178, 120, .26), 0 16px 44px rgba(80, 36, 10, .24);
+    --cosmo-glow-soft: 0 0 0 1px rgba(255, 178, 120, .16), 0 10px 30px rgba(80, 36, 10, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(122%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #ffe9db;
+    --cosmo-subtle: #f9c9aa;
+
+    --sb-rail-bg: color-mix(in oklab, rgb(42, 22, 18) 78%, #401c20 22%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 72%, rgba(255, 150, 110, .30));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 66%, var(--cosmo-accent-2) 34%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 10%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+    --sb-icon-color: color-mix(in oklab, #ffffff 82%, #120400 18%);
+    --sb-rail-shadow: inset -1px 0 0 rgba(140, 60, 20, .16);
 }
 
 /* Vapor (cool teal/purple) */
 html[data-cosmo-theme="vapor"] {
-    --cosmo-bg: radial-gradient(1200px 820px at 6% -24%, #3c1a5b 0%, transparent 60%),
-                radial-gradient(1200px 820px at 108% 126%, #088282 0%, transparent 60%),
-                #0b0b12;
-    --cosmo-card: rgba(20, 21, 28, var(--cosmo-surface-alpha));
-    /* slightly tighter to avoid neon fringing */
-    --cosmo-border: rgba(255,255,255,0.16);
-    --cosmo-glow: 0 0 0 1px rgba(154,119,222,.20), 0 12px 36px rgba(42,171,171,.16);
-    --cosmo-glow-soft: 0 0 0 1px rgba(154,119,222,.14), 0 8px 24px rgba(42,171,171,.12);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #eafcff;
-    --cosmo-subtle: #b3e6e9;
-    --sb-rail-bg: #0E1116; /* blue-black rail */
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-2) 85%, #0E1116);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent);
+    --cosmo-bg:
+        radial-gradient(1260px 860px at 8% -24%, rgba(180, 85, 255, .52) 0%, transparent 60%),
+        radial-gradient(1260px 860px at 112% 130%, rgba(40, 220, 220, .48) 0%, transparent 58%),
+        linear-gradient(190deg, #0b0a16, #071824);
+    --cosmo-card: rgba(18, 20, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #f6cfff 20%, rgba(0,0,0,.62));
+    --cosmo-glow: 0 0 0 1px rgba(170, 130, 255, .28), 0 16px 44px rgba(20, 40, 90, .22);
+    --cosmo-glow-soft: 0 0 0 1px rgba(170, 130, 255, .16), 0 10px 30px rgba(8, 50, 64, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(124%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #eefbff;
+    --cosmo-subtle: #b7eff2;
+    --sb-rail-bg: color-mix(in oklab, rgb(18, 20, 30) 82%, #132a33 18%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(70, 230, 220, .26));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 58%, var(--cosmo-accent-2) 42%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 12%, transparent);
     --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 22%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: 0 0 0 1px rgba(255,255,255,.02), 0 8px 24px rgba(6,22,28,.36);
+    --sb-rail-shadow: inset -1px 0 0 rgba(40, 220, 220, .14);
 }
 
 /* High contrast */
 html[data-cosmo-theme="contrast"] {
-    --cosmo-bg: #0a0b0e;
-    --cosmo-card: rgba(18, 20, 26, var(--cosmo-surface-alpha));
-    --cosmo-border: #2b3240;
-    --cosmo-glow: 0 0 0 1px #2b3240;
-    --cosmo-glow-soft: 0 0 0 1px #2b3240, 0 8px 24px rgba(0,0,0,0.28);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #f3f6ff;
-    --cosmo-subtle: #c2c9d6;
-    --sb-rail-bg: rgb(18, 20, 26);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --cosmo-bg:
+        radial-gradient(1180px 820px at 12% -24%, rgba(120, 150, 255, .22) 0%, transparent 60%),
+        radial-gradient(1180px 820px at 112% 128%, rgba(30, 40, 70, .28) 0%, transparent 58%),
+        linear-gradient(188deg, #08090c, #11131a);
+    --cosmo-card: rgba(16, 18, 26, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #f6f8ff 18%, rgba(0,0,0,.72));
+    --cosmo-glow: 0 0 0 1px rgba(120, 150, 255, .24), 0 16px 44px rgba(0, 0, 0, .34);
+    --cosmo-glow-soft: 0 0 0 1px rgba(120, 150, 255, .16), 0 10px 28px rgba(0, 0, 0, .28);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(122%) contrast(1.12);
+    --cosmo-text: #f7f9ff;
+    --cosmo-subtle: #aeb6ca;
+    --sb-rail-bg: color-mix(in oklab, rgb(16, 18, 26) 90%, #0f1624 10%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 78%, rgba(110, 160, 255, .32));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 64%, var(--cosmo-accent-2) 36%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 28%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(100, 150, 255, .18);
     --cosmo-surface-alpha: .88;
     --cosmo-blur-strength: 10px;
 }
 
 /* Mocha (earthy, cozy) */
 html[data-cosmo-theme="mocha"] {
-    --cosmo-bg: radial-gradient(1200px 800px at 14% -16%, #5a3e2b 0%, transparent 58%),
-                radial-gradient(1200px 800px at 106% 118%, rgba(200,160,122,.38) 0%, transparent 52%),
-                #201813;
-    --cosmo-card: rgba(32, 24, 19, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(245, 236, 224, .18);
-    --cosmo-glow: 0 0 0 1px rgba(201, 178, 150, .18), 0 12px 36px rgba(80, 54, 34, .22);
-    --cosmo-glow-soft: 0 0 0 1px rgba(201, 178, 150, .14), 0 8px 24px rgba(80, 54, 34, .16);
+    --cosmo-bg:
+        radial-gradient(1280px 860px at 14% -18%, rgba(180, 118, 70, .62) 0%, transparent 60%),
+        radial-gradient(1220px 860px at 110% 132%, rgba(110, 62, 34, .54) 0%, transparent 56%),
+        linear-gradient(186deg, #1a110c, #2d1b11);
+    --cosmo-card: rgba(36, 24, 18, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #f6d8b8 24%, rgba(0,0,0,.58));
+    --cosmo-glow: 0 0 0 1px rgba(206, 162, 118, .28), 0 14px 40px rgba(54, 32, 18, .24);
+    --cosmo-glow-soft: 0 0 0 1px rgba(206, 162, 118, .18), 0 10px 28px rgba(54, 32, 18, .18);
     --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #f4efe7;
-    --cosmo-subtle: #d6c7b6;
-    --sb-rail-bg: rgb(32, 24, 19);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: #caa078; /* bronze */
-    /* subtle active fill improves scannability */
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 3%, transparent);
-    --sb-hover-rim: transparent;
-    --sb-icon-color: #F3E9DD;
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --cosmo-text: #f6efe3;
+    --cosmo-subtle: #e1c8ad;
+    --sb-rail-bg: color-mix(in oklab, rgb(36, 24, 18) 82%, #402313 18%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 72%, rgba(190, 120, 70, .32));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 68%, var(--cosmo-accent-2) 32%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 8%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+    --sb-icon-color: #f6efe3;
+    --sb-rail-shadow: inset -1px 0 0 rgba(120, 70, 30, .16);
 }
 
 /* Sakura (cherry-blossom noir) */
 html[data-cosmo-theme="sakura"] {
     --cosmo-bg:
-        radial-gradient(1200px 820px at 10% -18%, #5b1e3b 0%, transparent 60%),
-        radial-gradient(1200px 820px at 102% 128%, #c76b3e 0%, transparent 60%),
-        #120f14;
-    --cosmo-card: rgba(26, 18, 23, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(255, 214, 228, .16);
-    --cosmo-glow: 0 0 0 1px rgba(255,170,200,.18), 0 12px 36px rgba(205,110,120,.18);
-    --cosmo-glow-soft: 0 0 0 1px rgba(255,170,200,.14), 0 8px 24px rgba(205,110,120,.12);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #fff2f7;
-    --cosmo-subtle: #f3c7d9;
+        radial-gradient(1280px 860px at 10% -20%, rgba(255, 126, 190, .62) 0%, transparent 60%),
+        radial-gradient(1220px 860px at 108% 132%, rgba(255, 190, 140, .56) 0%, transparent 58%),
+        linear-gradient(188deg, #140b14, #231025);
+    --cosmo-card: rgba(28, 18, 28, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffd8eb 22%, rgba(0,0,0,.6));
+    --cosmo-glow: 0 0 0 1px rgba(255, 158, 210, .26), 0 14px 40px rgba(90, 32, 80, .20);
+    --cosmo-glow-soft: 0 0 0 1px rgba(255, 158, 210, .16), 0 10px 28px rgba(90, 32, 80, .16);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(122%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #fff3fa;
+    --cosmo-subtle: #f6c6da;
 
     /* Sidebar tokens */
-    --sb-rail-bg: rgb(26, 18, 23);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: var(--cosmo-accent-1);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --sb-rail-bg: color-mix(in oklab, rgb(28, 18, 28) 78%, #401534 22%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(255, 158, 210, .30));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 64%, var(--cosmo-accent-2) 36%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(160, 70, 120, .14);
 }
 
 /* === Cosmo accents === */
 :root { --cosmo-accent-1:#6f7cff; --cosmo-accent-2:#9be7ff; }
-html[data-cosmo-theme="glass"]   { --cosmo-accent-1:#6f7cff; --cosmo-accent-2:#9be7ff; }
-html[data-cosmo-theme="mono"]    { --cosmo-accent-1:#4a86ff; --cosmo-accent-2:#7dd3fc; }
-html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff7a59; --cosmo-accent-2:#ffd38a; }
-html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#8a63d2; --cosmo-accent-2:#34d5d5; }
-html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#9ab6ff; --cosmo-accent-2:#78e2ff; }
+html[data-cosmo-theme="glass"]   { --cosmo-accent-1:#77b9ff; --cosmo-accent-2:#c5f2ff; }
+html[data-cosmo-theme="mono"]    { --cosmo-accent-1:#7da4ff; --cosmo-accent-2:#a9c7ff; }
+html[data-cosmo-theme="sunset"]  { --cosmo-accent-1:#ff8c66; --cosmo-accent-2:#ffd278; }
+html[data-cosmo-theme="vapor"]   { --cosmo-accent-1:#c687ff; --cosmo-accent-2:#4fffea; }
+html[data-cosmo-theme="contrast"]{ --cosmo-accent-1:#6cd4ff; --cosmo-accent-2:#ffe769; }
+html[data-cosmo-theme="mocha"]   { --cosmo-accent-1:#f2b076; --cosmo-accent-2:#ffd8a6; }
+html[data-cosmo-theme="sakura"]  { --cosmo-accent-1:#ff8fc6; --cosmo-accent-2:#ffd6ea; }
 
 /* Gamma Doppler (emerald/obsidian) */
 html[data-cosmo-theme="gamma"] {
     --cosmo-bg:
-        radial-gradient(1200px 820px at 6% -18%, #083227 0%, transparent 58%),
-        radial-gradient(1200px 820px at 108% 128%, #0b4136 0%, transparent 58%),
-        #0a0f0e;
-    --cosmo-card: rgba(12, 18, 16, var(--cosmo-surface-alpha));
-    --cosmo-border: color-mix(in oklab, #9fffcf 18%, rgba(0,0,0,.6));
-    --cosmo-glow: 0 0 0 1px rgba(60, 255, 170, .20), 0 12px 36px rgba(16, 140, 100, .22);
-    --cosmo-glow-soft: 0 0 0 1px rgba(60, 255, 170, .14), 0 8px 24px rgba(16, 140, 100, .16);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(118%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #e6fff4;
-    --cosmo-subtle: #b6f3d8;
+        radial-gradient(1260px 860px at 6% -20%, rgba(40, 220, 150, .56) 0%, transparent 58%),
+        radial-gradient(1220px 860px at 110% 134%, rgba(18, 150, 140, .52) 0%, transparent 56%),
+        linear-gradient(186deg, #050d0b, #071713);
+    --cosmo-card: rgba(12, 20, 18, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #a6fbd8 24%, rgba(0,0,0,.58));
+    --cosmo-glow: 0 0 0 1px rgba(70, 255, 180, .26), 0 14px 42px rgba(12, 90, 70, .24);
+    --cosmo-glow-soft: 0 0 0 1px rgba(70, 255, 180, .16), 0 10px 30px rgba(12, 90, 70, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #e8fff7;
+    --cosmo-subtle: #bdf6de;
 
     /* Sidebar */
-    --sb-rail-bg: rgb(12, 18, 16);
-    --sb-divider: var(--cosmo-border);
-    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 85%, #0a0f0e);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --sb-rail-bg: color-mix(in oklab, rgb(12, 20, 18) 82%, #073224 18%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(70, 255, 180, .30));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 66%, var(--cosmo-accent-2) 34%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 16%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(30, 150, 110, .16);
 }
-html[data-cosmo-theme="gamma"] { --cosmo-accent-1:#2cff91; --cosmo-accent-2:#9dffd0; }
+html[data-cosmo-theme="gamma"] { --cosmo-accent-1:#38ffa8; --cosmo-accent-2:#a8ffe2; }
 
 /* Orchid (ChatGPT purple companion) */
 html[data-cosmo-theme="orchid"] {
@@ -256,28 +266,27 @@ html[data-cosmo-theme="amethyst"] { --cosmo-accent-1:#b16cff; --cosmo-accent-2:#
 /* Glacier (icy cyan + steel) */
 html[data-cosmo-theme="glacier"] {
     --cosmo-bg:
-        radial-gradient(1200px 820px at -10% 10%, #0c2a3a 0%, transparent 60%),
-        radial-gradient(1200px 820px at 110% 120%, #165b6d 0%, transparent 60%),
-        #0a1117;
-    --cosmo-card: rgba(14, 22, 30, var(--cosmo-surface-alpha));
-    --cosmo-border: rgba(163, 222, 255, .14);
-    --cosmo-glow: 0 0 0 1px rgba(111, 206, 255,.18), 0 12px 36px rgba(31, 140, 178,.22);
-    --cosmo-glow-soft: 0 0 0 1px rgba(111, 206, 255,.12), 0 8px 24px rgba(31, 140, 178,.14);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(115%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #eaf7ff;
-    --cosmo-subtle: #b9e6ff;
+        radial-gradient(1260px 860px at -8% 6%, rgba(90, 200, 255, .46) 0%, transparent 58%),
+        radial-gradient(1240px 860px at 116% 126%, rgba(40, 140, 220, .44) 0%, transparent 56%),
+        linear-gradient(190deg, #07121d, #0a1c27);
+    --cosmo-card: rgba(16, 24, 34, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #b7ecff 24%, rgba(0,0,0,.6));
+    --cosmo-glow: 0 0 0 1px rgba(120, 210, 255, .24), 0 14px 40px rgba(10, 40, 70, .24);
+    --cosmo-glow-soft: 0 0 0 1px rgba(120, 210, 255, .16), 0 10px 28px rgba(10, 40, 70, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #e9f8ff;
+    --cosmo-subtle: #bfeaff;
 
     /* Sidebar */
-    --sb-rail-bg: rgb(14, 22, 30);
-    --sb-divider: var(--cosmo-border);
-    /* tone down brightness of accent bar */
-    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 85%, #0a1117);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 4%, transparent);
-    --sb-hover-rim: transparent;
+    --sb-rail-bg: color-mix(in oklab, rgb(16, 24, 34) 84%, #0d2938 16%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(120, 210, 255, .28));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 68%, var(--cosmo-accent-2) 32%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(255,255,255,.03);
+    --sb-rail-shadow: inset -1px 0 0 rgba(70, 150, 210, .16);
 }
-html[data-cosmo-theme="glacier"] { --cosmo-accent-1:#7de3ff; --cosmo-accent-2:#b7ffd8; }
+html[data-cosmo-theme="glacier"] { --cosmo-accent-1:#7fe1ff; --cosmo-accent-2:#b9fff2; }
 
 /* Defaults for non-themed contexts */
 :root {
@@ -293,27 +302,27 @@ html[data-cosmo-theme="glacier"] { --cosmo-accent-1:#7de3ff; --cosmo-accent-2:#b
 /* Midnight (deep navy with cool gradient) */
 html[data-cosmo-theme="midnight"] {
     --cosmo-bg:
-        radial-gradient(1200px 820px at 6% -20%, #14213a 0%, transparent 60%),
-        radial-gradient(1200px 820px at 110% 126%, #0f2742 0%, transparent 60%),
-        #0a0d14;
-    --cosmo-card: rgba(14, 18, 26, var(--cosmo-surface-alpha));
-    --cosmo-border: color-mix(in oklab, #9ab6ff 18%, rgba(0,0,0,.60));
-    --cosmo-glow: 0 0 0 1px rgba(110, 150, 255, .20), 0 12px 36px rgba(16, 46, 110, .20);
-    --cosmo-glow-soft: 0 0 0 1px rgba(110, 150, 255, .14), 0 8px 24px rgba(16, 46, 110, .14);
-    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(118%) contrast(var(--cosmo-contrast-boost));
-    --cosmo-text: #e9f0ff;
-    --cosmo-subtle: #b8c6ee;
+        radial-gradient(1240px 860px at 8% -22%, rgba(110, 150, 255, .36) 0%, transparent 60%),
+        radial-gradient(1220px 860px at 112% 132%, rgba(40, 90, 180, .38) 0%, transparent 58%),
+        linear-gradient(190deg, #090c16, #121a2c);
+    --cosmo-card: rgba(16, 20, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #a6c0ff 22%, rgba(0,0,0,.58));
+    --cosmo-glow: 0 0 0 1px rgba(110, 160, 255, .24), 0 14px 42px rgba(16, 40, 100, .24);
+    --cosmo-glow-soft: 0 0 0 1px rgba(110, 160, 255, .16), 0 10px 30px rgba(16, 40, 100, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(120%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #e8f1ff;
+    --cosmo-subtle: #bacaf0;
 
     /* Sidebar */
-    --sb-rail-bg: color-mix(in oklab, rgb(18, 20, 26) 94%, #4f6dff 6%);
-    --sb-divider: color-mix(in oklab, var(--cosmo-border) 82%, rgba(91,157,255,.18));
+    --sb-rail-bg: color-mix(in oklab, rgb(16, 20, 30) 88%, #1b2f56 12%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 78%, rgba(110, 160, 255, .26));
     --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 60%, var(--cosmo-accent-2) 40%);
-    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 9%, transparent);
-    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-2) 11%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
     --sb-icon-color: var(--cosmo-text);
-    --sb-rail-shadow: inset -1px 0 0 rgba(91,157,255,.06);
+    --sb-rail-shadow: inset -1px 0 0 rgba(80, 130, 230, .12);
 }
-html[data-cosmo-theme="midnight"] { --cosmo-accent-1:#5b9dff; --cosmo-accent-2:#b598ff; }
+html[data-cosmo-theme="midnight"] { --cosmo-accent-1:#6aa8ff; --cosmo-accent-2:#a9c4ff; }
 
 /* Nocturne (midnight + violet highlights) */
 html[data-cosmo-theme="nocturne"] {
