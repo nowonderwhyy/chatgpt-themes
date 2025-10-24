@@ -8,6 +8,8 @@
     --cosmo-ring-thickness: 1px;       /* inner rim */
     --cosmo-radius-lg: 16px;
     --cosmo-radius-xl: 24px;
+    --cosmo-grain-opacity: .10;        /* global grain strength (shared with overlays) */
+    --cosmo-grain-scale: 512px;        /* overlay tile size to avoid visible repetition */
 }
 
 /* -------------- Base tokens by our theme -------------- */

@@ -16,3 +16,7 @@ a[data-skip-to-content] {
     color: var(--cosmo-text) !important;
 }
 
+/* Debug toggles for QA */
+html.debug-no-grain.dark::after { display: none !important; }
+html.debug-no-dim.dark::before { display: none !important; }
+

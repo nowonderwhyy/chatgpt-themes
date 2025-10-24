@@ -2,15 +2,20 @@
 /* Top-level HTML is marked with class 'dark' and data-chat-theme — we stay compatible. */
 html.dark { background: var(--cosmo-bg) !important; color: var(--cosmo-text); }
 
+/* Prevent blending artefacts from bubbling up the stacking context */
+html { isolation: isolate; }
+
 /* Subtle canvas vignette for depth */
 html.dark::after{
     content: ""; position: fixed; inset: 0; pointer-events: none;
     background:
-        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="128" height="128" filter="url(%23n)" fill="black" opacity="0.03"/></svg>'),
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" stitchTiles="stitch"/></filter><rect width="128" height="128" filter="url(%23n)" fill="black" opacity="0.016"/></svg>'),
         radial-gradient(90% 70% at 50% 120%, rgba(0,0,0,.24), transparent 60%),
         radial-gradient(50% 40% at 50% -10%, rgba(255,255,255,.025), transparent 60%);
-    mix-blend-mode: soft-light; opacity: .82;
-    background-size: 256px 256px, auto, auto;
+    mix-blend-mode: normal;
+    background-blend-mode: soft-light, normal, normal;
+    opacity: var(--cosmo-grain-opacity);
+    background-size: var(--cosmo-grain-scale) var(--cosmo-grain-scale), auto, auto;
 }
 
 /* Background glass plane for readability (subtle, behind entire chat area) */
@@ -24,6 +29,7 @@ html.dark::after{
     -webkit-backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 4px)) saturate(130%) contrast(1.04);
     box-shadow: 0 8px var(--cosmo-glow-spread) rgba(0,0,0,.25);
     pointer-events: none;
+    contain: paint;
     z-index: 0;
 }
 #thread, #main { position: relative; z-index: 1; }
@@ -78,16 +84,13 @@ main[role="main"],
     border: none !important;
 }
 
-/* Keep a smooth, fixed gradient feel */
-html, body { background-attachment: fixed; }
-
 /* Dim top/bottom zones so gradients don't compete with header/composer */
 html.dark::before{
     content:"";
     position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background:
-        linear-gradient(to bottom, rgba(0,0,0,.24), transparent 160px),
-        linear-gradient(to top, rgba(0,0,0,.18), transparent 160px);
-    mix-blend-mode: soft-light;
+        linear-gradient(to bottom, rgba(0,0,0,.16), transparent 160px),
+        linear-gradient(to top, rgba(0,0,0,.12), transparent 160px);
+    mix-blend-mode: normal;
 }
 

@@ -28,3 +28,10 @@ html[data-cosmo-theme="sunset"] ::where(button, a, input, select, textarea):focu
         0 0 0 4px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
 }
 
+/* Reduce Transparency: disable heavy canvas overlays */
+html[data-cosmo-reduce-transparency].dark::after { display: none !important; }
+html[data-cosmo-reduce-transparency].dark::before {
+    opacity: .10 !important;
+    mix-blend-mode: normal !important;
+}
+

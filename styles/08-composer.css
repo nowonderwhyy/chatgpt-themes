@@ -24,8 +24,8 @@ form[data-type="unified-composer"] .bg-token-bg-primary::before {
     radial-gradient(120% 70% at 8% -20%, rgba(255,255,255,.05), transparent 45%),
     /* faint caustic at bottom-right */
     radial-gradient(120% 70% at 100% 120%, rgba(255,255,255,.03), transparent 55%);
-  mix-blend-mode: soft-light;
-  opacity: .42; /* further softened to avoid wet glare */
+  background-blend-mode: soft-light;
+  opacity: .24; /* further softened to avoid wet glare */
 }
 
 /* Inner strokes for glass edge definition */
