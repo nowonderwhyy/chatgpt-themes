@@ -1,13 +1,12 @@
 // Theme groups for categorized popup sections
 const THEME_GROUPS = [
-    { id: 'signature', title: 'Signature', items: ["nebula","glass","mono"] },
+    { id: 'signature', title: 'Signature', items: ["glass","mono"] },
     { id: 'vibrant',   title: 'Vibrant',   items: ["vapor","sunset","gamma"] },
     { id: 'pastel',    title: 'Pastel',    items: ["sakura","orchid","amethyst","glacier"] },
     { id: 'classics',  title: 'Classics',  items: ["mocha","midnight","nocturne"] },
     { id: 'access',    title: 'Accessibility', items: ["contrast"] }
 ];
 const THEME_COLORS = {
-	nebula:   ["#6a5cff", "#00c2ff"],
 	glass:    ["#6f7cff", "#9be7ff"],
 	mono:     ["#4a86ff", "#7dd3fc"],
 	sunset:   ["#ff7a59", "#ffd38a"],
@@ -15,8 +14,7 @@ const THEME_COLORS = {
 	contrast: ["#9ab6ff", "#78e2ff"],
 	mocha:    ["#8b5e3c", "#f3e9dc"],
 	sakura:   ["#ff7ab6", "#ffd3a3"],
-	glacier:  ["#7de3ff", "#b7ffd8"]
-,
+	glacier:  ["#7de3ff", "#b7ffd8"],
 	orchid:   ["#7E6BFF", "#c3b8ff"],
 	amethyst: ["#4d35ac", "#b8a6ff"],
 	gamma:    ["#2cff91", "#9dffd0"],
@@ -88,7 +86,7 @@ function initThemes(){
 		groupsRoot.appendChild(section);
 	});
 
-	chrome.storage.sync.get({ cosmoTheme: 'nebula' }, ({ cosmoTheme }) => updateActiveTheme(cosmoTheme));
+	chrome.storage.sync.get({ cosmoTheme: 'glass' }, ({ cosmoTheme }) => updateActiveTheme(cosmoTheme));
 	chrome.storage.onChanged.addListener((changes, area) => {
 		if (area === 'sync' && changes.cosmoTheme) updateActiveTheme(changes.cosmoTheme.newValue);
 	});

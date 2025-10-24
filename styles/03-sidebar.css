@@ -18,10 +18,41 @@
 
 /* 3. Apply a distinct glass effect to the sticky header/footer for layering */
 /* When content scrolls, it will blur behind these elements */
+#stage-slideover-sidebar nav,
+#stage-popover-sidebar nav {
+    background: var(--sb-rail-bg) !important;
+}
+
 #stage-slideover-sidebar nav > .sticky,
-#stage-slideover-sidebar nav > aside[class*="sticky"] { /* `aside` is used for "New Project" etc. sections */
-    background: var(--cosmo-card) !important;
+#stage-slideover-sidebar nav > aside[class*="sticky"],
+#stage-popover-sidebar nav > .sticky,
+#stage-popover-sidebar nav > aside[class*="sticky"] { /* `aside` is used for "New Project" etc. sections */
+    background: var(--sb-rail-bg) !important;
     backdrop-filter: var(--cosmo-blur);
+}
+
+#stage-slideover-sidebar nav > .sticky.top-0,
+#stage-popover-sidebar nav > .sticky.top-0 {
+    background:
+        linear-gradient(180deg,
+            color-mix(in oklab, var(--sb-rail-bg) 75%, rgba(255,255,255,.08)) 0%,
+            var(--sb-rail-bg) 68%,
+            color-mix(in oklab, var(--sb-rail-bg) 96%, rgba(0,0,0,.06)) 100%
+        ) !important;
+}
+
+#stage-slideover-sidebar nav > :not(.sticky),
+#stage-popover-sidebar nav > :not(.sticky) {
+    background: var(--sb-rail-bg) !important;
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+}
+
+#stage-slideover-sidebar nav > :not(.sticky) [class*="border-b"],
+#stage-slideover-sidebar nav > :not(.sticky) [class*="border-t"],
+#stage-popover-sidebar nav > :not(.sticky) [class*="border-b"],
+#stage-popover-sidebar nav > :not(.sticky) [class*="border-t"] {
+    border-color: transparent !important;
 }
 
 /* 4. Add subtle borders to delineate the sticky areas */
@@ -49,6 +80,7 @@ a[data-testid^="sidebar-item-"]:hover {
 #stage-popover-sidebar [__menu-item],
 a[data-testid^="sidebar-item-"] {
     color: var(--sb-icon-color, var(--cosmo-text)) !important;
+    border: none !important;
     border-radius: 10px;
     transition: background-color .12s ease, box-shadow .12s ease, color .12s ease;
     position: relative;
@@ -58,9 +90,10 @@ a[data-testid^="sidebar-item-"] {
 #stage-slideover-sidebar :is(h2,h3,[role="heading"]) {
     font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
     color: color-mix(in oklab, var(--cosmo-text) 64%, var(--cosmo-subtle) 36%);
-    padding: 6px 8px; border-radius: 8px;
-    background: color-mix(in oklab, var(--cosmo-card) 40%, transparent);
-    border: 1px solid var(--cosmo-border);
+    padding: 4px 0;
+    border: none;
+    border-radius: 0;
+    background: none;
 }
 
 /* Active row background + left accent bar via tokens */

@@ -96,23 +96,6 @@ html[data-cosmo-theme="mocha"] #stage-slideover-sidebar :is(h2,h3,[role="heading
   color: color-mix(in oklab, #caa078 80%, #F3E9DD 20%);
 }
 
-/* Nebula — faint rail wash + micro-motion */
-html[data-cosmo-theme="nebula"] #stage-slideover-sidebar { position: relative; }
-html[data-cosmo-theme="nebula"] #stage-slideover-sidebar::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: 12px 0 0 12px;
-  background: linear-gradient(135deg, rgba(126,107,255,.06), rgba(0,0,0,0));
-}
-html[data-cosmo-theme="nebula"] #stage-slideover-sidebar [__menu-item] svg,
-html[data-cosmo-theme="nebula"] #stage-popover-sidebar [__menu-item] svg,
-html[data-cosmo-theme="nebula"] a[data-testid^="sidebar-item-"] svg { transition: transform .12s ease, filter .12s ease; }
-html[data-cosmo-theme="nebula"] #stage-slideover-sidebar [__menu-item]:hover svg,
-html[data-cosmo-theme="nebula"] #stage-popover-sidebar [__menu-item]:hover svg,
-html[data-cosmo-theme="nebula"] a[data-testid^="sidebar-item-"]:hover svg {
-  transform: scale(1.03);
-  filter: drop-shadow(0 2px 6px rgba(126,107,255,.18));
-}
-
-
 /* Sunset — lighten code blocks a touch for warm palettes */
 html[data-cosmo-theme="sunset"] #thread pre {
   background: rgba(0,0,0,.31);

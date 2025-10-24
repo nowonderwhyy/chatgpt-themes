@@ -7,14 +7,14 @@
 	};
   
   const DEFAULTS = {
-    cosmoTheme: 'nebula',
+    cosmoTheme: 'glass',
     cosmoNoChatbarHighlight: false,
     cosmoNoChatbarHover: false,
     cosmoIntensity: 'regular',
     cosmoReduceTransparency: false
   };
   
-	const THEMES = ['nebula', 'glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne'];
+	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.84, blur:12, contrast:1.07 },
