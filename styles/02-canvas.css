@@ -18,7 +18,7 @@ html.dark::after{
     content:"";
     position: absolute; /* fill the chat container */
     inset: 0;
-    border-radius: var(--cosmo-radius-lg);
+    border-radius: 0;
     background: color-mix(in oklab, var(--cosmo-card) 65%, transparent);
     backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 4px)) saturate(130%) contrast(1.04);
     -webkit-backdrop-filter: blur(calc(var(--cosmo-blur-strength) - 4px)) saturate(130%) contrast(1.04);
@@ -27,6 +27,17 @@ html.dark::after{
     z-index: 0;
 }
 #thread, #main { position: relative; z-index: 1; }
+
+/* Remove built-in rounded chrome so the Cosmo canvas can fill every corner */
+#main,
+#thread,
+[data-testid="stretched-body"],
+main[role="main"],
+#__next,
+html,
+body {
+    border-radius: 0 !important;
+}
 
 /* ----- Force the site canvas to use our theme background ----- */
 html, body { background: var(--cosmo-bg) !important; }

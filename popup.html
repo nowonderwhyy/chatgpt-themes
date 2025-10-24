@@ -6,48 +6,312 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         :root { color-scheme: dark; }
-        body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin: 0; padding: 12px; width: 320px; background:#0e0f14; color:#e8ecff; }
-        h1 { font-size: 14px; margin: 0 0 8px; font-weight: 700; }
-        .section { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 10px; margin-bottom: 10px; }
-        .row { display:flex; align-items:center; justify-content:space-between; gap: 8px; }
-        .muted { color: #9aa6c3; font-size: 12px; }
-        /* Theme groups */
-        .theme-group { margin-top: 10px; }
-        .group-header { display:flex; align-items:center; justify-content:space-between; margin: 8px 2px 6px; }
-        .group-title { font-size: 12px; font-weight: 700; color:#c8d2f2; }
-        .themes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-        /* Cards */
-        .theme-card { display:flex; align-items:center; gap:10px; border:1px solid #2b3240; border-radius: 10px; padding:8px; cursor:pointer; background:#14161b; }
-        .theme-card:hover { border-color: #41506a; background:#151922; }
-        .theme-card[aria-checked="true"] { border-color: color-mix(in oklab, var(--a2) 45%, #2b3240); box-shadow: 0 0 0 2px color-mix(in oklab, var(--a2) 35%, transparent); }
-        .swatch { width: 18px; height: 18px; border-radius: 999px; border: 1px solid #2b3240; background: linear-gradient(135deg, var(--a1), var(--a2)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); flex:none; }
-        .name { font-weight: 600; font-size: 12px; }
-        .toggle { display:flex; align-items:center; gap: 10px; }
-        .toggle input { width: 16px; height: 16px; }
-        a { color: #9ab6ff; text-decoration: none; }
+        body {
+            margin: 0;
+            padding: 14px;
+            min-width: 320px;
+            width: 320px;
+            box-sizing: border-box;
+            font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+            background:
+                radial-gradient(140% 120% at 10% -10%, rgba(96,128,255,.18) 0%, transparent 55%),
+                radial-gradient(110% 130% at 100% 0%, rgba(91,62,180,.22) 0%, transparent 60%),
+                #05060a;
+            color: #e6ecff;
+        }
+        main { display: flex; flex-direction: column; gap: 12px; }
+        .panel {
+            background: linear-gradient(180deg, rgba(14,17,28,.92), rgba(7,9,17,.94));
+            border: 1px solid rgba(108,132,202,.16);
+            border-radius: 14px;
+            padding: 14px;
+            box-shadow: 0 10px 26px -20px rgba(40,54,120,.75);
+        }
+        .intro {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .intro-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .intro h1 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 650;
+            letter-spacing: .01em;
+        }
+        .intro-meta {
+            color: #a9b8d8;
+            font-size: 11px;
+        }
+        .intro-copy {
+            margin: 0;
+            font-size: 12px;
+            color: #a5b4d8;
+            line-height: 1.4;
+        }
+        .active-theme {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(85,112,214,.14);
+            color: #dbe4ff;
+            font-size: 11.5px;
+            border: 1px solid rgba(128,162,255,.18);
+        }
+        .active-theme::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(140,182,255,.85), rgba(88,238,255,.7));
+            box-shadow: 0 0 10px rgba(110,178,255,.7);
+        }
+        .theme-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .theme-panel__header { display:flex; flex-direction:column; gap:4px; }
+        .theme-panel__title {
+            margin: 0;
+            font-size: 13px;
+            font-weight: 630;
+            color: #d6e0ff;
+        }
+        .theme-panel__note {
+            margin: 0;
+            font-size: 11.5px;
+            color: #94a4c8;
+            line-height: 1.32;
+        }
+        .theme-accordion { display:flex; flex-direction:column; gap:8px; }
+        .collection {
+            border: 1px solid rgba(110,140,214,.22);
+            border-radius: 12px;
+            background: rgba(13,17,28,.78);
+            transition: border-color .16s ease, background .16s ease;
+        }
+        .collection[open] {
+            border-color: rgba(150,182,255,.38);
+            background: rgba(17,21,34,.88);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+        }
+        .collection summary {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 10px 12px;
+            cursor: pointer;
+            border-radius: 12px;
+            position: relative;
+        }
+        .collection summary:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(140,196,255,.35);
+        }
+        .collection[data-active-theme="true"] summary::after {
+            content: "";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(170,225,255,.9), rgba(92,196,255,.7));
+            box-shadow: 0 0 6px rgba(110,178,255,.7);
+        }
+        .collection summary::marker,
+        .collection summary::-webkit-details-marker { display: none; }
+        .collection-body {
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(-6px);
+            transition: max-height .18s ease, opacity .18s ease, transform .18s ease;
+            padding: 0 12px;
+        }
+        .collection-body::before {
+            content: "";
+            display: block;
+            height: 6px;
+        }
+        .collection[open] .collection-body {
+            max-height: 420px;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .collection-summary__title {
+            font-size: 12.5px;
+            font-weight: 620;
+            color: #dbe5ff;
+            letter-spacing: .01em;
+        }
+        .collection-summary__note {
+            font-size: 11px;
+            color: rgba(164,184,226,.8);
+            line-height: 1.28;
+        }
+        .collection[open] .collection-summary__title { color: #eef3ff; }
+        .collection-grid {
+            display: grid;
+            gap: 8px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .collection-grid--single { grid-template-columns: repeat(1, minmax(0,1fr)); }
+        .collection-body .collection-grid { padding-bottom: 12px; }
+        .theme-card {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 9px;
+            border-radius: 10px;
+            border: 1px solid rgba(104,132,210,.18);
+            background:
+                linear-gradient(155deg, rgba(20,25,40,.88), rgba(10,12,22,.92)),
+                linear-gradient(140deg,
+                    color-mix(in oklab, var(--a1) 18%, transparent),
+                    color-mix(in oklab, var(--a2) 14%, transparent));
+            text-align: left;
+            cursor: pointer;
+            transition: border-color .16s ease, transform .16s ease;
+        }
+        .theme-card:hover {
+            border-color: color-mix(in oklab, var(--a2) 38%, rgba(120,150,240,.35));
+            transform: translateY(-1px);
+        }
+        .theme-card:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(140,196,255,.5);
+        }
+        .theme-card[aria-checked="true"] {
+            border-color: color-mix(in oklab, var(--a2) 60%, rgba(120,150,240,.4));
+            box-shadow: 0 0 0 1px color-mix(in oklab, var(--a2) 48%, rgba(20,32,70,.32));
+        }
+        .theme-card__label {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+        .theme-card__name {
+            font-size: 12px;
+            font-weight: 630;
+            color: #f0f4ff;
+        }
+        .theme-card__hint {
+            font-size: 10.5px;
+            color: rgba(208,220,255,.7);
+            line-height: 1.28;
+        }
+        .theme-card__header {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .theme-card__swatch {
+            flex: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--a1), var(--a2));
+            border: 1px solid rgba(255,255,255,.28);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,.35);
+        }
+        .settings-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .settings-header {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .settings-header h2 {
+            margin: 0;
+            font-size: 12.5px;
+            font-weight: 620;
+        }
+        .settings-note {
+            font-size: 11.5px;
+            color: #96a7ce;
+        }
+        .toggle {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            border-radius: 12px;
+            padding: 9px 11px;
+            background: rgba(16,20,34,.62);
+            border: 1px solid rgba(92,118,190,.2);
+            cursor: pointer;
+        }
+        .toggle:hover {
+            border-color: rgba(130,176,255,.35);
+            background: rgba(20,26,42,.7);
+        }
+        .toggle input {
+            margin-top: 1px;
+            width: 17px;
+            height: 17px;
+        }
+        .toggle-title {
+            font-weight: 600;
+            font-size: 12px;
+        }
+        .toggle-description {
+            display: block;
+            margin-top: 2px;
+            font-size: 11px;
+            color: #9caed2;
+            line-height: 1.32;
+        }
     </style>
     <script defer src="popup.js"></script>
-    </head>
+</head>
 <body>
-    <div class="section">
-        <div class="row">
-            <h1>Theme</h1>
-            <span class="muted">Alt+T cycles</span>
-        </div>
-        <div id="theme-groups"></div>
-    </div>
+    <main>
+        <header class="panel intro">
+            <div class="intro-top">
+                <h1>Cosmo Palette</h1>
+                <span class="intro-meta">Alt+T cycles</span>
+            </div>
+            <p class="intro-copy">Switch moods without scrolling. Pick a style, then keep the vibe as you work.</p>
+            <span class="active-theme" id="active-theme-label">Glass</span>
+        </header>
 
-    <div class="section">
-        <div class="row">
+        <section class="panel theme-panel" aria-labelledby="themes-heading">
+            <div class="theme-panel__header">
+                <h2 id="themes-heading" class="theme-panel__title">Collections</h2>
+                <p class="theme-panel__note">Tap a set to expand. Your active theme stays pinned.</p>
+            </div>
+            <div id="theme-accordion" class="theme-accordion" aria-labelledby="themes-heading"></div>
+        </section>
+
+        <section class="panel settings-panel" aria-labelledby="assistive-heading">
+            <div class="settings-header">
+                <h2 id="assistive-heading">Assistive Options</h2>
+                <span class="settings-note">Dial in clarity boosts for dense conversations.</span>
+            </div>
             <label class="toggle" for="reduce-transparency">
                 <input type="checkbox" id="reduce-transparency" />
-                <span>Reduce Transparency</span>
+                <div>
+                    <span class="toggle-title">Reduce Transparency</span>
+                    <span class="toggle-description">Swap to denser glass layers for sharper text contrast.</span>
+                </div>
             </label>
-        </div>
-        <div class="muted">Darker, less translucent glass for readability</div>
-    </div>
-
+        </section>
+    </main>
 </body>
 </html>
-
-
