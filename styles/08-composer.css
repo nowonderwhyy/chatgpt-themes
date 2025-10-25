@@ -63,10 +63,8 @@ form[data-type="unified-composer"] .bg-token-bg-primary::after {
 
 /* Subtle interactive lift on hover (respects hover toggle) */
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover {
-  border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
-  box-shadow: var(--cosmo-glow-soft), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
+  /* Hover glow removed */
 }
-html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-token-bg-primary:hover::before { opacity: .8; }
 
 /* 4) Secondary buttons (+, mic, etc.) inside the composer */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"],
@@ -123,16 +121,23 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:
 /* Button hover affordance (respects hover toggle) */
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:hover,
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:hover {
-  border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent),
+                            color-mix(in oklab, var(--cosmo-accent-2) 8%, transparent)),
+    color-mix(in oklab, var(--cosmo-card) 88%, rgba(255,255,255,.04)) !important;
+  border-color: color-mix(in oklab, var(--cosmo-accent-2) 32%, var(--cosmo-border));
   box-shadow: 
-    0 2px 4px rgba(0,0,0,.2),
-    0 4px 8px rgba(0,0,0,.15),
-    0 6px 16px rgba(0,0,0,.1),
+    0 1px 2px rgba(0,0,0,.15),
+    0 2px 6px rgba(0,0,0,.12),
+    0 4px 12px rgba(0,0,0,.08),
     inset 0 -1px 2px rgba(0,0,0,.2),
-    inset 0 1px 1px rgba(255,255,255,.12),
+    inset 0 1px 1px rgba(255,255,255,.1),
     var(--cosmo-glow-soft),
-    0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
-  transform: translateY(-2px);
+    0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+}
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:hover::before,
+html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:hover::before {
+  opacity: .75;
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:active,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:active {
