@@ -6,8 +6,18 @@ html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
     background: var(--cosmo-card) !important;
 }
 
-/* Midnight — extra subtle header accents for seamless blend */
-html[data-cosmo-theme="midnight"] #page-header,
+/* Midnight - dusky header wash */
+html[data-cosmo-theme="midnight"] #page-header {
+  background:
+    radial-gradient(380px 220px at 78% 0%, color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent), transparent),
+    linear-gradient(120deg, color-mix(in oklab, var(--cosmo-accent-1) 10%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.035) 0%, rgba(12, 32, 64, .22) 56%, transparent),
+    color-mix(in oklab, var(--cosmo-card) 92%, rgba(6, 20, 42, .10)) !important;
+  border-bottom-color: color-mix(in oklab, var(--cosmo-border) 60%, transparent);
+  box-shadow: 0 1px 0 rgba(18, 54, 110, .20), 0 14px 42px rgba(2, 10, 22, .38);
+}
+
+/* Nocturne family - twilight header carryover */
 html[data-cosmo-theme="nocturne"] #page-header,
 html[data-cosmo-theme="nocturne-v2"] #page-header {
   background:
@@ -21,13 +31,35 @@ html[data-cosmo-theme="nocturne-v2"] #page-header {
   box-shadow: var(--cosmo-glow-soft);
 }
 
+/* Midnight - aurora rail accents */
+html[data-cosmo-theme="midnight"] #stage-slideover-sidebar [__menu-item],
+html[data-cosmo-theme="midnight"] #stage-popover-sidebar [__menu-item],
+html[data-cosmo-theme="midnight"] a[data-testid^="sidebar-item-"] {
+  color: color-mix(in oklab, var(--cosmo-text) 95%, rgba(90, 190, 235, .18));
+  text-shadow: 0 0 10px rgba(54, 148, 216, .10);
+}
+html[data-cosmo-theme="midnight"] #stage-slideover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="midnight"] #stage-popover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="midnight"] a[data-testid^="sidebar-item-"] svg {
+  color: color-mix(in oklab, var(--cosmo-accent-2) 58%, var(--cosmo-text) 42%);
+  filter: drop-shadow(0 0 6px rgba(60, 170, 235, .16));
+}
+html[data-cosmo-theme="midnight"] [__menu-item][aria-current="page"],
+html[data-cosmo-theme="midnight"] [__menu-item][data-selected="true"],
+html[data-cosmo-theme="midnight"] a[data-testid^="sidebar-item-"][aria-current="page"],
+html[data-cosmo-theme="midnight"] a[data-testid^="sidebar-item-"][data-selected="true"] {
+  background: color-mix(in oklab, var(--cosmo-accent-2) 12%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(86, 180, 235, .22), 0 4px 12px rgba(2, 12, 24, .36);
+}
+
 /* --- Mocha fine-tuning for long reads --- */
 html.dark[data-cosmo-theme="mocha"]::after{
     background:
-        radial-gradient(60% 45% at 115% 115%, rgba(0,0,0,.30), transparent 62%),
-        radial-gradient(90% 70% at 50% 120%, rgba(32,24,19,.24), transparent 60%),
-        radial-gradient(50% 40% at 50% -10%, rgba(245,236,224,.05), transparent 60%);
-    opacity: .9;
+        radial-gradient(70% 48% at 112% 120%, rgba(34,18,6,.42), transparent 68%),
+        radial-gradient(88% 66% at 48% 118%, rgba(108, 74, 44, .30), transparent 62%),
+        radial-gradient(52% 38% at 48% -8%, rgba(248, 228, 198, .10), transparent 60%),
+        conic-gradient(from 140deg at 50% 50%, rgba(214, 166, 104, .12), transparent 44%, rgba(80, 48, 22, .18) 76%, transparent);
+    opacity: .92;
 }
 
 
@@ -73,24 +105,51 @@ html[data-cosmo-theme="vapor"] a[data-testid^="sidebar-item-"][data-selected="tr
 html[data-cosmo-theme="mocha"] #stage-slideover-sidebar [__menu-item],
 html[data-cosmo-theme="mocha"] #stage-popover-sidebar [__menu-item],
 html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"] {
-  font-weight: 450;
+  font-weight: 460;
+  color: color-mix(in oklab, var(--cosmo-text) 92%, #f1d3a0 8%);
+  text-shadow: 0 0 10px rgba(56, 32, 14, .22);
 }
 html[data-cosmo-theme="mocha"] #stage-slideover-sidebar [__menu-item] svg,
 html[data-cosmo-theme="mocha"] #stage-popover-sidebar [__menu-item] svg,
-html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"] svg { color: #F5EFE6; }
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"] svg {
+  color: color-mix(in oklab, var(--cosmo-text) 88%, #f2d6ad 12%);
+}
 html[data-cosmo-theme="mocha"] [__menu-item][aria-current="page"] svg,
 html[data-cosmo-theme="mocha"] [__menu-item][data-selected="true"] svg,
 html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][aria-current="page"] svg,
 html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][data-selected="true"] svg {
   filter: drop-shadow(0 0 6px rgba(185, 138, 90, .25));
 }
+html[data-cosmo-theme="mocha"] [__menu-item][aria-current="page"],
+html[data-cosmo-theme="mocha"] [__menu-item][data-selected="true"],
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][aria-current="page"],
+html[data-cosmo-theme="mocha"] a[data-testid^="sidebar-item-"][data-selected="true"] {
+  background:
+    linear-gradient(135deg,
+      color-mix(in oklab, var(--cosmo-accent-2) 18%, rgba(40, 24, 12, .85)) 0%,
+      color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent) 100%);
+  box-shadow: inset 0 0 0 1px rgba(214, 172, 126, .30), 0 4px 12px rgba(14, 8, 4, .30);
+  color: var(--cosmo-text);
+}
 /* Section headers */
 html[data-cosmo-theme="mocha"] #stage-slideover-sidebar :is(h2,h3,[role="heading"]) {
   text-transform: uppercase; font-size: 10.5px; letter-spacing: .06em;
-  color: color-mix(in oklab, #caa078 80%, #F3E9DD 20%);
+  color: color-mix(in oklab, #d2a874 78%, #f4e2c8 22%);
 }
 
-/* Sunset — lighten code blocks a touch for warm palettes */
+/* Mocha - parchment cradle for code blocks */
+html[data-cosmo-theme="mocha"] #thread pre {
+  background: rgba(52, 34, 18, .82);
+  border-color: color-mix(in oklab, var(--cosmo-border) 72%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(214, 172, 126, .18);
+}
+html[data-cosmo-theme="mocha"] #thread code:not(pre code) {
+  background: rgba(214, 172, 126, .16);
+  border-color: color-mix(in oklab, var(--cosmo-border) 68%, transparent);
+  color: color-mix(in oklab, var(--cosmo-text) 88%, #f1d3a0 12%);
+}
+
+/* Sunset - lighten code blocks a touch for warm palettes */
 html[data-cosmo-theme="sunset"] #thread pre {
   background: rgba(0,0,0,.31);
   border-color: color-mix(in oklab, var(--cosmo-border) 70%, transparent);
@@ -100,7 +159,18 @@ html[data-cosmo-theme="sunset"] #thread code:not(pre code) {
   border-color: color-mix(in oklab, var(--cosmo-border) 62%, transparent);
 }
 
-/* Petal — airy rose glow for nav items */
+/* Midnight - deepen code cradle with aqua rim */
+html[data-cosmo-theme="midnight"] #thread pre {
+  background: rgba(4, 12, 26, .88);
+  border-color: color-mix(in oklab, var(--cosmo-border) 68%, transparent);
+  box-shadow: inset 0 0 0 1px rgba(68, 150, 220, .15);
+}
+html[data-cosmo-theme="midnight"] #thread code:not(pre code) {
+  background: rgba(14, 38, 64, .42);
+  border-color: color-mix(in oklab, var(--cosmo-border) 60%, transparent);
+}
+
+/* Petal - airy rose glow for nav items */
 html[data-cosmo-theme="petal"] #stage-slideover-sidebar [__menu-item],
 html[data-cosmo-theme="petal"] #stage-popover-sidebar [__menu-item],
 html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"] {
