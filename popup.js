@@ -10,6 +10,7 @@ const THEME_META = {
 	amethyst: { label: 'Amethyst',       tagline: 'Deep violet with soft bloom',   colors: ['#4d35ac', '#b8a6ff'] },
 	glacier:  { label: 'Glacier',        tagline: 'Icy teal clarity',              colors: ['#7de3ff', '#b7ffd8'] },
 	mocha:    { label: 'Mocha',          tagline: 'Toasted cocoa warmth',          colors: ['#8b5e3c', '#f3e9dc'] },
+	petal:    { label: 'Petal',          tagline: 'Pastel lilac, rose, and blush', colors: ['#d3a6ff', '#ff9ab6'] },
 	midnight: { label: 'Midnight',       tagline: 'Deep ocean blues',              colors: ['#5b9dff', '#b598ff'] },
 	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] }
@@ -32,7 +33,7 @@ const THEME_COLLECTIONS = [
 		id: 'pastel',
 		title: 'Pastel Drift',
 		note: 'Soft, calming palettes that stay out of the way.',
-		items: ['sakura', 'orchid', 'amethyst', 'glacier']
+		items: ['sakura', 'petal', 'orchid', 'amethyst', 'glacier']
 	},
 	{
 		id: 'nightfall',
@@ -64,6 +65,95 @@ const accordionRoot = document.getElementById('theme-accordion');
 const activeThemeLabel = document.getElementById('active-theme-label');
 const collectionsMap = new Map();
 let isBootstrapping = true;
+
+const SYNC_WRITE_DELAY = 280;
+let lastLocalTheme = null;
+let lastSavedOpenCollections = null;
+let pendingSyncPayload = null;
+let syncWriteTimer = null;
+let syncWriteInFlight = false;
+const syncedSnapshot = new Map();
+
+function snapshotValue(value) {
+	return typeof value === 'string' ? value : JSON.stringify(value);
+}
+
+function recordSynced(values) {
+	Object.entries(values).forEach(([key, value]) => {
+		syncedSnapshot.set(key, snapshotValue(value));
+	});
+}
+
+function flushSyncUpdate() {
+	if (!pendingSyncPayload || syncWriteInFlight) return;
+	const payload = pendingSyncPayload;
+	pendingSyncPayload = null;
+	syncWriteInFlight = true;
+	chrome.storage.sync.set(payload, () => {
+		syncWriteInFlight = false;
+		if (chrome.runtime.lastError) {
+			console.warn('[cosmo] sync.set failed', chrome.runtime.lastError);
+			setTimeout(() => queueSyncUpdate(payload, { flush: true }), 1500);
+			return;
+		}
+		recordSynced(payload);
+		if (pendingSyncPayload) flushSyncUpdate();
+	});
+}
+
+function queueSyncUpdate(update, { flush = false } = {}) {
+	const entries = Object.entries(update).filter(([key, value]) => {
+		if (pendingSyncPayload && Object.prototype.hasOwnProperty.call(pendingSyncPayload, key)) return true;
+		return syncedSnapshot.get(key) !== snapshotValue(value);
+	});
+	if (!entries.length) return;
+	const patch = Object.fromEntries(entries);
+	pendingSyncPayload = { ...(pendingSyncPayload || {}), ...patch };
+	if (flush) {
+		if (syncWriteTimer) {
+			clearTimeout(syncWriteTimer);
+			syncWriteTimer = null;
+		}
+		flushSyncUpdate();
+		return;
+	}
+	if (!syncWriteTimer) {
+		syncWriteTimer = setTimeout(() => {
+			syncWriteTimer = null;
+			flushSyncUpdate();
+		}, SYNC_WRITE_DELAY);
+	}
+}
+
+function persistTheme(theme) {
+	if (lastLocalTheme === theme) return;
+	lastLocalTheme = theme;
+	chrome.storage.local.set({ cosmoTheme: theme });
+	queueSyncUpdate({ cosmoTheme: theme });
+}
+
+function loadStoredState(callback) {
+	const defaults = { cosmoTheme: 'glass', [STORAGE_KEYS.openCollections]: [] };
+	chrome.storage.sync.get(defaults, (syncStored) => {
+		chrome.storage.local.get(Object.keys(defaults), (localStored) => {
+			const hasLocalTheme = Object.prototype.hasOwnProperty.call(localStored, 'cosmoTheme');
+			const localOpenKey = Object.prototype.hasOwnProperty.call(localStored, STORAGE_KEYS.openCollections);
+			const cosmoTheme = hasLocalTheme ? localStored.cosmoTheme : (syncStored.cosmoTheme ?? defaults.cosmoTheme);
+			const openCollections = localOpenKey && Array.isArray(localStored[STORAGE_KEYS.openCollections])
+				? localStored[STORAGE_KEYS.openCollections]
+				: (Array.isArray(syncStored[STORAGE_KEYS.openCollections]) ? syncStored[STORAGE_KEYS.openCollections] : defaults[STORAGE_KEYS.openCollections]);
+			recordSynced({
+				cosmoTheme: syncStored.cosmoTheme ?? defaults.cosmoTheme,
+				[STORAGE_KEYS.openCollections]: Array.isArray(syncStored[STORAGE_KEYS.openCollections]) ? syncStored[STORAGE_KEYS.openCollections] : defaults[STORAGE_KEYS.openCollections]
+			});
+			lastLocalTheme = hasLocalTheme ? localStored.cosmoTheme : cosmoTheme;
+			lastSavedOpenCollections = JSON.stringify(openCollections);
+			if (!hasLocalTheme) chrome.storage.local.set({ cosmoTheme });
+			if (!localOpenKey) chrome.storage.local.set({ [STORAGE_KEYS.openCollections]: openCollections });
+			callback({ cosmoTheme, openCollections });
+		});
+	});
+}
 
 function buildThemeButton(theme) {
 	const meta = THEME_META[theme];
@@ -133,7 +223,12 @@ function getOpenCollectionIds() {
 
 function persistOpenCollections() {
 	if (isBootstrapping) return;
-	chrome.storage.sync.set({ [STORAGE_KEYS.openCollections]: getOpenCollectionIds() });
+	const ids = getOpenCollectionIds();
+	const serialized = JSON.stringify(ids);
+	if (serialized === lastSavedOpenCollections) return;
+	lastSavedOpenCollections = serialized;
+	chrome.storage.local.set({ [STORAGE_KEYS.openCollections]: ids });
+	queueSyncUpdate({ [STORAGE_KEYS.openCollections]: ids });
 }
 
 function buildCollectionSection(collection) {
@@ -192,7 +287,7 @@ function updateActiveTheme(theme, { syncCollection = true } = {}) {
 }
 
 function setTheme(theme) {
-	chrome.storage.sync.set({ cosmoTheme: theme });
+	persistTheme(theme);
 	updateActiveTheme(theme);
 }
 
@@ -204,9 +299,8 @@ function initThemes() {
 		if (section) accordionRoot.appendChild(section);
 	});
 
-	chrome.storage.sync.get({ cosmoTheme: 'glass', [STORAGE_KEYS.openCollections]: [] }, (stored) => {
-		const cosmoTheme = stored.cosmoTheme;
-		const storedOpen = Array.isArray(stored[STORAGE_KEYS.openCollections]) ? stored[STORAGE_KEYS.openCollections] : [];
+	loadStoredState(({ cosmoTheme, openCollections }) => {
+		const storedOpen = Array.isArray(openCollections) ? openCollections : [];
 		const defaultCollection = COLLECTION_LOOKUP[cosmoTheme] ?? THEME_COLLECTIONS[0].id;
 		const toOpen = storedOpen.length ? storedOpen : [defaultCollection];
 		toOpen.forEach(ensureCollectionOpen);
@@ -218,8 +312,44 @@ function initThemes() {
 	});
 
 	chrome.storage.onChanged.addListener((changes, area) => {
-		if (area === 'sync' && changes.cosmoTheme) {
-			updateActiveTheme(changes.cosmoTheme.newValue);
+		if (area === 'sync') {
+			if (changes.cosmoTheme) {
+				const next = changes.cosmoTheme.newValue;
+				if (typeof next === 'string') {
+					recordSynced({ cosmoTheme: next });
+					if (lastLocalTheme !== next) chrome.storage.local.set({ cosmoTheme: next });
+					updateActiveTheme(next);
+				}
+			}
+			if (changes[STORAGE_KEYS.openCollections]) {
+				const nextOpen = Array.isArray(changes[STORAGE_KEYS.openCollections].newValue)
+					? changes[STORAGE_KEYS.openCollections].newValue
+					: [];
+				recordSynced({ [STORAGE_KEYS.openCollections]: nextOpen });
+				const serialized = JSON.stringify(nextOpen);
+				if (serialized !== lastSavedOpenCollections) {
+					lastSavedOpenCollections = serialized;
+					chrome.storage.local.set({ [STORAGE_KEYS.openCollections]: nextOpen });
+					collectionsMap.forEach(({ details }) => { details.open = nextOpen.includes(details.dataset.collection); });
+					persistOpenCollections();
+				}
+			}
+		}
+		if (area === 'local') {
+			if (changes.cosmoTheme && typeof changes.cosmoTheme.newValue === 'string') {
+				lastLocalTheme = changes.cosmoTheme.newValue;
+				if (syncedSnapshot.get('cosmoTheme') !== snapshotValue(changes.cosmoTheme.newValue)) {
+					queueSyncUpdate({ cosmoTheme: changes.cosmoTheme.newValue });
+				}
+				updateActiveTheme(changes.cosmoTheme.newValue);
+			}
+			if (changes[STORAGE_KEYS.openCollections]) {
+				const updated = changes[STORAGE_KEYS.openCollections].newValue;
+				lastSavedOpenCollections = JSON.stringify(updated);
+				if (syncedSnapshot.get(STORAGE_KEYS.openCollections) !== snapshotValue(updated)) {
+					queueSyncUpdate({ [STORAGE_KEYS.openCollections]: updated });
+				}
+			}
 		}
 	});
 }

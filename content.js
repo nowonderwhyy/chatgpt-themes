@@ -13,8 +13,9 @@
     cosmoIntensity: 'regular',
     cosmoReduceTransparency: false
   };
+  const SETTINGS_KEYS = Object.keys(DEFAULTS);
   
-	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne'];
+	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'petal', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.84, blur:12, contrast:1.07 },
@@ -47,38 +48,48 @@
   }
   
   function loadStateOnce() {
-    chrome.storage.sync.get({ ...DEFAULTS, cosmoAltTHintShown: false }, (s) => {
-      state = { ...state, ...s };
-      // Accessibility: enable reduce-transparency by default on Contrast (one-time)
-      if (state.cosmoTheme === 'contrast' && !s.cosmoReduceTransparency) {
-        state.cosmoReduceTransparency = true;
-        chrome.storage.sync.set({ cosmoReduceTransparency: true });
-      }
-      applyStateToDOM();
-      // One-time Alt+T toast hint
-      if (!s.cosmoAltTHintShown) {
-        showAltTToast();
-        chrome.storage.sync.set({ cosmoAltTHintShown: true });
-      }
+    const syncDefaults = { ...DEFAULTS, cosmoAltTHintShown: false };
+    chrome.storage.sync.get(syncDefaults, (syncValues) => {
+      chrome.storage.local.get(SETTINGS_KEYS, (localValues) => {
+        const merged = { ...DEFAULTS };
+        for (const key of SETTINGS_KEYS) {
+          if (Object.prototype.hasOwnProperty.call(localValues, key)) merged[key] = localValues[key];
+          else merged[key] = syncValues[key];
+        }
+        state = { ...state, ...merged };
+        const hasLocalReduce = Object.prototype.hasOwnProperty.call(localValues, 'cosmoReduceTransparency') && localValues.cosmoReduceTransparency;
+        const hasSyncReduce = !!syncValues.cosmoReduceTransparency;
+        if (state.cosmoTheme === 'contrast' && !hasLocalReduce && !hasSyncReduce) {
+          state.cosmoReduceTransparency = true;
+          chrome.storage.local.set({ cosmoReduceTransparency: true });
+          chrome.storage.sync.set({ cosmoReduceTransparency: true });
+        }
+        applyStateToDOM();
+        if (!syncValues.cosmoAltTHintShown) {
+          showAltTToast();
+          chrome.storage.sync.set({ cosmoAltTHintShown: true });
+        }
+      });
     });
   }
   
 	function setThemePersisted(nextTheme) {
 	  state.cosmoTheme = nextTheme;
+	  chrome.storage.local.set({ cosmoTheme: nextTheme });
 	  chrome.storage.sync.set({ cosmoTheme: nextTheme });
 	  applyStateToDOM();
 	}
   
 	// Live sync when any setting changes
 	chrome.storage.onChanged.addListener((changes, area) => {
-	  if (area !== 'sync') return;
+	  if (area !== 'sync' && area !== 'local') return;
 	  let needsApply = false;
-  for (const k of ['cosmoTheme','cosmoNoChatbarHighlight','cosmoNoChatbarHover','cosmoIntensity','cosmoReduceTransparency']) {
-      if (changes[k]) {
-        state[k] = changes[k].newValue;
-        needsApply = true;
-      }
-    }
+	for (const k of ['cosmoTheme','cosmoNoChatbarHighlight','cosmoNoChatbarHover','cosmoIntensity','cosmoReduceTransparency']) {
+	      if (Object.prototype.hasOwnProperty.call(changes, k)) {
+	        state[k] = changes[k].newValue;
+	        needsApply = true;
+	      }
+	    }
 	  if (needsApply) applyStateToDOM();
 	});
   

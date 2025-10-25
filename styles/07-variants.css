@@ -99,3 +99,24 @@ html[data-cosmo-theme="sunset"] #thread code:not(pre code) {
   border-color: color-mix(in oklab, var(--cosmo-border) 62%, transparent);
 }
 
+/* Petal — airy rose glow for nav items */
+html[data-cosmo-theme="petal"] #stage-slideover-sidebar [__menu-item],
+html[data-cosmo-theme="petal"] #stage-popover-sidebar [__menu-item],
+html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"] {
+  font-weight: 450;
+  color: color-mix(in oklab, var(--cosmo-text) 90%, #ffbfd4 10%);
+  text-shadow: 0 0 8px rgba(255, 170, 210, .1);
+}
+html[data-cosmo-theme="petal"] #stage-slideover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="petal"] #stage-popover-sidebar [__menu-item] svg,
+html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"] svg {
+  color: color-mix(in oklab, var(--cosmo-accent-1) 60%, #ffe1e9 40%);
+}
+html[data-cosmo-theme="petal"] [__menu-item][aria-current="page"],
+html[data-cosmo-theme="petal"] [__menu-item][data-selected="true"],
+html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"][aria-current="page"],
+html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"][data-selected="true"] {
+  box-shadow: inset 0 0 0 1px rgba(255, 190, 222, .24);
+  background: color-mix(in oklab, var(--cosmo-accent-1) 14%, transparent);
+}
+
