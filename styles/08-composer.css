@@ -71,10 +71,19 @@ html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] .bg-t
 /* 4) Secondary buttons (+, mic, etc.) inside the composer */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"],
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"] {
-  background: var(--cosmo-card) !important;
-  border: 1px solid var(--cosmo-border) !important;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--cosmo-accent-1) 8%, transparent),
+                            color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent)),
+    color-mix(in oklab, var(--cosmo-card) 72%, transparent) !important;
+  border: 1px solid color-mix(in oklab, var(--cosmo-border) 85%, transparent) !important;
   border-radius: 9999px !important;
-  box-shadow: var(--cosmo-glow-soft);
+  box-shadow: 
+    0 1px 2px rgba(0,0,0,.15),
+    0 2px 6px rgba(0,0,0,.12),
+    0 4px 12px rgba(0,0,0,.08),
+    inset 0 -1px 2px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.1),
+    var(--cosmo-glow-soft);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -85,8 +94,8 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
   line-height: 0;
   width: 40px; height: 40px;
   min-width: 40px; min-height: 40px;
-  backdrop-filter: var(--cosmo-blur);
-  -webkit-backdrop-filter: var(--cosmo-blur);
+  backdrop-filter: blur(var(--cosmo-blur-strength)) saturate(150%) contrast(1.08) brightness(1.08) !important;
+  -webkit-backdrop-filter: blur(var(--cosmo-blur-strength)) saturate(150%) contrast(1.08) brightness(1.08) !important;
   background-clip: padding-box;
   clip-path: inset(0 round 9999px);
   transform: translateZ(0);
@@ -96,27 +105,44 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::before,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background: color-mix(in oklab, var(--cosmo-card) 88%, rgba(255,255,255,.08));
-  opacity: .42;
+  background: 
+    linear-gradient(180deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.02) 50%, rgba(0,0,0,.04) 100%);
+  opacity: .6;
 }
 
 /* Inner ring for buttons */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::after,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cosmo-border) 70%, transparent);
-  opacity: .6;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.15),
+    inset 0 0 0 1px color-mix(in oklab, var(--cosmo-border) 60%, transparent);
+  opacity: .7;
 }
 
 /* Button hover affordance (respects hover toggle) */
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:hover,
 html:not([data-cosmo-no-chatbar-hover]) form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:hover {
   border-color: color-mix(in oklab, var(--cosmo-accent-2) 28%, var(--cosmo-border));
-  box-shadow: var(--cosmo-glow-soft), 0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
-  transform: translateY(-1px);
+  box-shadow: 
+    0 2px 4px rgba(0,0,0,.2),
+    0 4px 8px rgba(0,0,0,.15),
+    0 6px 16px rgba(0,0,0,.1),
+    inset 0 -1px 2px rgba(0,0,0,.2),
+    inset 0 1px 1px rgba(255,255,255,.12),
+    var(--cosmo-glow-soft),
+    0 0 0 1px color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent);
+  transform: translateY(-2px);
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]:active,
-form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:active { transform: translateY(0); }
+form[data-type="unified-composer"] button[data-testid="composer-speech-button"]:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 1px 1px rgba(0,0,0,.2),
+    inset 0 1px 3px rgba(0,0,0,.3),
+    inset 0 -1px 1px rgba(255,255,255,.05),
+    var(--cosmo-glow-soft);
+}
 
 /* 5) Hover / focus treatment (using :focus-within; respects toggles) */
 
