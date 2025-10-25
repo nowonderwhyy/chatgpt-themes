@@ -35,13 +35,6 @@ html.dark[data-cosmo-theme="mocha"]::after{
 }
 
 
-/* Gentle typography for body text */
-html[data-cosmo-theme="mocha"] #thread p,
-html[data-cosmo-theme="mocha"] #thread li {
-    letter-spacing: .003em;
-    hyphens: auto;
-}
-
 /* ================= Sidebar Theme Variants ================ */
 
 /* Sunset — espresso rail, copper polish */
