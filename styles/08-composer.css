@@ -77,22 +77,35 @@ form[data-type="unified-composer"] button[data-testid="composer-speech-button"] 
   box-shadow: var(--cosmo-glow-soft);
   position: relative;
   overflow: hidden;
-  backdrop-filter: var(--cosmo-blur);
-  transition: background-color .18s ease, box-shadow .18s ease, transform .12s ease;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 0;
   width: 40px; height: 40px;
+  min-width: 40px; min-height: 40px;
+  backdrop-filter: var(--cosmo-blur);
+  -webkit-backdrop-filter: var(--cosmo-blur);
+  background-clip: padding-box;
+  clip-path: inset(0 round 9999px);
+  transform: translateZ(0);
+  will-change: transform;
+  transition: background-color .18s ease, box-shadow .18s ease, transform .12s ease;
 }
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::before,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::before {
-  content: ""; position: absolute; inset: 1px; border-radius: inherit; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,0));
-  opacity: .5;
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: color-mix(in oklab, var(--cosmo-card) 88%, rgba(255,255,255,.08));
+  opacity: .42;
 }
 
 /* Inner ring for buttons */
 form[data-type="unified-composer"] button[data-testid="composer-plus-btn"]::after,
 form[data-type="unified-composer"] button[data-testid="composer-speech-button"]::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(255,255,255,.05);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--cosmo-border) 70%, transparent);
+  opacity: .6;
 }
 
 /* Button hover affordance (respects hover toggle) */
