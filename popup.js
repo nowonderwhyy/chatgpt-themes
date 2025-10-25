@@ -2,16 +2,16 @@
 const THEME_META = {
 	glass:    { label: 'Glass',          tagline: 'Cinematic clarity default',     colors: ['#6f7cff', '#9be7ff'] },
 	mono:     { label: 'Mono',           tagline: 'Icy blues, functional chrome',  colors: ['#4a86ff', '#7dd3fc'] },
-	vapor:    { label: 'Vapor',          tagline: 'Neon vaporwave glow',           colors: ['#8a63d2', '#34d5d5'] },
+	vapor:    { label: 'Vapor',          tagline: 'Aurora neon drift',             colors: ['#b38aff', '#52f5ff'] },
 	sunset:   { label: 'Sunset',         tagline: 'Warm twilight gradients',       colors: ['#ff7a59', '#ffd38a'] },
-	gamma:    { label: 'Gamma Doppler',  tagline: 'Hypergreen sci-fi sheen',       colors: ['#2cff91', '#9dffd0'] },
+	gamma:    { label: 'Gamma Doppler',  tagline: 'Iridescent doppler flux',      colors: ['#3cff9f', '#7cfff0'] },
 	sakura:   { label: 'Sakura',         tagline: 'Serene blush and apricot',      colors: ['#ff7ab6', '#ffd3a3'] },
 	orchid:   { label: 'Orchid',         tagline: 'Lavender haze highlight',       colors: ['#7E6BFF', '#c3b8ff'] },
 	amethyst: { label: 'Amethyst',       tagline: 'Deep violet with soft bloom',   colors: ['#4d35ac', '#b8a6ff'] },
 	glacier:  { label: 'Glacier',        tagline: 'Icy teal clarity',              colors: ['#7de3ff', '#b7ffd8'] },
 	mocha:    { label: 'Mocha',          tagline: 'Toasted cocoa warmth',          colors: ['#8b5e3c', '#f3e9dc'] },
 	midnight: { label: 'Midnight',       tagline: 'Deep ocean blues',              colors: ['#5b9dff', '#b598ff'] },
-	nocturne: { label: 'Nocturne',       tagline: 'Velvet purple dusk',            colors: ['#6f56ff', '#a97dff'] },
+	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] }
 };
 
