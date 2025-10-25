@@ -15,7 +15,7 @@
   };
   const SETTINGS_KEYS = Object.keys(DEFAULTS);
   
-	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'petal', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne'];
+	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'petal', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne', 'nocturne-v2'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.84, blur:12, contrast:1.07 },

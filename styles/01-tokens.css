@@ -381,3 +381,29 @@ html[data-cosmo-theme="nocturne"] {
     --sb-rail-shadow: inset -1px 0 0 rgba(68, 76, 180, .18);
 }
 html[data-cosmo-theme="nocturne"] { --cosmo-accent-1:#6481ff; --cosmo-accent-2:#c18aff; }
+
+/* Nocturne V2 (velvet amethyst bloom) */
+html[data-cosmo-theme="nocturne-v2"] {
+    --cosmo-bg:
+        radial-gradient(1400px 940px at 10% -24%, rgba(180, 96, 255, .78) 0%, transparent 64%),
+        radial-gradient(1260px 860px at 116% 126%, rgba(58, 48, 196, .62) 0%, transparent 58%),
+        radial-gradient(940px 720px at 52% 118%, rgba(255, 118, 226, .28) 0%, transparent 70%),
+        linear-gradient(192deg, #08061a, #161036);
+    --cosmo-card: rgba(22, 18, 46, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #f1e4ff 26%, rgba(0,0,0,.56));
+    --cosmo-glow: 0 0 0 1px rgba(182, 120, 255, .24), 0 16px 46px rgba(42, 28, 120, .26);
+    --cosmo-glow-soft: 0 0 0 1px rgba(182, 120, 255, .16), 0 12px 32px rgba(42, 28, 120, .18);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(122%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #f6f1ff;
+    --cosmo-subtle: #d9c9ff;
+
+    /* Sidebar */
+    --sb-rail-bg: color-mix(in oklab, rgb(22, 18, 46) 78%, #3f1f78 22%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 76%, rgba(186, 126, 255, .30));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 63%, var(--cosmo-accent-2) 37%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 12%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 22%, transparent);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(88, 46, 164, .18);
+}
+html[data-cosmo-theme="nocturne-v2"] { --cosmo-accent-1:#b476ff; --cosmo-accent-2:#ff88da; }

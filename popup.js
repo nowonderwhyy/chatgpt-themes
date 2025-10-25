@@ -13,6 +13,7 @@ const THEME_META = {
 	petal:    { label: 'Petal',          tagline: 'Pastel lilac, rose, and blush', colors: ['#d3a6ff', '#ff9ab6'] },
 	midnight: { label: 'Midnight',       tagline: 'Deep ocean blues',              colors: ['#5b9dff', '#b598ff'] },
 	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
+	'nocturne-v2': { label: 'Nocturne V2',   tagline: 'Velvet violet midnight bloom', colors: ['#b476ff', '#ff88da'] },
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] }
 };
 
@@ -39,7 +40,7 @@ const THEME_COLLECTIONS = [
 		id: 'nightfall',
 		title: 'Nightfall',
 		note: 'Moody tones tuned for low-light focus.',
-		items: ['midnight', 'nocturne', 'mocha']
+		items: ['midnight', 'nocturne', 'nocturne-v2', 'mocha']
 	},
 	{
 		id: 'access',

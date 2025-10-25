@@ -8,7 +8,8 @@ html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
 
 /* Midnight — extra subtle header accents for seamless blend */
 html[data-cosmo-theme="midnight"] #page-header,
-html[data-cosmo-theme="nocturne"] #page-header {
+html[data-cosmo-theme="nocturne"] #page-header,
+html[data-cosmo-theme="nocturne-v2"] #page-header {
   background:
     linear-gradient(180deg, rgba(255,255,255,.03), transparent 55%),
     linear-gradient(90deg,
