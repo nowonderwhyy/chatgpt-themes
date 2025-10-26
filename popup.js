@@ -17,7 +17,7 @@ const THEME_META = {
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] },
 	'deep-purple': { label: 'Deep Purple',   tagline: 'Dark violet, crisp white text', colors: ['#a78bff', '#e5d4ff'] },
 	'dark-sepia': { label: 'Dark Sepia',     tagline: 'Warm brown tones for reading',  colors: ['#d4a574', '#f2e4d0'] },
-	burrito: { label: 'Burrito',         tagline: 'Blurred photo with gradient',   colors: ['#ff9a7a', '#78d4ff'] }
+	burrito: { label: 'Burrito',         tagline: 'Velvet neon bloom',            colors: ['#ff6fce', '#7ad3ff'] }
 };
 
 const THEME_COLLECTIONS = [
@@ -369,5 +369,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		chrome.storage.sync.set({ cosmoReduceTransparency: rt.checked });
 	});
 });
-
 

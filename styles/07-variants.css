@@ -195,13 +195,17 @@ html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"][data-selected="tr
 /* Burrito - header with warm accent wash */
 html[data-cosmo-theme="burrito"] #page-header {
   background:
-    linear-gradient(180deg, rgba(255,255,255,.032) 0%, transparent 55%),
-    linear-gradient(90deg,
-      color-mix(in oklab, var(--cosmo-accent-1) 5%, transparent),
-      color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent)
-    ),
+    radial-gradient(420px 260px at 18% 0%, color-mix(in oklab, var(--cosmo-accent-1) 16%, transparent), transparent),
+    radial-gradient(380px 240px at 82% 6%, color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent), transparent),
+    linear-gradient(180deg, rgba(255,255,255,.045) 0%, rgba(18, 6, 32, .58) 60%, transparent),
     color-mix(in oklab, var(--cosmo-card) 94%, transparent) !important;
-  border-bottom-color: color-mix(in oklab, var(--cosmo-border) 72%, transparent);
-  box-shadow: var(--cosmo-glow-soft);
+  border-bottom-color: color-mix(in oklab, var(--cosmo-border) 74%, transparent);
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, .03), 0 18px 46px rgba(6, 2, 18, .45);
+}
+
+html[data-cosmo-theme="burrito"] #page-header button svg,
+html[data-cosmo-theme="burrito"] #page-header [role="button"] svg {
+  color: color-mix(in oklab, var(--cosmo-text) 88%, var(--cosmo-accent-1) 12%);
+  filter: drop-shadow(0 0 6px rgba(255, 132, 224, .32));
 }
 
