@@ -15,6 +15,8 @@ const THEME_META = {
 	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
 	'nocturne-v2': { label: 'Nocturne V2',   tagline: 'Velvet violet midnight bloom', colors: ['#b476ff', '#ff88da'] },
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] },
+	'deep-purple': { label: 'Deep Purple',   tagline: 'Dark violet, crisp white text', colors: ['#a78bff', '#e5d4ff'] },
+	'dark-sepia': { label: 'Dark Sepia',     tagline: 'Warm brown tones for reading',  colors: ['#d4a574', '#f2e4d0'] },
 	burrito: { label: 'Burrito',         tagline: 'Blurred photo with gradient',   colors: ['#ff9a7a', '#78d4ff'] }
 };
 
@@ -47,8 +49,7 @@ const THEME_COLLECTIONS = [
 		id: 'access',
 		title: 'Accessibility',
 		note: 'Extra contrast when the text needs to pop.',
-		layout: 'single',
-		items: ['contrast']
+		items: ['contrast', 'deep-purple', 'dark-sepia']
 	}
 ];
 

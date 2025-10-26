@@ -410,6 +410,62 @@ html[data-cosmo-theme="nocturne-v2"] {
 }
 html[data-cosmo-theme="nocturne-v2"] { --cosmo-accent-1:#b476ff; --cosmo-accent-2:#ff88da; }
 
+/* Deep Purple (optimized for text legibility) */
+html[data-cosmo-theme="deep-purple"] {
+    --cosmo-bg:
+        radial-gradient(1200px 840px at 8% -20%, rgba(100, 60, 180, .36) 0%, transparent 62%),
+        radial-gradient(1180px 820px at 112% 128%, rgba(60, 40, 140, .32) 0%, transparent 60%),
+        linear-gradient(188deg, #0e0a18, #17112a);
+    --cosmo-card: rgba(20, 16, 32, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #cac2e8 20%, rgba(0,0,0,.66));
+    --cosmo-glow: 0 0 0 1px rgba(130, 110, 200, .20), 0 14px 40px rgba(20, 10, 50, .28);
+    --cosmo-glow-soft: 0 0 0 1px rgba(130, 110, 200, .14), 0 10px 28px rgba(20, 10, 50, .20);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(112%) contrast(1.06);
+    --cosmo-text: #e8e4f5;
+    --cosmo-subtle: #bfb8d8;
+    --cosmo-surface-alpha: .88;
+    --cosmo-blur-strength: 11px;
+    --cosmo-contrast-boost: 1.06;
+
+    /* Sidebar with softer contrast */
+    --sb-rail-bg: color-mix(in oklab, rgb(20, 16, 32) 90%, #251d40 10%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 78%, rgba(150, 130, 220, .22));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 64%, var(--cosmo-accent-2) 36%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 9%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(90, 70, 160, .16);
+}
+html[data-cosmo-theme="deep-purple"] { --cosmo-accent-1:#9d85e8; --cosmo-accent-2:#d4c8f5; }
+
+/* Dark Sepia (reading-optimized warm tones) */
+html[data-cosmo-theme="dark-sepia"] {
+    --cosmo-bg:
+        radial-gradient(1180px 820px at 10% -22%, rgba(90, 70, 50, .28) 0%, transparent 64%),
+        radial-gradient(1140px 800px at 112% 130%, rgba(70, 55, 40, .26) 0%, transparent 62%),
+        linear-gradient(188deg, #110d0a, #1a1512);
+    --cosmo-card: rgba(22, 18, 14, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #c4b8a8 18%, rgba(0,0,0,.68));
+    --cosmo-glow: 0 0 0 1px rgba(130, 110, 85, .18), 0 14px 40px rgba(20, 15, 10, .30);
+    --cosmo-glow-soft: 0 0 0 1px rgba(130, 110, 85, .12), 0 10px 28px rgba(20, 15, 10, .22);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(108%) contrast(1.06);
+    --cosmo-text: #d9d0c4;
+    --cosmo-subtle: #b8ad9e;
+    --cosmo-surface-alpha: .88;
+    --cosmo-blur-strength: 10px;
+    --cosmo-contrast-boost: 1.06;
+
+    /* Sidebar with warm reading tones */
+    --sb-rail-bg: color-mix(in oklab, rgb(22, 18, 14) 92%, #2c231a 8%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 78%, rgba(160, 140, 110, .22));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 66%, var(--cosmo-accent-2) 34%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 8%, transparent);
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 16%, transparent);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(110, 90, 70, .14);
+}
+html[data-cosmo-theme="dark-sepia"] { --cosmo-accent-1:#c49b6e; --cosmo-accent-2:#dccab4; }
+
 /* Burrito (blurred photo background with gradient overlay) */
 html[data-cosmo-theme="burrito"] {
     /* Background with lighter gradient overlay to let colors shine through */
