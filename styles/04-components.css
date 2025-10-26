@@ -24,6 +24,38 @@
     mix-blend-mode: normal; opacity:.7;
 }
 
+/* Mobile/small window header (md:hidden breakpoint) */
+div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+div.draggable.sticky.top-0[class*="bg-token-bg-primary"] {
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.035), transparent 60%),
+        linear-gradient(90deg,
+            color-mix(in oklab, var(--cosmo-accent-1) 6%, transparent),
+            color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent)
+        ),
+        color-mix(in oklab, var(--cosmo-card) 92%, transparent) !important;
+    backdrop-filter: var(--cosmo-blur) !important;
+    border-bottom: 1px solid var(--cosmo-border) !important;
+    box-shadow: var(--cosmo-glow-soft) !important;
+}
+
+/* Mobile header buttons */
+div.draggable.h-header-height button,
+div.draggable.sticky.top-0 button {
+    border-radius: 10px !important;
+    transition: background-color .12s ease, transform .08s ease;
+}
+
+div.draggable.h-header-height button:hover,
+div.draggable.sticky.top-0 button:hover {
+    background-color: rgba(255, 255, 255, .08) !important;
+}
+
+div.draggable.h-header-height button:active,
+div.draggable.sticky.top-0 button:active {
+    transform: scale(0.96);
+}
+
 /* Unify header action buttons */
 button[data-testid="model-switcher-dropdown-button"],
 button[data-testid="share-chat-button"],

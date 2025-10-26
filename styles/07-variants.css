@@ -1,5 +1,7 @@
 /* Contrast variant tweaks */
 html[data-cosmo-theme="contrast"] #page-header,
+html[data-cosmo-theme="contrast"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="contrast"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"],
 html[data-cosmo-theme="contrast"] #stage-sidebar-tiny-bar,
 html[data-cosmo-theme="contrast"] .bg-token-sidebar-surface-primary,
 html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
@@ -7,7 +9,9 @@ html[data-cosmo-theme="contrast"] [class*="bg-token-sidebar-surface-"] {
 }
 
 /* Midnight - dusky header wash */
-html[data-cosmo-theme="midnight"] #page-header {
+html[data-cosmo-theme="midnight"] #page-header,
+html[data-cosmo-theme="midnight"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="midnight"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"] {
   background:
     radial-gradient(380px 220px at 78% 0%, color-mix(in oklab, var(--cosmo-accent-2) 14%, transparent), transparent),
     linear-gradient(120deg, color-mix(in oklab, var(--cosmo-accent-1) 10%, transparent) 0%, transparent 60%),
@@ -19,7 +23,11 @@ html[data-cosmo-theme="midnight"] #page-header {
 
 /* Nocturne family - twilight header carryover */
 html[data-cosmo-theme="nocturne"] #page-header,
-html[data-cosmo-theme="nocturne-v2"] #page-header {
+html[data-cosmo-theme="nocturne"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="nocturne"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="nocturne-v2"] #page-header,
+html[data-cosmo-theme="nocturne-v2"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="nocturne-v2"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"] {
   background:
     linear-gradient(180deg, rgba(255,255,255,.03), transparent 55%),
     linear-gradient(90deg,
@@ -53,7 +61,9 @@ html[data-cosmo-theme="midnight"] a[data-testid^="sidebar-item-"][data-selected=
 }
 
 /* Velvet Noir – stage-lit cabaret header */
-html[data-cosmo-theme="velvet-noir"] #page-header {
+html[data-cosmo-theme="velvet-noir"] #page-header,
+html[data-cosmo-theme="velvet-noir"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="velvet-noir"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"] {
   background:
     radial-gradient(360px 200px at 16% 0%, color-mix(in oklab, var(--cosmo-accent-1) 18%, transparent), transparent),
     radial-gradient(420px 240px at 86% 6%, color-mix(in oklab, var(--cosmo-accent-2) 16%, transparent), transparent),
@@ -63,7 +73,9 @@ html[data-cosmo-theme="velvet-noir"] #page-header {
   box-shadow: 0 1px 0 rgba(84, 12, 44, .24), 0 14px 46px rgba(6, 0, 18, .44);
 }
 html[data-cosmo-theme="velvet-noir"] #page-header button svg,
-html[data-cosmo-theme="velvet-noir"] #page-header [role="button"] svg {
+html[data-cosmo-theme="velvet-noir"] #page-header [role="button"] svg,
+html[data-cosmo-theme="velvet-noir"] div.draggable.h-header-height button svg,
+html[data-cosmo-theme="velvet-noir"] div.draggable.sticky.top-0 button svg {
   color: color-mix(in oklab, var(--cosmo-accent-2) 52%, var(--cosmo-text) 48%);
   filter: drop-shadow(0 0 8px rgba(255, 94, 170, .25));
 }
@@ -254,7 +266,9 @@ html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"][data-selected="tr
 
 
 /* Burrito - header with warm accent wash */
-html[data-cosmo-theme="burrito"] #page-header {
+html[data-cosmo-theme="burrito"] #page-header,
+html[data-cosmo-theme="burrito"] div.draggable.h-header-height.sticky[class*="bg-token-bg-primary"],
+html[data-cosmo-theme="burrito"] div.draggable.sticky.top-0[class*="bg-token-bg-primary"] {
   background:
     radial-gradient(420px 260px at 18% 0%, color-mix(in oklab, var(--cosmo-accent-1) 16%, transparent), transparent),
     radial-gradient(380px 240px at 82% 6%, color-mix(in oklab, var(--cosmo-accent-2) 18%, transparent), transparent),
@@ -265,7 +279,9 @@ html[data-cosmo-theme="burrito"] #page-header {
 }
 
 html[data-cosmo-theme="burrito"] #page-header button svg,
-html[data-cosmo-theme="burrito"] #page-header [role="button"] svg {
+html[data-cosmo-theme="burrito"] #page-header [role="button"] svg,
+html[data-cosmo-theme="burrito"] div.draggable.h-header-height button svg,
+html[data-cosmo-theme="burrito"] div.draggable.sticky.top-0 button svg {
   color: color-mix(in oklab, var(--cosmo-text) 88%, var(--cosmo-accent-1) 12%);
   filter: drop-shadow(0 0 6px rgba(255, 132, 224, .32));
 }
