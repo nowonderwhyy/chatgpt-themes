@@ -191,3 +191,17 @@ html[data-cosmo-theme="petal"] a[data-testid^="sidebar-item-"][data-selected="tr
   background: color-mix(in oklab, var(--cosmo-accent-1) 14%, transparent);
 }
 
+
+/* Burrito - header with warm accent wash */
+html[data-cosmo-theme="burrito"] #page-header {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.032) 0%, transparent 55%),
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--cosmo-accent-1) 5%, transparent),
+      color-mix(in oklab, var(--cosmo-accent-2) 4%, transparent)
+    ),
+    color-mix(in oklab, var(--cosmo-card) 94%, transparent) !important;
+  border-bottom-color: color-mix(in oklab, var(--cosmo-border) 72%, transparent);
+  box-shadow: var(--cosmo-glow-soft);
+}
+

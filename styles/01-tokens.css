@@ -409,3 +409,32 @@ html[data-cosmo-theme="nocturne-v2"] {
     --sb-rail-shadow: inset -1px 0 0 rgba(88, 46, 164, .18);
 }
 html[data-cosmo-theme="nocturne-v2"] { --cosmo-accent-1:#b476ff; --cosmo-accent-2:#ff88da; }
+
+/* Burrito (blurred photo background with gradient overlay) */
+html[data-cosmo-theme="burrito"] {
+    /* Background with lighter gradient overlay to let colors shine through */
+    /* Image URL injected via JavaScript in content.js using --burrito-bg-* variables */
+    --cosmo-bg: 
+        linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.12) 100%),
+        var(--burrito-bg-1920);
+    --cosmo-card: rgba(18, 22, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffffff 30%, rgba(20, 40, 80, .30));
+    --cosmo-glow: 0 0 0 1px rgba(180, 220, 255, .26), 0 16px 44px rgba(10, 18, 40, .28);
+    --cosmo-glow-soft: 0 0 0 1px rgba(180, 220, 255, .16), 0 10px 28px rgba(10, 18, 40, .22);
+    --cosmo-blur-strength: 16px;
+    --cosmo-contrast-boost: 1.14;
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(145%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #f4f8ff;
+    --cosmo-subtle: #c8d8f2;
+
+    /* Solid sidebar with warm-to-cool gradient matching background colors */
+    --sb-rail-bg: color-mix(in oklab, rgb(24, 18, 32) 90%, #2a1a38 10%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(180, 150, 255, .28));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 68%, var(--cosmo-accent-2) 32%);
+    --sb-active-bg: rgba(255, 255, 255, .04);
+    --sb-hover-rim: rgba(255, 255, 255, .06);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(140, 100, 200, .16);
+}
+/* Complementary warm-to-cool accent colors matching the background gradient */
+html[data-cosmo-theme="burrito"] { --cosmo-accent-1:#ff9a7a; --cosmo-accent-2:#78d4ff; }

@@ -23,6 +23,12 @@
       ],
       "js": ["content.js"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["webp/*.webp"],
+      "matches": ["https://chatgpt.com/*"]
+    }
   ]
 }
 

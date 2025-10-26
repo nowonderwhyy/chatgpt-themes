@@ -15,7 +15,7 @@
   };
   const SETTINGS_KEYS = Object.keys(DEFAULTS);
   
-	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'petal', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne', 'nocturne-v2'];
+	const THEMES = ['glass', 'mono', 'sunset', 'vapor', 'contrast', 'mocha', 'sakura', 'petal', 'glacier', 'orchid', 'amethyst', 'gamma', 'midnight', 'nocturne', 'nocturne-v2', 'burrito'];
   const INTENSITIES = {
     light: { alpha:.74, blur:10, contrast:1.04 },
     regular: { alpha:.84, blur:12, contrast:1.07 },
@@ -43,6 +43,16 @@
 
     if (state.cosmoReduceTransparency) html.setAttribute('data-cosmo-reduce-transparency', '');
     else html.removeAttribute('data-cosmo-reduce-transparency');
+
+    // Inject proper URLs for burrito theme background images
+    if (theme === 'burrito') {
+      const img1920 = chrome.runtime.getURL('webp/1920.webp');
+      const img1280 = chrome.runtime.getURL('webp/1280.webp');
+      const img640 = chrome.runtime.getURL('webp/640.webp');
+      html.style.setProperty('--burrito-bg-1920', `url('${img1920}')`);
+      html.style.setProperty('--burrito-bg-1280', `url('${img1280}')`);
+      html.style.setProperty('--burrito-bg-640', `url('${img640}')`);
+    }
 
     // Collapsed-rail behaviors are now always on via CSS; no flags.
   }

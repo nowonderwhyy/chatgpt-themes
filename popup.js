@@ -14,7 +14,8 @@ const THEME_META = {
 	midnight: { label: 'Midnight',       tagline: 'Deep ocean blues',              colors: ['#5b9dff', '#b598ff'] },
 	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
 	'nocturne-v2': { label: 'Nocturne V2',   tagline: 'Velvet violet midnight bloom', colors: ['#b476ff', '#ff88da'] },
-	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] }
+	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] },
+	burrito: { label: 'Burrito',         tagline: 'Blurred photo with gradient',   colors: ['#ff9a7a', '#78d4ff'] }
 };
 
 const THEME_COLLECTIONS = [
@@ -22,7 +23,7 @@ const THEME_COLLECTIONS = [
 		id: 'signature',
 		title: 'Signature Picks',
 		note: 'Balanced looks for everyday chats.',
-		items: ['glass', 'mono']
+		items: ['glass', 'mono', 'burrito']
 	},
 	{
 		id: 'vivid',
