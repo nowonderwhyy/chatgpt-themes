@@ -410,6 +410,31 @@ html[data-cosmo-theme="nocturne-v2"] {
 }
 html[data-cosmo-theme="nocturne-v2"] { --cosmo-accent-1:#b476ff; --cosmo-accent-2:#ff88da; }
 
+/* Velvet Noir (sultry plum champagne) */
+html[data-cosmo-theme="velvet-noir"] {
+    --cosmo-bg:
+        radial-gradient(1380px 920px at 6% -22%, rgba(246, 68, 168, .62) 0%, transparent 62%),
+        radial-gradient(1240px 860px at 116% 126%, rgba(94, 48, 220, .44) 0%, transparent 60%),
+        radial-gradient(960px 740px at 54% 120%, rgba(255, 146, 84, .26) 0%, transparent 70%),
+        linear-gradient(194deg, #060108, #120112 38%, #22051e 82%);
+    --cosmo-card: rgba(26, 8, 30, var(--cosmo-surface-alpha));
+    --cosmo-border: color-mix(in oklab, #ffd8f0 28%, rgba(6, 0, 16, .56));
+    --cosmo-glow: 0 0 0 1px rgba(246, 90, 176, .26), 0 18px 46px rgba(10, 2, 24, .40);
+    --cosmo-glow-soft: 0 0 0 1px rgba(255, 172, 116, .18), 0 12px 32px rgba(10, 2, 24, .28);
+    --cosmo-blur: blur(var(--cosmo-blur-strength)) saturate(128%) contrast(var(--cosmo-contrast-boost));
+    --cosmo-text: #fef5ff;
+    --cosmo-subtle: #e1bfd9;
+
+    --sb-rail-bg: color-mix(in oklab, rgb(26, 8, 30) 78%, #39112c 22%);
+    --sb-divider: color-mix(in oklab, var(--cosmo-border) 74%, rgba(246, 90, 176, .30));
+    --sb-accent-bar: color-mix(in oklab, var(--cosmo-accent-1) 66%, var(--cosmo-accent-2) 34%);
+    --sb-active-bg: color-mix(in oklab, var(--cosmo-accent-1) 12%, rgba(8, 0, 18, .58));
+    --sb-hover-rim: color-mix(in oklab, var(--cosmo-accent-2) 24%, transparent);
+    --sb-icon-color: var(--cosmo-text);
+    --sb-rail-shadow: inset -1px 0 0 rgba(138, 38, 116, .22);
+}
+html[data-cosmo-theme="velvet-noir"] { --cosmo-accent-1:#ff4f9d; --cosmo-accent-2:#ffb067; }
+
 /* Deep Purple (optimized for text legibility) */
 html[data-cosmo-theme="deep-purple"] {
     --cosmo-bg:

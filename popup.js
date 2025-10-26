@@ -14,6 +14,7 @@ const THEME_META = {
 	midnight: { label: 'Midnight',       tagline: 'Deep ocean blues',              colors: ['#5b9dff', '#b598ff'] },
 	nocturne: { label: 'Nocturne',       tagline: 'Luminous midnight bloom',      colors: ['#6481ff', '#c18aff'] },
 	'nocturne-v2': { label: 'Nocturne V2',   tagline: 'Velvet violet midnight bloom', colors: ['#b476ff', '#ff88da'] },
+	'velvet-noir': { label: 'Velvet Noir',  tagline: 'Plum velvet with molten gold', colors: ['#ff4f9d', '#ffb067'] },
 	contrast: { label: 'High Contrast',  tagline: 'Maximum legibility',            colors: ['#9ab6ff', '#78e2ff'] },
 	'deep-purple': { label: 'Deep Purple',   tagline: 'Dark violet, crisp white text', colors: ['#a78bff', '#e5d4ff'] },
 	'dark-sepia': { label: 'Dark Sepia',     tagline: 'Warm brown tones for reading',  colors: ['#d4a574', '#f2e4d0'] },
@@ -43,7 +44,7 @@ const THEME_COLLECTIONS = [
 		id: 'nightfall',
 		title: 'Nightfall',
 		note: 'Moody tones tuned for low-light focus.',
-		items: ['midnight', 'nocturne', 'nocturne-v2', 'mocha']
+		items: ['midnight', 'nocturne', 'nocturne-v2', 'velvet-noir', 'mocha']
 	},
 	{
 		id: 'access',
@@ -369,4 +370,3 @@ document.addEventListener('DOMContentLoaded', () => {
 		chrome.storage.sync.set({ cosmoReduceTransparency: rt.checked });
 	});
 });
-
